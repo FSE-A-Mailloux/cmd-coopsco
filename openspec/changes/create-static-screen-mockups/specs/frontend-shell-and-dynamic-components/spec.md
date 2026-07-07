@@ -8,6 +8,26 @@ Avant implémentation dynamique, ce cadre MUST être représenté par des maquet
 - **WHEN** un utilisateur ouvre l’application
 - **THEN** l’interface affiche les zones principales nécessaires au parcours utilisateur
 
+#### Scenario: Indicateurs commandes par statut sur la periode en cours
+- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
+- **THEN** la zone de contenu metier affiche le nombre de commandes de la periode en cours pour chaque statut (`Brouillon`, `En attente de paiement`, `Paiement partiel`, `Paiement en cours`, `Confirmee`, `Annulee`) et n'affiche pas d'indicateurs `Demandes en attente` ni `Alertes stock`
+
+#### Scenario: Affichage de la periode en cours et de son etat
+- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
+- **THEN** la maquette affiche la periode marquee `en cours` et son etat (`Ouverte` ou `Fermee`) pour contextualiser les indicateurs de commande
+
+#### Scenario: Metriques de pilotage sur la periode en cours
+- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
+- **THEN** la zone centrale affiche des metriques pertinentes de la periode en cours (au minimum `CA`, `Nb commandes`, `Panier moyen`) en complement de la repartition des statuts
+
+#### Scenario: Ordre de grandeur du panier moyen coherent avec le parcours famille
+- **WHEN** la maquette `Shell de reference` affiche les metriques de la periode en cours
+- **THEN** la valeur de `Panier moyen` est representee avec un ordre de grandeur realiste pour le contexte famille (autour de 50 EUR, et non de plusieurs centaines ou milliers d'euros)
+
+#### Scenario: Recapitulatif des periodes passees
+- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
+- **THEN** la maquette affiche un recapitulatif des periodes passees (au minimum `CA` et `Nb commandes` par periode) pour comparer la periode en cours avec l'historique
+
 #### Scenario: Référentiel visuel de shell en phase de réécriture
 - **WHEN** l’équipe prépare la réécriture de l’interface
 - **THEN** elle dispose d’une maquette statique du shell, consultable dans l’espace dédié des maquettes, comme référence de validation

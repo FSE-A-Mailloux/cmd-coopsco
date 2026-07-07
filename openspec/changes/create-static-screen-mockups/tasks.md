@@ -143,3 +143,43 @@
 
 - [x] 26.1 Mettre a jour les specs pour ajouter l'etape 5 de choix du mode de paiement (CB HelloAsso, cheque, espece) et les notices explicatives cheque/espece.
 - [x] 26.2 Mettre a jour la maquette de creation de commande pour passer en 5 etapes, ajouter l'etape mode de paiement et repositionner la confirmation finale sur cette etape.
+
+## 27. Ajustement shell de reference - commandes par statut (remarque atelier)
+
+- [x] 27.1 Mettre a jour les specs pour imposer l'affichage du nombre de commandes sur la periode en cours par statut dans l'ecran Shell de reference.
+- [x] 27.2 Mettre a jour la maquette Shell de reference pour remplacer "Demandes en attente" et "Alertes stock" par la repartition des commandes par statut.
+
+## 28. Ajustement statut commande annulee et regle d'annulation (remarque atelier)
+
+- [x] 28.1 Mettre a jour les specs pour ajouter le statut `Annulee` et formaliser que l'annulation est possible uniquement avant tout paiement enregistre.
+- [x] 28.2 Mettre a jour les maquettes commandes (liste, detail, shell) pour afficher le statut `Annulee`, l'action d'annulation et la regle de non-annulation apres paiement.
+
+## 29. Ajustement shell de reference - periode en cours et etat ouvert/ferme (remarque atelier)
+
+- [x] 29.1 Mettre a jour les specs pour imposer l'affichage de la periode en cours et de son etat (`Ouverte`/`Fermee`) dans l'ecran Shell de reference.
+- [x] 29.2 Mettre a jour la maquette Shell de reference pour afficher explicitement la periode en cours et son etat ouvert/ferme.
+
+## 30. Ajustement shell de reference - metriques periode en cours et recap historique (remarque atelier)
+
+- [x] 30.1 Mettre a jour les specs pour remplacer la zone generique de contenu metier par des metriques pertinentes de la periode en cours et un recapitulatif des annees passees.
+- [x] 30.2 Mettre a jour la maquette Shell de reference pour afficher un tableau de bord periode en cours (CA, nb commandes, panier moyen, statuts) et une vue historique annuelle.
+
+## 31. Ajustement valeurs shell de reference - panier moyen realiste (remarque atelier)
+
+- [x] 31.1 Mettre a jour les specs pour expliciter un ordre de grandeur realiste du panier moyen (autour de 50 EUR) dans le shell.
+- [x] 31.2 Mettre a jour la maquette Shell de reference pour aligner le panier moyen et les valeurs de recapitulatif annuel sur cet ordre de grandeur.
+
+## 32. Ajustement recap shell - periodes passees au lieu d'annees scolaires (remarque atelier)
+
+- [x] 32.1 Mettre a jour les specs pour demander un recapitulatif des periodes passees (et non des annees scolaires) dans le shell.
+- [x] 32.2 Mettre a jour la maquette Shell de reference pour renommer la colonne historique en `Periode` et afficher des libelles de periodes.
+
+## 33. Ajustement liste des commandes gestionnaire - recherche multicriteres et filtre periode (remarque atelier)
+
+- [x] 33.1 Mettre a jour les specs pour imposer, sur la liste des commandes gestionnaire, une recherche multicriteres (email, nom/prenom parent, nom/prenom enfant) et un filtre periode.
+- [x] 33.2 Mettre a jour la maquette Liste des commandes (gestionnaire) pour afficher ces filtres avec la periode en cours preselectionnee par defaut.
+
+## 34. Ajustement filtres liste commandes gestionnaire - champ unique et statuts multi-selection (remarque atelier)
+
+- [x] 34.1 Mettre a jour les specs pour remplacer la recherche multicriteres par plusieurs champs par un champ unique interrogeant email/nom/prenom parent/enfant.
+- [x] 34.2 Mettre a jour la maquette Liste des commandes (gestionnaire) pour afficher ce champ unique et ajouter un filtre statuts en selection multiple.

@@ -149,8 +149,8 @@ Les maquettes MUST inclure, dans les parcours d'entree du role famille, un ecran
 - **WHEN** un utilisateur consulte les ecrans d'entree du role famille
 - **THEN** il peut ouvrir un ecran "Creation de compte"
 
-### Requirement: Les commandes MUST utiliser le referentiel de statuts de paiement defini
-Les maquettes commandes MUST utiliser uniquement les statuts suivants: `Brouillon`, `En attente de paiement`, `Paiement partiel`, `Paiement en cours`, `Confirmee`, avec les significations metier associees.
+### Requirement: Les commandes MUST utiliser le referentiel de statuts defini
+Les maquettes commandes MUST utiliser uniquement les statuts suivants: `Brouillon`, `En attente de paiement`, `Paiement partiel`, `Paiement en cours`, `Confirmee`, `Annulee`, avec les significations metier associees.
 
 #### Scenario: Consultation d'une commande en brouillon
 - **WHEN** une commande est creee mais non validee
@@ -171,6 +171,33 @@ Les maquettes commandes MUST utiliser uniquement les statuts suivants: `Brouillo
 #### Scenario: Consultation d'une commande reglee
 - **WHEN** le paiement est valide
 - **THEN** son statut affiche est `Confirmee`
+
+#### Scenario: Consultation d'une commande annulee
+- **WHEN** une commande est annulee
+- **THEN** son statut affiche est `Annulee`
+
+#### Scenario: Annulation autorisee avant paiement
+- **WHEN** une commande est en statut `Brouillon` ou `En attente de paiement` sans paiement enregistre
+- **THEN** la maquette affiche une action d'annulation disponible
+
+#### Scenario: Annulation refusee apres paiement
+- **WHEN** au moins un paiement est enregistre pour une commande
+- **THEN** la maquette indique que l'annulation de la commande n'est plus possible
+
+### Requirement: La liste des commandes gestionnaire MUST proposer une recherche multicriteres en champ unique, un filtre periode et un filtre statuts
+La maquette `Liste des commandes (gestionnaire)` MUST proposer un champ de recherche unique qui interroge les informations famille (`email parent`, `nom/prenom parent`, `nom/prenom enfant`), MUST permettre la selection d'une periode avec la `periode en cours` preselectionnee par defaut, et MUST proposer un filtre de statuts en selection multiple.
+
+#### Scenario: Recherche multicriteres via champ unique
+- **WHEN** un gestionnaire saisit une valeur dans le champ de recherche unique
+- **THEN** la maquette indique que la recherche est appliquee simultanement sur email, nom et prenom du parent et de l'enfant
+
+#### Scenario: Filtre periode preselectionne sur la periode en cours
+- **WHEN** un gestionnaire ouvre la maquette `Liste des commandes (gestionnaire)`
+- **THEN** le filtre `Periode` affiche la periode en cours par defaut, tout en permettant de selectionner une periode passee
+
+#### Scenario: Filtre statuts en selection multiple
+- **WHEN** un gestionnaire choisit plusieurs statuts de commande dans le filtre de statuts
+- **THEN** la maquette represente une selection multiple de statuts appliquee au filtrage de la liste
 
 ### Requirement: Les gestionnaires MUST disposer d'un parcours d'encaissement cheque/espece
 Les maquettes MUST presenter un parcours gestionnaire dedie a l'encaissement comprenant: recherche de commande, association d'un ou plusieurs paiements, et formulaire de saisie des paiements cheque ou espece.

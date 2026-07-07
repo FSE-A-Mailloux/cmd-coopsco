@@ -3,31 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liste des commandes</title>
+  <title>Liste des commandes (gestionnaire)</title>
   <link rel="stylesheet" href="../../assets/base.css">
 </head>
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Liste des commandes</h1><p class="subtitle">Vue de suivi et filtrage des commandes</p></div>
+      <div class="title-stack"><h1>Liste des commandes (gestionnaire)</h1><p class="subtitle">Vue de suivi et filtrage des commandes</p></div>
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="card">
       <div class="actions">
-        <span class="tag">Periode: Septembre</span>
-        <span class="tag">Statuts: Brouillon a Confirmee</span>
+        <span class="tag">Periode selectionnee: Rentree 2026 (en cours)</span>
+        <span class="tag">Statuts: Brouillon a Annulee</span>
         <button class="button primary">Nouvelle commande</button>
       </div>
-      <p class="muted">Referentiel statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmee.</p>
+      <section class="card">
+        <h2 class="card-title">Filtres de recherche</h2>
+        <div class="layout-2">
+          <article>
+            <div class="field"><label>Recherche multicriteres (email, nom, prenom parent/enfant)</label><input class="input" value="dupont marie lina"></div>
+            <div class="field"><label>Periode</label><select class="select"><option>Rentree 2026 (en cours)</option><option>Rentree 2025</option><option>Rentree 2024</option></select></div>
+          </article>
+          <article>
+            <div class="field">
+              <label>Statuts commandes (selection multiple)</label>
+              <div class="actions">
+                <label><input type="checkbox" checked> Brouillon</label>
+                <label><input type="checkbox" checked> En attente de paiement</label>
+                <label><input type="checkbox" checked> Paiement partiel</label>
+                <label><input type="checkbox"> Paiement en cours</label>
+                <label><input type="checkbox"> Confirmee</label>
+                <label><input type="checkbox"> Annulee</label>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="actions">
+          <button class="button primary">Rechercher</button>
+          <button class="button ghost">Reinitialiser</button>
+        </div>
+        <p class="muted">Le champ de recherche unique interroge email, nom et prenom du parent et de l'enfant; la periode est preselectionnee sur la periode en cours; les statuts sont filtrables en selection multiple.</p>
+      </section>
+      <p class="muted">Referentiel statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmee, Annulee.</p>
+      <p class="muted">Une commande peut etre annulee tant qu'aucun paiement n'a ete enregistre.</p>
       <table>
-        <thead><tr><th>Numero</th><th>Client</th><th>Date</th><th>Statut</th><th>Montant</th></tr></thead>
+        <thead><tr><th>Numero</th><th>Email parent</th><th>Parent</th><th>Enfant</th><th>Date</th><th>Statut</th><th>Montant</th><th>Actions</th></tr></thead>
         <tbody>
-          <tr><td>CMD-2401</td><td>Librairie Campus</td><td>03/09/2026</td><td>Brouillon</td><td>3 520 EUR</td></tr>
-          <tr><td>CMD-2402</td><td>College Saint-Paul</td><td>04/09/2026</td><td>Brouillon</td><td>1 860 EUR</td></tr>
-          <tr><td>CMD-2403</td><td>Lycee Bellevue</td><td>04/09/2026</td><td>En attente de paiement</td><td>4 120 EUR</td></tr>
-          <tr><td>CMD-2404</td><td>Ecole Pasteur</td><td>05/09/2026</td><td>Paiement partiel</td><td>2 450 EUR</td></tr>
-          <tr><td>CMD-2405</td><td>College Mistral</td><td>05/09/2026</td><td>Paiement en cours</td><td>3 000 EUR</td></tr>
-          <tr><td>CMD-2406</td><td>Lycee Curie</td><td>06/09/2026</td><td>Confirmee</td><td>2 980 EUR</td></tr>
+          <tr><td>CMD-2401</td><td>marie.dupont@exemple.fr</td><td>Marie Dupont</td><td>Lina Dupont</td><td>03/09/2026</td><td>Brouillon</td><td>52 EUR</td><td><button class="button">Annuler commande</button></td></tr>
+          <tr><td>CMD-2402</td><td>thomas.bernard@exemple.fr</td><td>Thomas Bernard</td><td>Leo Bernard</td><td>04/09/2026</td><td>Brouillon</td><td>47 EUR</td><td><button class="button">Annuler commande</button></td></tr>
+          <tr><td>CMD-2403</td><td>fatou.ndiaye@exemple.fr</td><td>Fatou Ndiaye</td><td>Yanis Ndiaye</td><td>04/09/2026</td><td>En attente de paiement</td><td>59 EUR</td><td><button class="button">Annuler commande</button></td></tr>
+          <tr><td>CMD-2404</td><td>julie.martin@exemple.fr</td><td>Julie Martin</td><td>Emma Martin</td><td>05/09/2026</td><td>Paiement partiel</td><td>64 EUR</td><td><span class="tag">Non annulable (paiement enregistre)</span></td></tr>
+          <tr><td>CMD-2405</td><td>samir.benali@exemple.fr</td><td>Samir Benali</td><td>Nour Benali</td><td>05/09/2026</td><td>Paiement en cours</td><td>43 EUR</td><td><span class="tag">Non annulable (paiement enregistre)</span></td></tr>
+          <tr><td>CMD-2406</td><td>camille.roche@exemple.fr</td><td>Camille Roche</td><td>Tom Roche</td><td>06/09/2026</td><td>Confirmee</td><td>55 EUR</td><td><span class="tag">Non annulable (paiement effectue)</span></td></tr>
+          <tr><td>CMD-2407</td><td>ines.moreau@exemple.fr</td><td>Ines Moreau</td><td>Mila Moreau</td><td>06/09/2026</td><td>Annulee</td><td>38 EUR</td><td><span class="tag">Commande annulee</span></td></tr>
         </tbody>
       </table>
     </section>

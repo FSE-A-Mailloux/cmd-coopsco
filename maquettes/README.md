@@ -44,7 +44,10 @@ Exemple:
 - Le domaine articles est separe en deux ecrans: **listing** et **creation**.
 - Un article est defini par: **code de reference**, **libelle**, **marque**.
 - Un article porte deux disponibilites distinctes: **commandes** (visibilite en creation de commande) et **stock** (visibilite en inventaire).
-- Les commandes utilisent le referentiel de statuts: **Brouillon**, **En attente de paiement**, **Paiement partiel**, **Paiement en cours** (CB en traitement), **Confirmee**.
+- Les commandes utilisent le referentiel de statuts: **Brouillon**, **En attente de paiement**, **Paiement partiel**, **Paiement en cours** (CB en traitement), **Confirmee**, **Annulee**.
+- Une commande peut etre **annulee tant qu'aucun paiement n'a ete enregistre**; l'annulation n'est plus possible apres paiement.
+- La maquette **Liste des commandes (gestionnaire)** propose un **champ de recherche multicriteres unique** (email, nom/prenom parent, nom/prenom enfant), un filtre **Periode** avec la **periode en cours** par defaut, et un filtre **Statuts** en selection multiple.
+- Le **Shell de reference** n'affiche pas de zone d'ecrans dynamiques: il presente un tableau de bord de la **periode en cours** (etat, **CA**, **nb commandes**, **panier moyen** autour de **50 EUR**, statuts) et un recapitulatif des **periodes passees**.
 - Le formulaire de commande famille est **multi-etapes**: (1) validation email/telephone, (2) saisie du nombre d'enfants puis des informations **nom / prenom / niveau** pour chaque enfant (sans niveau principal), (3) saisie des quantites sur la liste complete des fournitures, (4) validation de la commande, (5) choix du mode de paiement.
 - Les enfants peuvent etre pre-renseignes depuis la commande precedente.
 - Le formulaire de commande est base sur la liste de fournitures de reference du college (par niveau 6e a 3e), avec quantites recommandees et quantites choisies.

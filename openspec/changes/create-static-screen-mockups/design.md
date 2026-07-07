@@ -144,8 +144,8 @@ Contraintes principales:
    - **Pourquoi non retenue**: ne permet pas de valider un parcours de creation autonome.
 
 21. **Referentiel unique des statuts de commande**
-   - **Décision**: normaliser les maquettes commandes sur cinq statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmee.
-   - **Rationale**: aligner les vues de suivi commande avec le cycle de validation/paiement attendu.
+   - **Décision**: normaliser les maquettes commandes sur six statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmee, Annulee, et afficher la regle d'annulation (possible tant qu'aucun paiement n'est enregistre, impossible apres paiement).
+   - **Rationale**: aligner les vues de suivi commande avec le cycle complet commande/paiement/annulation attendu.
    - **Alternative considérée**: conserver des statuts heterogenes (Validee, Livree, En attente).
    - **Pourquoi non retenue**: ambiguite metier et incoherence entre ecrans.
 
@@ -256,6 +256,18 @@ Contraintes principales:
    - **Rationale**: expliciter le parcours de reglement famille et les consignes operationnelles avant confirmation finale.
    - **Alternative considérée**: conserver le choix de paiement implicite ou externe a la creation.
    - **Pourquoi non retenue**: manque de clarte utilisateur et absence des notices metier attendues.
+
+40. **Shell de reference oriente metriques periode/historique**
+   - **Décision**: remplacer le contenu generique du shell par un tableau de bord metier affichant les metriques de la periode en cours (etat de periode, CA, nombre de commandes, panier moyen autour de 50 EUR, repartition par statuts) et un recapitulatif des periodes passees (CA, nombre de commandes, indicateurs de tendance) avec des ordres de grandeur coherents.
+   - **Rationale**: fournir un ecran de pilotage directement exploitable en atelier metier, sans laisser penser a une zone de rendu dynamique non specifiee.
+   - **Alternative considérée**: conserver une zone "contenu metier dynamique" generique.
+   - **Pourquoi non retenue**: formulation trop abstraite et peu utile pour valider les besoins fonctionnels de suivi d'activite.
+
+41. **Liste des commandes gestionnaire avec recherche multicriteres et filtre periode**
+   - **Décision**: ajouter, sur la maquette `Liste des commandes (gestionnaire)`, un champ de recherche multicriteres unique (email, nom/prenom parent, nom/prenom enfant), un selecteur de periode preselectionne sur la periode en cours, et un filtre de statuts en selection multiple.
+   - **Rationale**: permettre au gestionnaire de retrouver rapidement une commande via une seule zone de saisie, puis d'affiner par periode et par un ou plusieurs statuts.
+   - **Alternative considérée**: conserver plusieurs champs separes pour la recherche textuelle et pas de filtre statuts multi-selection.
+   - **Pourquoi non retenue**: experience moins fluide et filtrage insuffisant pour les besoins de pilotage quotidien.
 
 ## Risks / Trade-offs
 
