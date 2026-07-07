@@ -1,0 +1,29 @@
+<div class="panel panel-primary" ng-controller="defaultFseCtrl">
+  <div class="panel-heading">Tableau de bord</div>
+  <div class="panel-body">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Commandes annuelles</div>
+        <div class="panel-body">
+          <canvas class="chart chart-bar" chart-data="stat.cmdAnnuelles.data" chart-labels="stat.cmdAnnuelles.labels" chart-series="stat.cmdAnnuelles.series" chart-options="stat.cmdAnnuelles.options"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Montant commandes en cours</div>
+        <div class="panel-body">
+          <canvas class="chart chart-doughnut" chart-data="stat.cmdEnCours.data" chart-labels="stat.cmdEnCours.labels"></canvas> 
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" ng-if="stat.messages.length > 0">
+      <div class="panel panel-default">
+        <div class="panel-heading">Messages importants</div>
+        <div class="panel-body">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

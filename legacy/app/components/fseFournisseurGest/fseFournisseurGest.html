@@ -1,0 +1,66 @@
+<div class="panel panel-primary" ng-controller="fseFournisseurGestCtrl">
+  <div class="panel-heading">Fournisseur</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.design)}">
+        <label for="design" class="col-sm-2 control-label">Désignation</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="design" placeholder="Désignation" required ng-minlength="4" ng-maxlength="256" ng-model="fse_fournisseur.design_fou" autofocus>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.design.$invalid">Nom entre 4 et 256 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.adr1)}">
+        <label for="adr1" class="col-sm-2 control-label">Adresse</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="adr1" placeholder="Adrese" ng-maxlength="128" ng-model="fse_fournisseur.adr1_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.adr1.$invalid">128 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.adr2)}">
+        <label for="adr2" class="col-sm-2 control-label">Complément</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="adr2" placeholder="Complément adresse" ng-maxlength="128" ng-model="fse_fournisseur.adr2_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.adr2.$invalid">128 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.adr3)}">
+        <label for="adr3" class="col-sm-2 control-label">Complément 2</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="adr3" placeholder="Complément adresse 2" ng-maxlength="128" ng-model="fse_fournisseur.adr3_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.adr3.$invalid">128 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.cp)}">
+        <label for="cp" class="col-sm-2 control-label">Code postal</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="cp" placeholder="Code postal" ng-model="fse_fournisseur.cp_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.cp.$invalid">10 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.ville)}">
+        <label for="ville" class="col-sm-2 control-label">Ville</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="ville" placeholder="Ville" ng-model="fse_fournisseur.ville_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.ville.$invalid">128 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.tel)}">
+        <label for="tel" class="col-sm-2 control-label">Téléphone</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="tel" placeholder="Téléphone" ng-model="fse_fournisseur.tel_fou" ng-blur="fse_fournisseur.tel_fou = formatTel(fse_fournisseur.tel_fou)">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.tel.$invalid">32 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.mail)}">
+        <label for="mail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+          <input type="email" class="form-control" name="mail" placeholder="Email" ng-model="fse_fournisseur.mail_fou">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.mail.$invalid">256 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

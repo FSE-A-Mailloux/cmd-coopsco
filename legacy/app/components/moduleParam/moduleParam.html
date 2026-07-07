@@ -1,0 +1,81 @@
+<div class="panel panel-primary" ng-controller="moduleParamCtrl">
+  <div class="panel-heading">Paramètres du module {{titreModule}} </div>
+  <div class="panel-body">
+    
+      <div ng-if="(editStructure)" class="panel panel-info" ng-repeat="(idxGroupe, groupeParam) in moduleParam.tabGroupeParam">
+        <div class="panel-heading clearfix">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Nom du groupe" ng-model="groupeParam.nomGroupe" required="" maxlength="50">
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="supprimerGroupe(idxGroupe)"></button>
+              <button type="button" class="btn btn-default fa fa-caret-square-o-down" ng-click="descendreGroupe(idxGroupe)"></button>
+              <button type="button" class="btn btn-default fa fa-caret-square-o-up" ng-click="monterGroupe(idxGroupe)"></button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+
+          <div ng-repeat="(idxParam, param) in groupeParam.tabParam">
+            <div class="row">
+              <!--  Bouton validation -->
+              <div class="col-sm-2">
+                <input type="text" class="form-control" ng-model="param.code" placeholder="Code"/>
+              </div>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" ng-model="param.libelle" placeholder="Libelle"/>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" ng-model="param.type">
+                  <option value="text">Texte</option>
+                  <option value="number">Nombre</option>
+                  <option value="date">Date</option>
+                  <option value="checkbox">Case à cocher</option>
+                  <!--  Auter type de champs de saisi pour les valeurs de paramètre -->
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" ng-model="param.cible">
+                  <option value="CS">Client / Serveur</option>
+                  <option value="C">Client uniquement</option>
+                  <option value="S">Serveur uniquement</option>
+                  <!--  Auter type de champs de saisi pour les valeurs de paramètre -->
+                </select>
+              </div>
+            </div>
+
+
+          </div>
+
+          <button type="button" class="btn btn-primary" ng-click="ajouterParam(idxGroupe)">Ajouter un paramètre</button>
+        </div>
+      </div>
+      <div ng-if="(!editStructure)" class="panel panel-info" ng-repeat="(idxGroupe, groupeParam) in moduleParam.tabGroupeParam">
+        <div class="panel-heading">
+          <h1 class="panel-title">
+            {{groupeParam.nomGroupe}}
+          </h1>
+        </div>
+        <div class="panel-body">
+          <form name="formulaire-{{idxGroupe}}" class="form-horizontal" role="form">
+            <div ng-repeat="(idxParam, param) in groupeParam.tabParam">
+              <div class="form-group">
+                <label for="param-{{idxGroupe}}-{{idxParam}}" class="col-sm-3 control-label">{{param.libelle}}</label>
+                <div class="col-sm-3">
+                  <input ng-if="(param.type != 'checkbox')" type="{{param.type}}" class="form-control" name="param-{{idxGroupe}}-{{idxParam}}" ng-model="param.valeur">
+                  <input ng-if="(param.type == 'checkbox')" type="{{param.type}}" class="form-control move-left" name="param-{{idxGroupe}}-{{idxParam}}" ng-model="param.valeur">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+      <button type="button" class="btn btn-primary" ng-if="(editStructure)" ng-click="ajouterGroupe()" ng-disabled="(idxGroupeEdit > - 1)">Ajouter un groupe de paramètre</button>
+   
+    
+  </div>
+</div>

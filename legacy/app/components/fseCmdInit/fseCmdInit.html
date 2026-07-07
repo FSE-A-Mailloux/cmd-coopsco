@@ -1,0 +1,82 @@
+<div class="panel panel-primary" ng-controller="fseCmdInitCtrl">
+  <div class="panel-heading">Création d'une commande</div>
+  <div class="panel-body" ng-if="periode.encours_ann == 1 && periode.ouverte_ann == 1">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.nom)}">
+        <label for="nom" class="col-sm-2 control-label">Nom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="nom" placeholder="Nom" required ng-maxlength="128" ng-model="commande.nom_cmd" ng-disabled="contexte === 'new'">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.nom.$invalid">Nom obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.prenom)}">
+        <label for="prenom" class="col-sm-2 control-label">Prénom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="prenom" placeholder="Prénom" required ng-maxlength="128" ng-model="commande.prenom_cmd" ng-disabled="contexte === 'new'">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.prenom.$invalid">Prénom obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.email)}">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+          <input type="email" class="form-control" name="email" placeholder="Adresse mail" required ng-model="commande.mail_cmd" ng-disabled="contexte === 'new'">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.email.$invalid">Adresse mail obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.telephone)}">
+        <label for="telephone" class="col-sm-2 control-label">N° téléphone</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="telephone" placeholder="0.." required ng-minlength="8" ng-maxlength="32" ng-model="commande.tel_cmd" ng-disabled="contexte === 'cha' || contexte === 'mod'" ng-blur="commande.tel_cmd = formatTel(commande.tel_cmd)">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.telephone.$invalid">N° téléphone entre 8 et 32 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.nbrenf)}">
+        <label for="nbrenf" class="col-sm-2 control-label">Nbr enfant au collège</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control"  min="1" step="1" name="nbrenf" placeholder="1" required ng-model="commande.nbrenf_cmd" ng-change="modifNbrEnf()">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.nbrenf.$invalid">obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.descenf1) || rc.formulaire.needsAttention(formulaire.descenf2) || rc.formulaire.needsAttention(formulaire.descenf3)}">
+        <label class="col-sm-2 control-label">Liste des enfants</label>
+        <div class="col-sm-5">
+          <table class="table table-striped" style="width: auto;" >
+            <thead>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Prochaine classe</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in commande.descenf_cmd track by $index">
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <input type="text" class="form-control col-sm-1" name="descenf1" ng-model="row.nom" required ng-maxlength="128"/>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <input type="text" class="form-control col-sm-1" name="descenf2" ng-model="row.prenom" required ng-maxlength="128"/>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <select class="form-control" name="descenf3" required ng-model="row.classe">
+                    <option value="6">6e</option>
+                    <option value="5">5e</option>
+                    <option value="4">4e</option>
+                    <option value="3">3e</option>
+                  </select>
+                </td>
+              </tr>
+
+            </tbody>
+            
+          </table>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && (formulaire.descenf1.$invalid || formulaire.descenf2.$invalid || formulaire.descenf3.$invalid)">obligatoire</div>
+        </div>
+      </div>
+      
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Continuer</button>
+      </div>
+    </form>
+  </div>
+  <div class="panel-body" ng-if="periode.encours_ann != 1 || periode.ouverte_ann != 1">
+    Impossible de créer une commande. Il n'y a pas de période en cours ouverte.
+  </div>
+</div>

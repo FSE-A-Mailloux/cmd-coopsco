@@ -1,0 +1,101 @@
+<div class="panel panel-primary" ng-controller="impressionListeExportCtrl">
+  <div class="panel-heading">Export d'une impression de liste</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group">
+        <label for="liste" class="col-sm-2 control-label">Liste</label>
+        <div class="col-sm-3">
+          <select class="form-control" required ng-model="ImpressionListe.id_ilp" ng-change="changerParam()">
+            <option ng-repeat="impressionListeParam in TabImpressionListeParam" ng-value="impressionListeParam.id_ilp">{{impressionListeParam.lib_ilp}}</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">Champs</div>
+        <div class="panel-body">
+          <table width="100%">
+            <tbody ng-if="ImpressionListe.TabChampsDispo.length > 0">
+              <tr>
+                <td width="20%" style="vertical-align: top;">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Disponibles</div>
+                    <div class="panel-body">
+                      <table width="100%" class="table table-bordered" style="margin-bottom: 0px;">
+                        <tbody>
+                          <tr ng-repeat="champDispo in ImpressionListe.TabChampsDispo" ng-show="champDispo.select === 0">
+                            <td style="vertical-align: middle;"><span>{{champDispo.libelle_ilc}}</span></td>
+                            <td width="30px"><button class="btn btn-primary" type="button" ng-click="ajouter(champDispo.colonne_ilc)"><span class="fa fa-step-forward"></span></button></td>
+                          <tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </td>
+                <td width="5%" style="vertical-align: middle; text-align: center; ">
+                  <br>
+                  <button class="btn btn-primary" type="button" ng-click="toutAjouter()" style="margin-bottom: 5px;"><span class="fa fa-fast-forward"></span></button>
+                  <br>
+                  <button class="btn btn-primary" type="button" ng-click="toutRetirer()"><span class="fa fa-fast-backward"></span></button>
+                  <br>
+                </td>
+                <td width="75%" style="vertical-align: top;">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Dans l'export</div>
+                    <div class="panel-body">
+                      <table width="100%" class="table table-bordered" style="margin-bottom: 0px;">
+                        <tbody>
+                          <tr ng-repeat="champExport in ImpressionListe.TabChampsExport track by $index">
+                            <td width="30px"><button class="btn btn-primary" type="button" ng-click="retirer(champExport.colonne_ilc)"><span class="fa fa-step-backward"></span></button></td>
+                            <td width="160px" style="vertical-align: middle;"><span>{{champExport.libelle_ilc}}</span></td>
+                            <td >
+                              <div class="form-inline">
+                                <select class="form-control" ng-model="champExport.filtre" ng-init="champExport.filtre = '-'" style="width: 170px;">
+                                  <option value="-"></option>
+                                  <option value="=">Egale à</option>
+                                  <option value="<>">Différent de</option>
+                                  <option ng-if="(champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME' || champExport.type_ilc === 'NUMBER')" value=">">Supérieur à</option>
+                                  <option ng-if="(champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME' || champExport.type_ilc === 'NUMBER')" value=">=">Supérieur ou égale à</option>
+                                  <option ng-if="(champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME' || champExport.type_ilc === 'NUMBER')" value="<">Inférieur à</option>
+                                  <option ng-if="(champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME' || champExport.type_ilc === 'NUMBER')" value="<=">Inférieur ou égale à</option>
+                                  <option ng-if="(champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME' || champExport.type_ilc === 'NUMBER')" value="[]">Entre</option>
+                                  <option ng-if="(champExport.type_ilc === 'TEXT')" value="?%">Commence par</option>
+                                  <option ng-if="(champExport.type_ilc === 'TEXT')" value="%?%">Contient</option>
+                                </select>
+                                <input ng-if="champExport.filtre !== '-' && champExport.type_ilc === 'TEXT'" type="text" class="form-control" ng-model="champExport.valeur1" style="width: 140px;"/>
+                                <div ng-if="champExport.filtre !== '-' && (champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME')" class="input-group" style="width: 140px;">
+                                  <input type="text" class="form-control" uib-datepicker-popup="{{dtformat}}" ng-model="champExport.date1value" is-open="champExport.date1opened" datepicker-options="dateOptions" close-text="Fermer" current-text="Instant" clear-text="Init."/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="dtopen($event, 1, $index)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </div>
+                                <input ng-if="champExport.filtre !== '-' && champExport.type_ilc === 'NUMBER'" type="number" class="form-control" ng-model="champExport.valeur1" style="width: 140px;"/>
+                                <span ng-if="champExport.filtre !== '-' && champExport.filtre === '[]'">&nbsp;et&nbsp;</span>
+                                <div ng-if="champExport.filtre !== '-' && champExport.filtre === '[]' && (champExport.type_ilc === 'DATE' || champExport.type_ilc === 'DATETIME')" class="input-group" style="width: 140px;">
+                                  <input type="text" class="form-control" uib-datepicker-popup="{{dtformat}}" ng-model="champExport.date2value" is-open="champExport.date2opened" datepicker-options="dateOptions" close-text="Fermer" current-text="Instant" clear-text="Init."/>
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="dtopen($event, 2, $index)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </div>
+                                <input ng-if="champExport.filtre !== '-' && champExport.filtre === '[]' && champExport.type_ilc === 'NUMBER'" type="number" class="form-control" ng-model="champExport.valeur2" style="width: 140px;"/>
+                              </div>
+                            </td>
+                          <tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div ng-if="ImpressionListe.TabChampsDispo.length > 0" class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Exporter</button>
+      </div>
+    </form>
+  </div>
+</div>

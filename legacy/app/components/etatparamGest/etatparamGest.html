@@ -1,0 +1,44 @@
+<div class="panel panel-primary" ng-controller="etatparamGestCtrl">
+  <div class="panel-heading">Paramétrage d'un état</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.code)}">
+        <label for="code" class="col-sm-2 control-label">Code</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="code" placeholder="Code" required ng-maxlength="64" ng-model="etatparam.cd_epm" autofocus ng-disabled="contexte === 'cha' || contexte === 'mod'" >
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.code.$invalid">Code de moins de 64 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.lib)}">
+        <label for="lib" class="col-sm-2 control-label">Libellé</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="lib" placeholder="Nom option" required ng-maxlength="40" ng-model="etatparam.lib_epm">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.lib.$invalid">Libellé de moins de 256 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.modelehtml)}">
+        <label for="modelehtml" class="col-sm-2 control-label">Modèle Html</label>
+        <div class="col-sm-3">
+          <searshfield sf-com='modeleHtmlList' sf-code="code_mhl" name="modelehtml" ng-model="etatparam.code_mhl" ng-maxlength="128" required ng-value="etatparam.lib_mhl" sf-value="lib_mhl"></searshfield>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.modelehtml.$error.required">Obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.requete)}">
+        <label for="requete" class="col-sm-2 control-label">Requête</label>
+        <div class="col-sm-3">
+          <searshfield sf-com='requestList' sf-code="code_req" name="requete" ng-model="etatparam.code_req" ng-maxlength="128" required ng-value="etatparam.lib_req" sf-value="lib_req"></searshfield>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.requete.$error.required">Obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <label for="json" class="col-sm-2 control-label">JSON de test</label>
+        <div class="col-sm-3">
+          <textarea ui-codemirror ui-codemirror-opts="editorOptionsJSON" class="form-control" rows="8" name="json" placeholder="Json Test" ng-model="jsonText"></textarea>
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

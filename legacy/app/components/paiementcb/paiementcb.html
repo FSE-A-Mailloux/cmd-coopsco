@@ -1,0 +1,37 @@
+<div class="panel panel-primary" ng-controller="paiementcbCtrl">
+  <div class="panel-heading">Paiement par carte bancaire</div>
+  <div class="panel-body">
+    <div class="row" style="font-size: 12pt;">
+      <div class="col-md-3 col-sm-2 col-xs-0" style="padding-bottom: 20px;" align="center"></div>
+      <div class="col-md-6 col-sm-8 col-xs-12" style="padding-bottom: 20px;" align="center">
+        <div ng-if="contexte === 'ok'" class="alert alert-success" role="alert">
+          <span>
+            <b>Le paiement par carte bancaire a réussi !</b><br>
+            <br>
+            Vous allez recevoir une confirmation par mail, de la validation de la commande dans les prochaines minutes.<br>
+            <br>
+            Vous pouvez fermez cette onglet ou vous reconnecter.
+          </span>
+        </div>
+        <div ng-if="contexte === 'ko'" class="alert alert-danger" role="alert">
+          <span>
+            <b>Le paiement par carte bancaire a échoué !</b><br>
+            <br>
+            Les raisons de cet échec peuvent être une annulation de votre part, une erreur lors de la saisie des données de la carte, une erreur lors du processus 3D Secure ou un refus de votre banque.<br>
+            <br>
+            Vous pouvez fermez cette onglet ou vous reconnecter.
+          </span>
+        </div>
+        <div ng-if="contexte === 'abandon'" class="alert alert-warning" role="alert">
+          <span>
+            <b>Le paiement par carte bancaire a été abandonné !</b><br>
+            <br>
+            Vous pouvez fermez cette onglet ou vous reconnecter.
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-2 col-xs-0" style="padding-bottom: 20px;" align="center"></div>
+    </div>
+    
+  </div>
+</div>

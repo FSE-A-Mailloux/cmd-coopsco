@@ -1,0 +1,48 @@
+<div class="panel panel-primary" ng-controller="fseArticlePrixGestCtrl">
+  <div class="panel-heading">Prix de l'article : {{fse_articleprix.lib_art}}</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <!--div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.code)}">
+        <label for="lib" class="col-sm-2 control-label">Code</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="lib" placeholder="Libellé de l'année" required ng-minlength="4" ng-maxlength="128" ng-model="fse_annee.lib_ann" autofocus>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.lib.$invalid">code entre 4 et 128 caractères</div>
+        </div>
+      </div-->
+      
+      <table class="table table-striped">
+        <thead>
+          <th></th>
+          <th></th>
+          <th>Période</th>
+          <th>Prix famille</th>
+          <th>Nbr par lot</th>
+          <th>Coût fournisseur</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in fse_articleprix.periodes">
+            <td style='padding-top: 0px; padding-bottom: 0px;'><p class="form-control-static" ng-class="row.icon_ann"/></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'><p class="form-control-static" ng-class="row.icon_verrou_ann"/></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'><p class="form-control-static">{{row.lib_ann}}</p></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'>
+              <div class="input-group"> 
+                <input type="number" min="0" step="0.01" data-number-to-fixed="2" class="form-control currency" ng-model="row.prix_pafe" ng-disabled="row.verrou_ann === 1"/>
+                <span class="input-group-addon">€</span>
+              </div>
+            </td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'><input type="number" min="0" step="1" class="form-control" ng-model="row.lot_pafr" ng-disabled="row.verrou_ann === 1"/></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'>
+              <div class="input-group"> 
+                <input type="number" min="0" step="0.01" data-number-to-fixed="2" class="form-control currency" ng-model="row.prix_pafr" ng-disabled="row.verrou_ann === 1"/>
+                <span class="input-group-addon">€</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

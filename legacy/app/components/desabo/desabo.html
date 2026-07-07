@@ -1,0 +1,19 @@
+<div class="panel panel-primary" ng-controller="desaboCtrl">
+  <div class="panel-heading">Confirmation désabonnement</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.email)}">
+        <label for="email" class="col-sm-2 control-label">Confirmez votre email</label>
+        <div class="col-sm-3">
+          <input type="email" class="form-control" name="email" placeholder="Adresse mail" required ng-model="user.mail_uti" autocomplete="off">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.email.$invalid">Adresse mail obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-sm-offset-2">
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

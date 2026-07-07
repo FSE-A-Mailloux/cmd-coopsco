@@ -1,0 +1,46 @@
+<div class="panel panel-primary" ng-controller="fseCmdRgltCbCtrl">
+  <div class="panel-heading">Paiement CB via HelloAsso de la commande N°{{fse_commande.num_cmd}}</div>
+  <div class="panel-body">
+    <div class="col-sm-3"></div>
+    <div ng-if="(fse_commande.code === 'URL')" class="col-sm-6">
+      <div class="alert alert-info" role="alert">
+        <span><b>Le modèle solidaire de HelloAsso garantit que 100% de votre paiement sera versé à l’association. Vous pouvez soutenir l’aide qu’ils apportent aux associations en laissant une contribution volontaire à HelloAsso au moment de votre paiement.</b></span>
+      </div>
+      <div ng-if="(fse_commande.url !== '')" align="center">
+        <a href="{{fse_commande.url}}"><img src="imgs/PaiementHelloAsso.png"></a>
+      </div>
+    </div>
+
+    <div ng-if="(fse_commande.code === 'ERREUR')" class="col-sm-6">
+      <div class="alert alert-danger" role="alert">
+        <span><b>Une erreur est survenue lors de la préparation du paiement par CB.<br>Veuillez retenter ultérieurement !</b></span>
+      </div>
+    </div>
+    
+    <div ng-if="(fse_commande.code === 'ANNUL')" class="col-sm-6">
+      <div class="alert alert-warning" role="alert">
+        <span><b>Cette commande a été annulée, il n'est pas possible d'effectuer un règlement sur celle-ci !</b></span>
+      </div>
+    </div>
+    
+    <div ng-if="(fse_commande.code === 'VALID')" class="col-sm-6">
+      <div class="alert alert-warning" role="alert">
+        <span><b>Cette commande a été validé, il n'est pas possible d'effectuer un règlement sur celle-ci !</b></span>
+      </div>
+    </div>
+    
+    <div ng-if="(fse_commande.code === 'SOLDE')" class="col-sm-6">
+      <div class="alert alert-warning" role="alert">
+        <span><b>Cette commande est déjà soldée, il n'est pas possible d'effectuer un règlement sur celle-ci !</b></span>
+      </div>
+    </div>
+    
+    <div ng-if="(fse_commande.code === 'PAIEMENT')" class="col-sm-6">
+      <div class="alert alert-success" role="alert">
+        <span><b>Un paiement CB précédent vient d'être validé !</b></span>
+      </div>
+    </div>
+    
+    <div class="col-sm-3"></div>
+  </div>
+</div>

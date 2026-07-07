@@ -1,0 +1,70 @@
+<div class="panel panel-primary" ng-controller="mailCtrl">
+  <div class="panel-heading">Envoyer un mail</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.template)}">
+        <label for="template" class="col-sm-2 control-label">Gabarit de mail</label>
+        <div class="col-sm-3">
+          <select name="template" required class="form-control" 
+            ng-model="mail.code_mhl" 
+            ng-options="item.code_mhl as item.lib_mhl for item in listModele"
+            ng-change="modifierTemplate()">
+          </select>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.template.$invalid">obligatoire</div>
+        </div>
+      </div>   
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.type)}">
+        <label for="type" class="col-sm-2 control-label">Type destinataire</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="type" required ng-model="mail.typeDest" ng-init="mail.typeDest = 'LIBRE'" ng-disabled="mail.destFige" ng-change="changerTypeDest()">
+            <option value="LIBRE">Libre</option>
+            <option value="UTI">Utilisateur</option>
+            <option value="GRO">Groupe</option>
+          </select>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.type.$invalid">obligatoire</div>
+        </div>
+      </div>      
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.dest)}">
+        <label for="dest" class="col-sm-2 control-label">Destinataire</label>
+        <div class="col-sm-3">
+          <searshfield ng-if="mail.typeDest == 'UTI'" sf-com='userList' sf-code="compte_uti" name="dest" ng-model="mail.destinataire" required ng-value="mail.destinataire_mail" sf-value="mail_uti"></searshfield>
+          <searshfield ng-if="mail.typeDest == 'GRO'" sf-com='groupListMail' sf-code="cd_gro" name="dest" ng-model="mail.destinataire" required ng-value="mail.nom_groupe" sf-value="nom_gro"></searshfield>
+          <input ng-if="mail.typeDest == 'LIBRE'" type="text" class="form-control" name="dest" placeholder="Adresse mail du destinataire" ng-model="mail.destinataire" required  ng-disabled="mail.destFige">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.dest.$invalid">obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.masque)}">
+        <label for="masque" class="col-sm-2 control-label">Destinataire caché</label>
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control move-left" name="masque" placeholder="" ng-model="mail.masque" ng-disabled="(mail.typeDest === 'GRO')">
+          <!--div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.verrou.$invalid">obligatoire</div-->
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.objet)}">
+        <label for="objet" class="col-sm-2 control-label">Objet</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="objet" placeholder="Objet du mail" ng-model="mail.objet" required>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.objet.$invalid">Obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="corps" class="col-sm-2 control-label">Corps du mail</label>
+        <div class="col-sm-7">
+          <textarea name="corps" id="editorCorps" rows="10" cols="80" ng-model="mail.corps">
+            Corps du mail
+          </textarea>
+          <script>
+              // Replace the <textarea id="editor1"> with a CKEditor
+              // instance, using default configuration.
+              CKEDITOR.replace( 'editorCorps' );
+          </script>
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Envoyer</button>
+        <button type="button" class="btn btn-primary" ng-click="previsualiser()">Prévisualiser</button>
+      </div>
+    </form>
+  </div>
+</div>
+

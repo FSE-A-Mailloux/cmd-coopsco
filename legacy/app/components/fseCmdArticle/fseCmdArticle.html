@@ -1,0 +1,57 @@
+<div class="panel panel-primary" ng-controller="fseCmdArticleCtrl">
+  <div class="panel-heading">Commande de {{commande.nom_cmd}} {{commande.prenom_cmd}}</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <!--div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.code)}">
+        <label for="lib" class="col-sm-2 control-label">Code</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="lib" placeholder="Libellé de l'année" required ng-minlength="4" ng-maxlength="128" ng-model="fse_annee.lib_ann" autofocus>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.lib.$invalid">code entre 4 et 128 caractères</div>
+        </div>
+      </div-->
+      
+      <table class="table table-striped" style="width: auto;">
+        <thead>
+          <th></th>
+          <th></th>
+          <th>Article</th>
+          <th>Marque</th>
+          <th>Prix unitaire</th>
+          <th>Nombre</th>
+          <th>Total</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in commande.articles" ng-style="{'border-top': (row.traitHaut ? '2px' : '1px') + ' solid #aaa', 'border-bottom': (row.traitBas ? '2px' : '0px') + ' solid #aaa'}">
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" style='padding-top: 0px; padding-bottom: 0px;' ng-style="{'font-weight':(row.groupe ? 'bold' : 'normal')}">{{row.ordre_art}}</span></td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" ng-class="row.icon_type_art" style='padding-top: 0px; padding-bottom: 0px; min-height:1px; font-size: 20px;' ng-style="{'color':row.color_type_art}"></span></td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" style='padding-top: 0px; padding-bottom: 0px;'>{{row.lib_art}}</span></td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" style='padding-top: 0px; padding-bottom: 0px;'>{{row.marque_art}}</span></td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" style='padding-top: 0px; padding-bottom: 0px;'>{{(row.prix_pafe - row.reduction).toFixed(2) + ' €'}}</span></td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'>
+              <input type="number" min="0" step="1" data-number-to-fixed="0" class="form-control currency" ng-model="row.nbre_art" ng-disabled="row.code_art === 'COTIS'" style="width: 80px;"/>
+            </td>
+            <td style='padding-top: 0px; padding-bottom: 0px; vertical-align: middle;'><span class="form-control-static" style='padding-top: 0px; padding-bottom: 0px;'>{{((row.prix_pafe - row.reduction) * row.nbre_art).toFixed(2) + ' €'}}</span></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'><p class="form-control-static" style="font-weight:bold">Total</p></td>
+            <td style='padding-top: 0px; padding-bottom: 0px;'><p class="form-control-static" style="font-weight:bold">{{getTotal()}}</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-danger topbot-buffer5">Prenez bien le temps de vérifier les quantités avant de valider</div>
+      <div ng-if="commande.gest" class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="checkMail" ng-model="commande.mail_gest" ng-true-value="'1'">
+        <label class="form-check-label" for="checkMail">
+          Envoyer un mail avec demande de réglement
+        </label>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

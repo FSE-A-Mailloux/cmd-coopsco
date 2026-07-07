@@ -1,0 +1,74 @@
+<div class="panel panel-primary" ng-controller="fseArticleGestCtrl">
+  <div class="panel-heading">Article</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.code)}">
+        <label for="code" class="col-sm-2 control-label">Code</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="code" placeholder="Code" required ng-minlength="4" ng-maxlength="64" ng-model="fse_article.code_art" autofocus>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.code.$invalid">Code entre 4 et 64 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.fournisseur)}">
+        <label for="fournisseur" class="col-sm-2 control-label">Fournisseur</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="fournisseur" required ng-model="fse_article.id_fou" ng-options="opt.id_fou as opt.design_fou for opt in liste_fou"></select>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.fournisseur.$invalid">Obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.lib)}">
+        <label for="lib" class="col-sm-2 control-label">Nom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="lib" placeholder="Description" required ng-model="fse_article.lib_art">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.lib.$invalid">Description obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.marque)}">
+        <label for="marque" class="col-sm-2 control-label">Marque</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="marque" placeholder="Marque" ng-maxlength="128" ng-model="fse_article.marque_art">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.marque.$invalid">128 caractères max</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.type)}">
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="type" required ng-model="fse_article.type_art" ng-init="fse_article.type_art = 'CLA'">
+            <option value="CLA">Classique</option>
+            <option value="ECO">Eco-responsable</option>
+            <option value="BUD">Top Budget</option>
+          </select>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.type.$invalid">obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.ordre)}">
+        <label for="ordre" class="col-sm-2 control-label">Position (ordre)</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" name="ordre" placeholder="0" required ng-model="fse_article.ordre_art">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.ordre.$invalid">Position obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vuestock" class="col-sm-2 control-label">Dans stock</label>
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control move-left" name="vuestock" ng-model="fse_article.stock_art" ng-true-value="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vuecmd" class="col-sm-2 control-label">Dans commande</label>
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control move-left" name="vuecmd" ng-model="fse_article.cmdfam_art" ng-true-value="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vueconso" class="col-sm-2 control-label">Dans consolidation</label>
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control move-left" name="vueconso" ng-model="fse_article.conso_art" ng-true-value="1">
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

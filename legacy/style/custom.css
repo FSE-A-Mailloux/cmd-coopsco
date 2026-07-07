@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4 juil. 2017, 10:31:16
+    Author     : tonyryu
+*/
+
+.sidebar {
+  background-color: #666666;
+  color: white;
+}
+
+.color-link {
+  color :#777;
+}
+
+.table > tbody > tr > td{
+  padding: 3px;
+}
+
+.form-control {
+  height: 28px;
+  padding: 3px 6px;
+}
+
+.btn {
+  padding: 3px 10px;
+}
+
+.panel-body {
+  padding: 10px;
+}

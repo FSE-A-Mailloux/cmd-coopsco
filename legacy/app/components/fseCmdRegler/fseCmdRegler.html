@@ -1,0 +1,126 @@
+<div class="panel panel-primary" ng-controller="fseCmdReglerCtrl">
+  <div class="panel-heading">Réglement d'une commande</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Numéro</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.num_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Date de création</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.dtcre_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Commanditaire</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.nom_cmd + " " + commande.prenom_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.mail_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Téléphone</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.tel_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Total commande</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.total}}</div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading"><b>Règlement(s)</b></div>
+        <div class="panel-body">
+          <table class="table table-striped" style="width: auto;" >
+          <thead>
+            <th>Date</th>
+            <th>Montant (€)</th>
+            <th>Type</th>
+            <th>Banque</th>
+            <th>Porteur
+            <th></th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="row in commande.reglement track by $index">
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <div ng-if="(row.id_cmdrglt != null)" class="form-control" ng-class="{strike: (row.dateannul_cmdrglt != null)}">{{row.date_cmdrglt_format}}</div>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <!--div class="form-control">{{row.montant_cmdrglt}}</div-->
+                <div class="input-group">
+                  <div ng-if="(row.id_cmdrglt != null)" class="form-control" ng-class="{strike: (row.dateannul_cmdrglt != null)}" style="width: 80px;">{{row.montant_cmdrglt.toFixed(2)}}</div>
+                  <input ng-if="(row.id_cmdrglt == null)" type="number" step="0.01" data-number-to-fixed="2" class="form-control currency" ng-model="row.montant_cmdrglt" style="width: 80px;"/>
+                  <span class="input-group-addon">€</span>
+                </div>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <div ng-if="(row.id_cmdrglt != null)" class="form-control" ng-class="{strike: (row.dateannul_cmdrglt != null)}">{{row.type_cmdrglt_chaine}}</div>
+                <select ng-if="(row.id_cmdrglt == null)" class="form-control" name="type" ng-model="row.type_cmdrglt" ng-init="row.type_cmdrglt">
+                  <option value="1">Chèque</option>
+                  <option value="2">Espèce</option>
+                  <option value="3">Fond social</option>
+                </select>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <div ng-if="(row.id_cmdrglt != null && row.type_cmdrglt == '1')" class="form-control" ng-class="{strike: (row.dateannul_cmdrglt != null)}">{{row.nom_bqe}}</div>
+                <input ng-if="(row.id_cmdrglt == null && row.type_cmdrglt == '1')" list="banque" value="" class="form-control" ng-model="row.nom_bqe" ng-disabled="(row.type_cmdrglt == '2')" ng-change="rechercheBanque($index)">
+                <datalist id="banque">
+                  <option ng-repeat="banque in listeBanques" data-value="{{banque.id_bqe}}">{{banque.nom_bqe}}</option>
+                </datalist>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <div ng-if="(row.id_cmdrglt != null && row.type_cmdrglt == '1')" class="form-control" ng-class="{strike: (row.dateannul_cmdrglt != null)}">{{row.chequenomporteur_cmd_rglt}}</div>
+                <input ng-if="(row.id_cmdrglt == null && row.type_cmdrglt == '1')" class="form-control" ng-model="row.chequenomporteur_cmd_rglt">
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <button type="button" class="btn btn-danger glyphicon glyphicon-minus" ng-click="supprimerReglement($index)" style="top: 0px;"></button>
+              </td>
+            </tr>
+            <tr>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <label class="control-label">Total :</label>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <div class="input-group">
+                  <div class="form-control" style="font-weight: bold; width: 80px;">{{getTotal()}}</div>
+                  <span class="input-group-addon">€</span>
+                </div>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+                <button type="button" class="btn btn-success glyphicon glyphicon-plus" ng-click="ajouterReglement()" style="top: 0px;"></button>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+              </td>
+              <td style='padding-top: 0px; padding-bottom: 0px;'>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+        
+      <div class="form-group" ng-if="commande.dtvalid_cmd === null">
+        <label for="validation" class="col-sm-2 control-label">Valider la commande</label>
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control move-left" name="validation" ng-model="commande.validation" ng-true-value="'1'">
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="panel panel-primary" ng-controller="userListCtrl">
+  <div class="panel-heading">Liste des utilisateurs</div>
+  <div class="panel-body">
+   
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" st-default-selection="selectedRow">
+      <thead>
+        <tr>
+          <th ng-repeat="title in rowTitle" st-sort="{{title.name}}">{{title.lib}}</th>
+        </tr>
+        <tr>
+          <th colspan="{{rowTitle.length}}">
+            <form class="form-inline">
+              <div class="form-group">
+                <button class="btn btn-primary glyphicon glyphicon-refresh btn-refresh-st" ng-click="refreshList()"></button>
+              </div>
+              <div class="form-group">
+                <input st-search="" class="form-control form-inline input-st-search" placeholder="recherche globale..." type="text"/>
+              </div>
+              <div class="form-group">
+                <select class="form-control" name="groupe" ng-model="id_gro_select" ng-init="id_gro_select" ng-change="selectionGroupe()">
+                  <option value="0" selected>Tous les groupes</option>
+                  <option ng-repeat="groupe in groupes" value="{{groupe.id_gro}}">{{groupe.nom_gro}}</option>
+                </select>
+              </div>
+
+            </form>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr st-select-row="row" st-select-mode="single" ng-repeat="row in displayedCollection">
+          <td ng-repeat="title in rowTitle" ng-dblclick="doubleclick(row)">
+            <div ng-if="title.type == 'text'">{{row[title.name]}}</div>
+            <div ng-if="title.type == 'icon'" ng-class="row[title.name]"></div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" class="text-center">
+            <div st-pagination="" st-items-by-page="16" st-displayed-pages="7"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

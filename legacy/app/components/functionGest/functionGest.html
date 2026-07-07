@@ -1,0 +1,25 @@
+<div class="panel panel-primary" ng-controller="functionGestCtrl">
+  <div class="panel-heading">Fonction</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.code)}">
+        <label for="code" class="col-sm-2 control-label">Code</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="code" placeholder="Code de la fonction" required  ng-minlength="6" ng-maxlength="70" ng-model="fonction.cd_fon" autofocus ng-disabled="contexte === 'mod'">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.code.$invalid">code entre 6 et 70 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.lib)}">
+        <label for="lib" class="col-sm-2 control-label">Libellé</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="lib" placeholder="Libellé de la fonction"  ng-maxlength="128" ng-model="fonction.lib_fon" >
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.lib.$invalid">libellé de moins de 128 caractères</div>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

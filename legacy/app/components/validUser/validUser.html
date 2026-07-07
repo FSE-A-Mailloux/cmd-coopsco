@@ -1,0 +1,22 @@
+<div class="panel panel-primary" ng-controller="validUserCtrl">
+  <div class="panel-heading">Validation utilisateur</div>
+  <div class="panel-body">
+    <p>Suite à la création de votre compte, un mail contenant un code d'activation vous a été envoyé. Pensez à vérifier dans vos courriers indésirables.</p>
+    <p>Attention, il n'y a pas de lettre majuscule, donc attention de ne pas confondre un "zéro" avec la lettre "o" majuscule. Ce sera toujours un zéro.</p>
+    <form name="formUserValid" class="form-horizontal" rc-submit='validerCode()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formUserValid.needsAttention(formUserValid.codeValidation)}">
+        <label for="codeValidation" class="col-sm-2 control-label">Code de validation</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="codeValidation" placeholder="Code" required ng-minlength="8" ng-maxlength="8" ng-model="codeValidation" autofocus>
+          <div class="alert alert-danger" ng-show="formUserValid.$submitted && formUserValid.codeValidation.$invalid">Code sur 8 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-sm-offset-2">
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </div>
+    </form>
+    <button type="button" class="btn btn-link btn-sm color-link" ng-click='renvoyerCode()'>Renvoyer un code de validation</button> 
+  </div>
+</div>

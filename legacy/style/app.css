@@ -1,0 +1,253 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4 juil. 2017, 18:21:49
+    Author     : tonyryu
+*/
+
+body {
+    /*padding-top: 80px;*/
+    /*min-height: 2000px;*/
+}
+#wrapper {
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: inline-block;
+    
+}
+#main-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 80px 0 0px 0;
+}
+#main {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 15px;
+}
+#sidebar-wrapper {
+    height: 100%;
+    padding: 80px 0 0px 0;
+    position: fixed;
+    border-right: 1px solid gray;
+    background-color:#999;
+}
+#sidebar {
+    position: relative;
+    height: 100%;
+    overflow:hidden;
+}
+#sidebar .list-group-item {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+}
+@media (max-width: 992px) {
+    body {
+        padding-top: 0px;
+    }
+}
+@media (min-width: 992px) {
+    #main-wrapper {
+        float:right;
+    }
+}
+@media (max-width: 992px) {
+    #main-wrapper {
+        padding-top: 5px;
+    }
+}
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        position: static;
+        height: auto;
+
+  		border-right:0;
+	}
+}
+.footer {
+    background-color:#ffffff;
+	bottom:0;
+  	position:fixed;
+    padding:10px;
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbarc ul:not() {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 8px;
+    padding-bottom: 12px;
+    height: 34px;
+  }
+  .dropdown-menu{
+    width: 200px;
+  }
+  
+}
+
+
+/* modification pratique pour fonctionnement app */ 
+.margin-topbot5 {
+  margin-top:5px;
+  margin-bottom: 5px;
+}
+.margin-topbot10 {
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+.margin-all5 {
+  margin: 5px 5px 5px 5px;
+}
+
+.btn-link {
+  color: #fff;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.opt-menu:hover {
+  background-color: #ccc;
+
+}
+
+#logoapp {
+  cursor: pointer;
+}
+
+.loading {
+  /*position:fixed;*/
+  position:absolute;
+  top:0px;
+  right:0px;
+  width:100%;
+  height:100%;
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index:10000001;
+  opacity: 0.8;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+.overlay {
+  background-color:#EFEFEF;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10000000;
+  top: 0px;
+  left: 0px;
+  opacity: .5; /* in FireFox */ 
+  filter: alpha(opacity=50); /* in IE */
+}
+
+.form-group {
+  margin-bottom: 6px;
+}
+
+.form-group .alert {
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.extra-info {
+    margin-top: 2em;
+    font-size: smaller;
+}
+
+/* Smart-Table */
+.st-sort-ascent:before {
+  content: '\25B2';
+}
+.st-sort-descent:before {
+  content: '\25BC';
+}
+.st-selected {
+    background: #216eff !important;
+    color: white !important;
+}
+.pagination {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.table-striped {
+  margin-bottom: 0px;
+}
+
+/* Checkbox */
+.move-left {
+  width: 24px;
+  box-shadow: none;
+}
+
+/* CodeMirror */
+.CodeMirror {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 800px;
+}
+
+.btn-group select {
+  height: 28px;
+}
+
+.titre-groupe-param1 {
+  height:36px;
+  padding-top: 5px;
+}
+
+.offset-eye {
+  top: -2px;
+  right: 10px;
+}
+
+.angular-with-newlines {
+  white-space: pre;
+}
+
+.btn-refresh-st{
+  float:left;
+  width: 40px;
+  height: 28px;
+  margin-top: -1px;
+  margin-right: 10px;
+}
+
+.input-st-search{
+  width: 300px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+

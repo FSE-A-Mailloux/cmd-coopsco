@@ -1,0 +1,34 @@
+<div class="panel panel-primary" ng-controller="impressionListeParamListCtrl">
+  <div class="panel-heading">Liste des paramétrages d'impressions de liste</div>
+  <div class="panel-body">
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped" st-default-selection="selectedRow">
+      <thead>
+        <tr>
+          <th ng-repeat="title in rowTitle" st-sort="{{(title.getter ? 'getter.' : '')}}{{title.name}}">{{title.lib}}</th>
+        </tr>
+        <tr>
+          <th colspan="{{rowTitle.length}}">
+            <button class="btn btn-primary glyphicon glyphicon-refresh form-inline btn-refresh-st" ng-click="refreshList()"></button>
+            <input st-search="" class="form-control form-inline input-st-search" placeholder="recherche globale..." type="text"/>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr st-select-row="row" st-select-mode="single" ng-repeat="row in displayedCollection" ng-style="{'color' : (row.color ? row.color : '')}">
+          <td ng-repeat="title in rowTitle" ng-dblclick="doubleclick(row)">
+            <div ng-if="title.type == 'text'">{{row[title.name]}}</div>
+            <div ng-if="title.type == 'icon'" ng-class="row[title.name]"></div>
+            <div ng-if="title.type == 'color'" class="glyphicon glyphicon-stop" ng-style="{'color': row[title.name]}"></div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="{{rowTitle.length}}" class="text-center" align="center">
+            <div align="center" st-pagination="" st-items-by-page="16" st-displayed-pages="7" st-template="./app/components/st/pagination.custom.html"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

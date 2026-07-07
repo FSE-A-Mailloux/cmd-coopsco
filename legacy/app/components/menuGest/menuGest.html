@@ -1,0 +1,51 @@
+<div class="panel panel-primary" ng-controller="menuGestCtrl">
+  <div class="panel-heading">Option du Menu du composant {{titreComp}}</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.nom)}">
+        <label for="nom" class="col-sm-2 control-label">Nom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="nom" placeholder="Nom option" required ng-maxlength="40" ng-model="menu.nom_mco" autofocus>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.nom.$invalid">Nom de moins de 40 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.position)}">
+        <label for="position" class="col-sm-2 control-label">Position</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" name="position" placeholder="Position" required ng-model="menu.position_mco">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.position.$invalid">obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.type)}">
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-3">
+          <select class="form-control" name="type" required ng-model="menu.typeOption_mco" ng-init="menu.typeOption_mco = 'COM'">
+            <option value="COM">Composant</option>
+            <option value="FON">Fonction</option>
+            <option value="SEP">Séparateur</option>
+          </select>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.type.$invalid">obligatoire</div>
+        </div>
+      </div>
+      <div ng-hide="menu.typeOption_mco == 'SEP'" class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.icon)}">
+        <label for="icon" class="col-sm-2 control-label">Icon</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="icon" placeholder="code glyphicon" ng-model="menu.glyphicon_mco" validicon ><span style="padding-left: 26px;" ng-if="formulaire.icon.$valid" class="form-control-feedback {{menu.glyphicon_mco}}" aria-hidden="true"></span>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.icon.$invalid">Code glyphicon invalide</div>
+        </div>
+      </div>
+      <div ng-hide="menu.typeOption_mco == 'SEP'" class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.cdComDest)}">
+        <label for="cdComDest" class="col-sm-2 control-label">{{(menu.typeOption_mco == "COM" ? "Composant" : "Fonction") }}</label>
+        <div class="col-sm-3">
+          <searshfield ng-if="menu.typeOption_mco == 'COM'" sf-com='compList' sf-code="cd_com" name="cdComDest" ng-model="menu.cdComDest_mco" ng-maxlength="128" required ng-value="menu.lib_com" sf-value="lib_com"></searshfield>
+          <div ng-if="menu.typeOption_mco == 'COM'" class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.cdComDest.$error.required">Obligatoire</div>
+          <input ng-if="menu.typeOption_mco != 'COM'" type="text" class="form-control" name="cdComDest" placeholder="Code destination" ng-model="menu.cdComDest_mco" ng-maxlength="128">
+          <div ng-if="menu.typeOption_mco != 'COM'" class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.cdComDest.$invalid">Code de moins de 128 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

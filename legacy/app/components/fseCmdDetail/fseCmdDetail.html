@@ -1,0 +1,127 @@
+<div class="panel panel-primary" ng-controller="fseCmdDetailCtrl">
+  <div class="panel-heading">Détail d'une commande</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" role="form">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Numéro</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.num_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Date de création</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.dtcre_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Commanditaire</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.nom_cmd + " " + commande.prenom_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.mail_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Téléphone</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.tel_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Enfant(s)</label>
+        <div class="col-sm-5">
+          <table class="table table-striped" style="width: auto;" >
+            <thead>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Prochaine classe</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in commande.descenf track by $index">
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.nom_cmf}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.prenom_cmf}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.classe_cmf}}e</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="form-group">
+        <!--label class="col-sm-2 control-label">Article(s)</label-->
+        <div class="col-sm-12">
+          <table class="table table-striped" style="width: auto;" >
+            <thead>
+              <th>Articles</th>
+              <th>Marque</th>
+              <th>Prix unitaire</th>
+              <th>Nombre</th>
+              <th>Total</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in commande.articles track by $index">
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.lib_art}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.marque_art}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.prix_acd}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.nbr_acd}}</div>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control">{{row.total_art}}</div>
+                </td>
+              </tr>
+              <tr>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <label class="control-label">Total :</label>
+                </td>
+                <td style='padding-top: 0px; padding-bottom: 0px;'>
+                  <div class="form-control" style="font-weight: bold;">{{commande.total}}</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--div class="form-group">
+        <label class="col-sm-2 control-label">Total commande</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.total}}</div>
+        </div>
+      </div-->
+      <div class="form-group">
+        <label class="col-sm-2 control-label" ng-style="((commande.mtreglenum_cmd > 0 && commande.mtregle_cmd != commande.total) ? {color:'red'}: {})">Montant réglé</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.mtregle_cmd}}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Date de validation</label>
+        <div class="col-sm-3">
+          <div class="form-control">{{commande.dtvalid_cmd}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

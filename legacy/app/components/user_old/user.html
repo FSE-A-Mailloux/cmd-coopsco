@@ -1,0 +1,53 @@
+<div class="panel panel-primary" ng-controller="userCtrl">
+  <div class="panel-heading">Compte utilisateur</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.login)}">
+        <label for="login" class="col-sm-2 control-label">Compte</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="login" placeholder="Compte" required ng-minlength="6" ng-maxlength="40" ng-model="user.compte" autofocus ng-disabled="contexte === 'mod'">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.login.$invalid">Compte entre 6 et 40 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.mdp)}">
+        <label for="mdp" class="col-sm-2 control-label">Mot de passe</label>
+        <div class="col-sm-3">
+          <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" ng-required="(contexte === 'new' || contexte === 'add')" ng-minlength="(contexte === 'new' || contexte === 'add' ? 6 : 0)" ng-maxlength="40" ng-model="user.mdp">
+          <span ng-if="user.mdp"
+                ng-click="toggleShowPassword()"
+                class="glyphicon glyphicon-eye-open form-control-feedback" 
+                style="cursor: pointer; pointer-events: all;">
+          </span>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.mdp.$invalid">Mot de passe entre 6 et 40 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.nom)}">
+        <label for="nom" class="col-sm-2 control-label">Nom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="nom" placeholder="Nom" required ng-model="user.nom">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.nom.$invalid">Nom obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.prenom)}">
+        <label for="prenom" class="col-sm-2 control-label">Prénom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="prenom" placeholder="Prénom" required ng-model="user.prenom">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.prenom.$invalid">Prénom obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.email)}">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-3">
+          <input type="email" class="form-control" name="email" placeholder="Adresse mail" required ng-model="user.email">
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.email.$invalid">Adresse mail obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group" ng-if="captchaActif()">
+        <div class="col-sm-offset-2" name='recaptcha' vc-recaptcha key="captchaPublicKey" ng-model="user.recaptchaResponse"></div>
+      </div>
+      <div class="form-group" >
+        <button type="submit" class="btn btn-primary col-sm-offset-2">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

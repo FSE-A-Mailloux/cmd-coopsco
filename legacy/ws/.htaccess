@@ -1,0 +1,9 @@
+Options all -Indexes
+<filesMatch ".(htaccess|htpasswd|ini|log|sqlite|php|sql)$">
+order deny,allow
+deny from all
+</filesMatch>
+<filesMatch "(wsApp.php|notifHelloAsso.php)">
+order allow,deny
+allow from all
+</filesMatch>

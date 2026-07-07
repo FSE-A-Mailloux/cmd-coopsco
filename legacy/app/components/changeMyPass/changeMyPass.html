@@ -1,0 +1,34 @@
+<div class="panel panel-primary" ng-controller="changeMyPassCtrl">
+  <div class="panel-heading">Modification du mot de passe</div>
+  <div class="panel-body">
+    <form name="formulaire" class="form-horizontal" rc-submit='valider()' role="form" novalidate>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.mdpOld)}">
+        <label for="mdpOld" class="col-sm-2 control-label">Ancien Mot de passe</label>
+        <div class="col-sm-3">
+          <input type="{{(showOldPassword ? 'text' : 'password')}}" class="form-control" name="mdpOld"  required ng-minlength="6" ng-maxlength="40" ng-model="user.passOld_uti" autocomplete="new-password">
+          <span ng-click="toggleShowOldPassword()"
+                class="glyphicon {{(showOldPassword ? 'glyphicon-eye-open' : 'glyphicon-eye-close')}} form-control-feedback offset-eye" 
+                style="cursor: pointer; pointer-events: all;">
+          </span>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.mdpOld.$invalid">Mot de passe entre 6 et 40 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.formulaire.needsAttention(formulaire.mdp)}">
+        <label for="mdp" class="col-sm-2 control-label">Nouveau Mot de passe</label>
+        <div class="col-sm-3">
+          <input type="{{(showPassword ? 'text' : 'password')}}" class="form-control" name="mdp" required ng-minlength="6" ng-maxlength="40" ng-model="user.pass_uti" autocomplete="new-password">
+          <span ng-click="toggleShowPassword()"
+                class="glyphicon {{(showPassword ? 'glyphicon-eye-open' : 'glyphicon-eye-close')}} form-control-feedback offset-eye" 
+                style="cursor: pointer; pointer-events: all;">
+          </span>
+          <div class="alert alert-danger" ng-show="formulaire.$submitted && formulaire.mdp.$invalid">Mot de passe entre 6 et 40 caractères</div>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-sm-offset-2">
+          <button type="submit" class="btn btn-primary">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
