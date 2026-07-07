@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workbench maquettes statiques</title>
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="./workbench.css">
+</head>
+<body class="workbench-body">
+  <header class="workbench-header">
+    <div class="title-stack">
+      <h1>Workbench maquettes</h1>
+      <p class="subtitle">Catalogue de reference statique pour les ateliers fonctionnels</p>
+    </div>
+    <span class="static-pill">Previsualisation statique</span>
+  </header>
+
+  <main class="workbench-main">
+    <aside class="workbench-nav">
+      <div class="nav-title">
+        <h2>Ecrans</h2>
+        <span id="screen-count" class="tag"></span>
+      </div>
+      <div id="screen-list" class="screen-list"></div>
+    </aside>
+
+    <section class="workbench-preview">
+      <header class="preview-header">
+        <div class="preview-title-block">
+          <h2 id="preview-title">Selectionnez un ecran</h2>
+          <p id="preview-category" class="subtitle"></p>
+        </div>
+        <div class="preview-view-switch" role="group" aria-label="Mode de previsualisation">
+          <button id="view-phone" class="view-button active" type="button" data-view-mode="phone">Telephone</button>
+          <button id="view-desktop" class="view-button" type="button" data-view-mode="desktop">Desktop</button>
+        </div>
+      </header>
+      <div id="preview-empty" class="preview-empty">
+        Selectionnez un ecran dans la navigation pour afficher sa maquette.
+      </div>
+      <div id="preview-stage" class="preview-stage mode-phone">
+        <iframe id="preview-frame" class="preview-frame" title="Apercu maquette"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <script src="../manifest/screens.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

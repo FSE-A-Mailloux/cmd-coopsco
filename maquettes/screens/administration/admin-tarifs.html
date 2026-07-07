@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Sous-ecran article tarifs</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Article - Tarifs par periode</h1><p class="subtitle">Sous-ecran article - prix de l'article selon les periodes</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="actions">
+        <span class="tag">Article: ART-1002 - Cahier 96 pages</span>
+        <span class="tag">Marque: Clairefontaine</span>
+        <span class="tag">Periode en cours: Rentrée 2026</span>
+        <span class="tag">Tri: periodes recentes en premier</span>
+        <span class="tag">Persistance: mode de calcul + total TTC</span>
+        <button class="button">Reprendre les tarifs de Noel 2025</button>
+        <button class="button primary">Modifier un prix (periode en cours)</button>
+      </div>
+      <table>
+        <thead><tr><th>Periode</th><th>Mode de calcul persiste</th><th>Prix fournisseur HT</th><th>Marge (%)</th><th>Prix TTC persiste</th><th>Statut periode</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Noel 2026</td><td>TTC direct</td><td>-</td><td>-</td><td>1,15 EUR</td><td>Brouillon</td><td><button class="button">Consulter</button></td></tr>
+          <tr><td>Rentree 2026</td><td>HT fournisseur + marge</td><td>0,82 EUR</td><td>34%</td><td>1,10 EUR</td><td>En cours</td><td><button class="button">Modifier prix courant</button></td></tr>
+          <tr><td>Noel 2025</td><td>TTC direct</td><td>-</td><td>-</td><td>0,95 EUR</td><td>Fermee</td><td><button class="button">Consulter</button></td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Chaque tarif de periode conserve le mode de calcul utilise et le total TTC enregistres.</p>
+    </section>
+  </div>
+</body>
+</html>

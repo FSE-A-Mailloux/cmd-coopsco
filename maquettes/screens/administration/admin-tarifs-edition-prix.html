@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Sous-ecran article edition prix</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Article - Modification de prix</h1><p class="subtitle">Sous-ecran article - edition du prix sur une periode cible</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="actions">
+        <span class="tag">Depuis: Article > Tarifs</span>
+        <span class="tag">Periode en cours: Rentrée 2026</span>
+        <span class="tag">Article: Cahier 96 pages</span>
+      </div>
+      <div class="field"><label>Periode cible</label><select class="select"><option>Rentrée 2026 (en cours)</option><option>Noel 2026</option><option>Noel 2025</option></select></div>
+      <div class="field"><label>Mode de formulation du prix</label><select class="select"><option>HT fournisseur + marge (%)</option><option>Prix TTC direct</option></select></div>
+      <div class="field"><label>Prix fournisseur HT (EUR)</label><input class="input" value="0,82"></div>
+      <div class="field"><label>Marge (%)</label><input class="input" value="34"></div>
+      <div class="field"><label>Prix TTC calcule (EUR)</label><input class="input" value="1,10"></div>
+      <p class="muted">Alternative: en mode "Prix TTC direct", saisir uniquement le prix TTC de la periode cible.</p>
+      <p class="muted">A l'enregistrement, la periode conserve le mode de calcul selectionne en plus du total TTC.</p>
+      <div class="actions">
+        <button class="button">Annuler</button>
+        <button class="button primary">Enregistrer mode de calcul + TTC de la periode</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

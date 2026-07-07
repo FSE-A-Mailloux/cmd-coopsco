@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creation commande fournitures scolaires</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Creation commande fournitures scolaires</h1><p class="subtitle">Parcours famille - formulaire en 5 etapes</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="actions">
+        <span class="tag">Etape 1/5</span>
+        <span class="tag">Etape 2/5</span>
+        <span class="tag">Etape 3/5</span>
+        <span class="tag">Etape 4/5</span>
+        <span class="tag">Etape 5/5</span>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Etape 1 - Validation du contact</h2>
+      <div class="field"><label>Email</label><input class="input" value="famille.martin@example.fr"></div>
+      <div class="field"><label>Numero de telephone</label><input class="input" value="06 12 34 56 78"></div>
+      <p class="muted">Verifier ces informations avant de poursuivre la commande.</p>
+      <div class="actions">
+        <button class="button primary">Valider mes coordonnees</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Etape 2 - Enfants concernes par la commande</h2>
+      <div class="field"><label>Nombre d'enfants (maximum 8)</label><select class="select"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+      <p class="muted">Les enfants peuvent etre pre-renseignes a partir de la commande precedente.</p>
+      <section class="layout-2">
+        <article class="card">
+          <h3 class="card-title">Enfant 1</h3>
+          <div class="field"><label>Nom</label><input class="input" value="Martin"></div>
+          <div class="field"><label>Prenom</label><input class="input" value="Lea"></div>
+          <div class="field"><label>Niveau (sur la periode Rentree 2026)</label><select class="select"><option>6e</option><option>5e</option><option>4e</option><option>3e</option></select></div>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Enfant 2</h3>
+          <div class="field"><label>Nom</label><input class="input" value="Martin"></div>
+          <div class="field"><label>Prenom</label><input class="input" value="Lucas"></div>
+          <div class="field"><label>Niveau (sur la periode Rentree 2026)</label><select class="select"><option>4e</option><option>6e</option><option>5e</option><option>3e</option></select></div>
+        </article>
+      </section>
+      <p class="muted">Cotisation degressive: 1er enfant 12 EUR, 2e enfant 8 EUR, 3e et suivants 5 EUR.</p>
+      <p class="muted"><strong>Cout cotisation pour 2 enfants: 20 EUR</strong></p>
+      <div class="actions">
+        <button class="button">Etape precedente : Validation du contact</button>
+        <button class="button primary">Etape suivante : Fournitures</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Etape 3 - Fournitures de reference et quantites a commander</h2>
+      <p class="muted">La liste complete contient en general 35 a 40 references. Exemple ci-dessous: 38 references (affichage 1 a 8).</p>
+      <p class="muted">Dans la majorite des cas, une fourniture correspond a une seule reference d'article. Certaines fournitures seulement proposent plusieurs references.</p>
+      <div class="field"><label>Recherche fourniture</label><input class="input" value=""></div>
+      <div class="desktop-only">
+        <table>
+          <thead><tr><th>Fourniture de reference</th><th>Qte recommandee (6e)</th><th>Qte recommandee (4e)</th><th>Articles correspondants (prix TTC) et quantites a commander</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Cahier 24x32 grands carreaux 96 pages</td>
+              <td>4</td>
+              <td>3</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-1002 Cahier 96p Clairefontaine</strong>
+                  <span class="muted">Prix TTC: 1,10 EUR</span>
+                  <input class="input" value="7">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Stylos bille bleus</td>
+              <td>3</td>
+              <td>2</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-2011 Stylo bille bleu Bic</strong>
+                  <span class="muted">Prix TTC: 0,60 EUR</span>
+                  <input class="input" value="5">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Pochette de feuilles simples A4</td>
+              <td>2</td>
+              <td>2</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-3050 Feuilles A4 200p</strong>
+                  <span class="muted">Prix TTC: 2,90 EUR</span>
+                  <input class="input" value="4">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Paquet de copies doubles grands carreaux</td>
+              <td>2</td>
+              <td>2</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-3110 Copies doubles 200p</strong>
+                  <span class="muted">Prix TTC: 3,50 EUR</span>
+                  <input class="input" value="4">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Classeur souple A4</td>
+              <td>1</td>
+              <td>1</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-4020 Classeur souple rouge</strong>
+                  <span class="muted">Prix TTC: 1,80 EUR</span>
+                  <input class="input" value="2">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Lot de 12 crayons de couleur</td>
+              <td>1</td>
+              <td>1</td>
+              <td>
+                <div class="supply-line">
+                  <strong>ART-5090 Crayons de couleur 12</strong>
+                  <span class="muted">Prix TTC: 2,40 EUR</span>
+                  <input class="input" value="2">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Regle plate 30cm</td>
+              <td>1</td>
+              <td>1</td>
+              <td class="supply-lines">
+                <div class="supply-line">
+                  <strong>Regle en bois 30cm</strong>
+                  <span class="muted">Prix TTC: 0,95 EUR</span>
+                  <input class="input" value="0">
+                </div>
+                <div class="supply-line">
+                  <strong>Regle plate - 30 cm - Incassable</strong>
+                  <span class="muted">Prix TTC: 1,40 EUR</span>
+                  <input class="input" value="1">
+                </div>
+                <div class="supply-line">
+                  <strong>Kit du gaucher (regle/equerre/rapporteur)</strong>
+                  <span class="muted">Prix TTC: 4,90 EUR</span>
+                  <input class="input" value="0">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Lot de surligneurs de couleurs</td>
+              <td>1</td>
+              <td>1</td>
+              <td class="supply-lines">
+                <div class="supply-line">
+                  <strong>Lot de 6 surligneurs de couleurs</strong>
+                  <span class="muted">Prix TTC: 3,20 EUR</span>
+                  <input class="input" value="1">
+                </div>
+                <div class="supply-line">
+                  <strong>1 Surligneur orange bois longue duree</strong>
+                  <span class="muted">Prix TTC: 1,10 EUR</span>
+                  <input class="input" value="0">
+                </div>
+                <div class="supply-line">
+                  <strong>1 Surligneur jaune bois longue duree</strong>
+                  <span class="muted">Prix TTC: 1,10 EUR</span>
+                  <input class="input" value="0">
+                </div>
+                <div class="supply-line">
+                  <strong>1 Surligneur rose bois longue duree</strong>
+                  <span class="muted">Prix TTC: 1,10 EUR</span>
+                  <input class="input" value="0">
+                </div>
+                <div class="supply-line">
+                  <strong>1 Surligneur vert bois longue duree</strong>
+                  <span class="muted">Prix TTC: 1,10 EUR</span>
+                  <input class="input" value="0">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mobile-only supply-mobile-list">
+        <article class="card">
+          <h3 class="card-title">Cahier 24x32 grands carreaux 96 pages</h3>
+          <p class="muted">Recommande: 6e=4 / 4e=3</p>
+          <div class="supply-line">
+            <strong>ART-1002 Cahier 96p Clairefontaine</strong>
+            <span class="muted">1,10 EUR TTC</span>
+            <input class="input" value="7">
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Stylos bille bleus</h3>
+          <p class="muted">Recommande: 6e=3 / 4e=2</p>
+          <div class="supply-line">
+            <strong>ART-2011 Stylo bille bleu Bic</strong>
+            <span class="muted">0,60 EUR TTC</span>
+            <input class="input" value="5">
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Regle plate 30cm</h3>
+          <p class="muted">Recommande: 6e=1 / 4e=1</p>
+          <div class="supply-lines">
+            <div class="supply-line">
+              <strong>Regle en bois 30cm</strong>
+              <span class="muted">0,95 EUR TTC</span>
+              <input class="input" value="0">
+            </div>
+            <div class="supply-line">
+              <strong>Regle plate - 30 cm - Incassable</strong>
+              <span class="muted">1,40 EUR TTC</span>
+              <input class="input" value="1">
+            </div>
+            <div class="supply-line">
+              <strong>Kit du gaucher (regle/equerre/rapporteur)</strong>
+              <span class="muted">4,90 EUR TTC</span>
+              <input class="input" value="0">
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Lot de surligneurs de couleurs</h3>
+          <p class="muted">Recommande: 6e=1 / 4e=1</p>
+          <div class="supply-lines">
+            <div class="supply-line">
+              <strong>Lot de 6 surligneurs de couleurs</strong>
+              <span class="muted">3,20 EUR TTC</span>
+              <input class="input" value="1">
+            </div>
+            <div class="supply-line">
+              <strong>1 Surligneur jaune bois longue duree</strong>
+              <span class="muted">1,10 EUR TTC</span>
+              <input class="input" value="0">
+            </div>
+            <div class="supply-line">
+              <strong>1 Surligneur vert bois longue duree</strong>
+              <span class="muted">1,10 EUR TTC</span>
+              <input class="input" value="0">
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="muted">... et 30 autres references a saisir sur la meme logique (38 references au total).</p>
+      <p class="muted">Seuls les articles disponibles aux commandes sont proposes.</p>
+      <div class="actions">
+        <button class="button">Etape precedente : Enfants</button>
+        <button class="button primary">Etape suivante : Validation</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Etape 4 - Validation de votre commande</h2>
+      <p class="muted">Recapitulatif final: uniquement les articles choisis, avec montant unitaire TTC et total par ligne.</p>
+      <table>
+        <thead><tr><th>Article choisi</th><th>Qte</th><th>PU TTC</th><th>Total ligne</th></tr></thead>
+        <tbody>
+          <tr><td>ART-1002 Cahier 96p Clairefontaine</td><td>7</td><td>1,10 EUR</td><td>7,70 EUR</td></tr>
+          <tr><td>ART-2011 Stylo bille bleu Bic</td><td>5</td><td>0,60 EUR</td><td>3,00 EUR</td></tr>
+          <tr><td>ART-3050 Feuilles A4 200p</td><td>4</td><td>2,90 EUR</td><td>11,60 EUR</td></tr>
+          <tr><td>ART-3110 Copies doubles 200p</td><td>4</td><td>3,50 EUR</td><td>14,00 EUR</td></tr>
+          <tr><td>ART-4020 Classeur souple rouge</td><td>2</td><td>1,80 EUR</td><td>3,60 EUR</td></tr>
+          <tr><td>ART-5090 Crayons de couleur 12</td><td>2</td><td>2,40 EUR</td><td>4,80 EUR</td></tr>
+          <tr><td>Regle plate - 30 cm - Incassable</td><td>1</td><td>1,40 EUR</td><td>1,40 EUR</td></tr>
+          <tr><td>Lot de 6 surligneurs de couleurs</td><td>1</td><td>3,20 EUR</td><td>3,20 EUR</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead><tr><th>Element</th><th>Montant</th></tr></thead>
+        <tbody>
+          <tr><td>Sous-total fournitures</td><td>49,30 EUR</td></tr>
+          <tr><td>Cotisation (2 enfants)</td><td>20,00 EUR</td></tr>
+          <tr><td><strong>Total commande TTC</strong></td><td><strong>69,30 EUR</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="actions">
+        <button class="button">Etape precedente : Fournitures</button>
+        <button class="button primary">Etape suivante : Mode de paiement</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Etape 5 - Mode de paiement</h2>
+      <p class="muted">Choisissez le mode de paiement de votre commande.</p>
+      <div class="field">
+        <label><input type="radio" name="mode-paiement" checked> Paiement CB (via HelloAsso)</label>
+      </div>
+      <p class="muted">Vous serez redirige vers HelloAsso pour finaliser le paiement CB securise.</p>
+      <div class="field">
+        <label><input type="radio" name="mode-paiement"> Paiement par cheque</label>
+      </div>
+      <p class="muted">Deposer le cheque avec le nom de l'enfant, son niveau et le numero de commande inscrits au dos, avec le bon de commande recu par mail et imprime par vos soins.</p>
+      <div class="field">
+        <label><input type="radio" name="mode-paiement"> Paiement en espece</label>
+      </div>
+      <p class="muted">Le paiement en espece doit etre fait avec l'appoint et avec le bon de commande recu par mail et imprime par vos soins.</p>
+      <div class="actions">
+        <button class="button">Etape precedente : Validation</button>
+        <button class="button">Enregistrer brouillon</button>
+        <button class="button primary">Confirmer ma commande</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

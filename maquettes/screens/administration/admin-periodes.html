@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Periodes</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Periodes commerciales</h1><p class="subtitle">Domaine gestionnaire - pilotage des periodes et des actions d'etat</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="actions">
+        <button class="button">Reprendre les tarifs de la periode precedente</button>
+        <button class="button primary">Creer une periode</button>
+      </div>
+      <table>
+        <thead><tr><th>Periode</th><th>Debut</th><th>Fin</th><th>Etat</th><th>Cotisation (1er/2e/3e+)</th><th>En cours</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Rentrée 2026</td>
+            <td>01/06/2026</td>
+            <td>30/09/2026</td>
+            <td>Ouverte</td>
+            <td>12 EUR / 8 EUR / 5 EUR</td>
+            <td>Oui</td>
+            <td><div class="actions"><button class="button">Detail</button><button class="button">Fermer</button><button class="button">Definir en cours</button></div></td>
+          </tr>
+          <tr>
+            <td>Noel 2026</td>
+            <td>01/10/2026</td>
+            <td>15/12/2026</td>
+            <td>Fermee</td>
+            <td>11 EUR / 8 EUR / 5 EUR</td>
+            <td>Non</td>
+            <td><div class="actions"><button class="button">Detail</button><button class="button">Ouvrir</button><button class="button">Definir en cours</button></div></td>
+          </tr>
+          <tr>
+            <td>Rentrée 2027</td>
+            <td>01/06/2027</td>
+            <td>30/09/2027</td>
+            <td>Brouillon</td>
+            <td>Non configuree</td>
+            <td>Non</td>
+            <td><div class="actions"><button class="button">Detail</button><button class="button">Ouvrir</button><button class="button">Definir en cours</button></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">La cotisation est configuree par periode avec degressivite: 1er enfant, 2e enfant, 3e et suivants.</p>
+    </section>
+  </div>
+</body>
+</html>

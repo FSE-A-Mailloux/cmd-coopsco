@@ -1,0 +1,23 @@
+window.SCREEN_MANIFEST = [
+  { id: "shell-reference", roles: ["gestionnaire"], category: "Shell applicatif", title: "Shell de reference", source: "../screens/shell/shell-reference.html" },
+  { id: "entree-connexion", roles: ["famille"], category: "Parcours d'entree", title: "Connexion", source: "../screens/entree/entree-connexion.html" },
+  { id: "entree-activation", roles: ["famille"], category: "Parcours d'entree", title: "Activation de compte", source: "../screens/entree/entree-activation.html" },
+  { id: "entree-creation-compte", roles: ["famille"], category: "Parcours d'entree", title: "Creation de compte", source: "../screens/entree/entree-creation-compte.html" },
+  { id: "entree-recuperation-acces", roles: ["famille"], category: "Parcours d'entree", title: "Recuperation d'acces", source: "../screens/entree/entree-recuperation-acces.html" },
+  { id: "commandes-liste", roles: ["gestionnaire"], category: "Parcours commandes", title: "Liste des commandes (gestionnaire)", source: "../screens/commandes/commandes-liste.html" },
+  { id: "commandes-liste-famille", roles: ["famille"], category: "Parcours commandes", title: "Mes commandes", source: "../screens/commandes/commandes-liste-famille.html" },
+  { id: "commandes-formulaire", roles: ["famille", "gestionnaire"], category: "Parcours commandes", title: "Creation commande famille (multi-etapes)", source: "../screens/commandes/commandes-formulaire.html" },
+  { id: "commandes-detail", roles: ["famille", "gestionnaire"], category: "Parcours commandes", title: "Detail commande", source: "../screens/commandes/commandes-detail.html" },
+  { id: "gestionnaire-paiements-recherche", roles: ["gestionnaire"], category: "Parcours paiements", title: "Encaissement - Recherche commande", source: "../screens/commandes/commandes-paiements-recherche.html" },
+  { id: "gestionnaire-paiements-saisie", roles: ["gestionnaire"], category: "Parcours paiements", title: "Encaissement - Saisie paiements", source: "../screens/commandes/commandes-paiements-saisie.html" },
+  { id: "admin-utilisateurs", roles: ["admin"], category: "Administration", title: "Utilisateurs", source: "../screens/administration/admin-utilisateurs.html" },
+  { id: "admin-roles-permissions", roles: ["admin"], category: "Administration", title: "Roles et permissions", source: "../screens/administration/admin-roles-permissions.html" },
+  { id: "gestionnaire-periodes", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Listing et actions", source: "../screens/administration/admin-periodes.html" },
+  { id: "gestionnaire-periodes-detail", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Detail", source: "../screens/administration/admin-periodes-detail.html" },
+  { id: "gestionnaire-articles-liste", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Articles - Listing", source: "../screens/administration/admin-articles.html" },
+  { id: "gestionnaire-articles-creation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Articles - Creation", source: "../screens/administration/admin-articles-creation.html" },
+  { id: "gestionnaire-articles-tarifs", roles: ["gestionnaire"], category: "Articles - Sous-ecrans tarifs", title: "Article - Tarifs par periode", source: "../screens/administration/admin-tarifs.html" },
+  { id: "gestionnaire-articles-tarifs-edition-prix", roles: ["gestionnaire"], category: "Articles - Sous-ecrans tarifs", title: "Article - Modification prix par periode", source: "../screens/administration/admin-tarifs-edition-prix.html" },
+  { id: "gestionnaire-stock", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Stock", source: "../screens/administration/admin-stock.html" },
+  { id: "gestionnaire-consolidation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Consolidation", source: "../screens/administration/admin-consolidation.html" }
+];

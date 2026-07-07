@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Stock</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Stock</h1><p class="subtitle">Domaine gestionnaire - suivi des disponibilites et alertes</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="layout-3">
+      <div class="kpi"><span class="muted">Articles en rupture</span><strong>6</strong></div>
+      <div class="kpi"><span class="muted">Articles en alerte</span><strong>21</strong></div>
+      <div class="kpi"><span class="muted">Entrepots suivis</span><strong>4</strong></div>
+    </section>
+    <section class="card">
+      <div class="actions">
+        <span class="tag">Inventaire: articles disponibles au stock uniquement</span>
+      </div>
+      <table>
+        <thead><tr><th>Code reference</th><th>Article</th><th>Marque</th><th>Disponible</th><th>Seuil mini</th><th>Etat</th></tr></thead>
+        <tbody>
+          <tr><td>ART-1003</td><td>Agenda scolaire</td><td>Exacompta</td><td>80</td><td>120</td><td>Alerte</td></tr>
+          <tr><td>ART-1044</td><td>Trousse college</td><td>Maped</td><td>12</td><td>50</td><td>Rupture proche</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Les articles marques "indisponible stock" ne sont pas affiches dans cet inventaire.</p>
+    </section>
+  </div>
+</body>
+</html>
