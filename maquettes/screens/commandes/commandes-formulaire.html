@@ -294,24 +294,47 @@
     <section class="card">
       <h2 class="card-title">Etape 5 - Mode de paiement</h2>
       <p class="muted">Choisissez le mode de paiement de votre commande.</p>
+      <p class="muted"><strong>Information:</strong> votre commande sera prise en compte uniquement a reception du paiement.</p>
       <div class="field">
-        <label><input type="radio" name="mode-paiement" checked> Paiement CB (via HelloAsso)</label>
+        <label><input type="radio" name="mode-paiement" value="cb" checked> Paiement CB (via HelloAsso)</label>
       </div>
       <p class="muted">Vous serez redirige vers HelloAsso pour finaliser le paiement CB securise.</p>
       <div class="field">
-        <label><input type="radio" name="mode-paiement"> Paiement par cheque</label>
+        <label><input type="radio" name="mode-paiement" value="cheque"> Paiement par cheque</label>
       </div>
       <p class="muted">Deposer le cheque avec le nom de l'enfant, son niveau et le numero de commande inscrits au dos, avec le bon de commande recu par mail et imprime par vos soins.</p>
       <div class="field">
-        <label><input type="radio" name="mode-paiement"> Paiement en espece</label>
+        <label><input type="radio" name="mode-paiement" value="espece"> Paiement en espece</label>
       </div>
       <p class="muted">Le paiement en espece doit etre fait avec l'appoint et avec le bon de commande recu par mail et imprime par vos soins.</p>
       <div class="actions">
         <button class="button">Etape precedente : Validation</button>
         <button class="button">Enregistrer brouillon</button>
-        <button class="button primary">Confirmer ma commande</button>
+        <button id="mode-paiement-submit" class="button primary">Payer la commande</button>
       </div>
     </section>
   </div>
+  <script>
+    (() => {
+      const paymentRadios = document.querySelectorAll('input[name="mode-paiement"]');
+      const submitButton = document.getElementById('mode-paiement-submit');
+      const submitLabelByMode = {
+        cb: 'Payer la commande',
+        cheque: 'Confirmer ma commande',
+        espece: 'Confirmer ma commande'
+      };
+
+      const updateSubmitLabel = () => {
+        const selectedMode = document.querySelector('input[name="mode-paiement"]:checked');
+        submitButton.textContent = submitLabelByMode[selectedMode?.value] ?? 'Confirmer ma commande';
+      };
+
+      paymentRadios.forEach((radio) => {
+        radio.addEventListener('change', updateSubmitLabel);
+      });
+
+      updateSubmitLabel();
+    })();
+  </script>
 </body>
 </html>
