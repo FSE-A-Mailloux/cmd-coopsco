@@ -20,6 +20,6 @@ Publier ce référentiel via GitHub Pages permet de disposer d'une URL stable po
 
 ## Impact
 
-- Ajout du workflow `.github/workflows/pages-maquettes.yml`.
+- Ajout du workflow `.github/workflows/static.yml`.
 - Exposition publique (ou interne selon la visibilité du dépôt) du contenu statique `maquettes/`.
 - Aucun impact sur les API backend, le modèle de données, ni les parcours métier dynamiques.

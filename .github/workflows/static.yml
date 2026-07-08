@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "maquettes/**"
-      - ".github/workflows/pages-maquettes.yml"
+      - ".github/workflows/static.yml"
   workflow_dispatch:
 
 permissions:

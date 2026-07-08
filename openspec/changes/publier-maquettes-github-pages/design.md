@@ -38,7 +38,7 @@ Le depot n'expose pas encore de workflow GitHub Actions dedie a la publication P
 
 ## Migration Plan
 
-1. Ajouter le workflow `.github/workflows/pages-maquettes.yml`.
+1. Ajouter le workflow `.github/workflows/static.yml`.
 2. Activer GitHub Pages avec la source `GitHub Actions` dans les parametres du depot.
 3. Pousser sur `main` pour produire un premier deploiement.
 4. Communiquer l'URL de consultation du workbench aux equipes metier.
