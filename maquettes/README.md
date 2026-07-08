@@ -35,6 +35,12 @@ Exemple:
 3. Basculer entre les vues **Telephone** et **Desktop** selon le contexte de revue.
 4. Vérifier l'aperçu statique a droite.
 
+## Publication GitHub Pages
+
+- URL racine: `https://fse-a-mailloux.github.io/cmd-coopsco/`
+- URL workbench: `https://fse-a-mailloux.github.io/cmd-coopsco/workbench/`
+- Ces liens sont a communiquer aux parties prenantes des ateliers maquettes pour consultation distante.
+
 ## Principes de rendu
 
 - Les maquettes sont construites en **mobile-first** (mise en page mobile par defaut, enrichie en desktop via media queries).

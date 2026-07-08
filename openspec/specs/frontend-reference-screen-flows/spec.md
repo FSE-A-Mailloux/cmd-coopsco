@@ -30,6 +30,13 @@ Les ecrans de reference MUST etre consultables localement, sans appel aux servic
 - **WHEN** un utilisateur ouvre le module de consultation des ecrans sans backend operationnel
 - **THEN** les ecrans de reference restent consultables et navigables
 
+### Requirement: Le referentiel d'ecrans de reference MUST etre consultable a distance via une URL stable
+Le module de maquettes MUST etre publiable sur GitHub Pages afin de permettre la consultation distante des ecrans de reference pendant les ateliers et revues asynchrones.
+
+#### Scenario: Consultation distante du workbench maquettes
+- **WHEN** un participant atelier ouvre l'URL GitHub Pages communiquee par l'equipe
+- **THEN** il accede au workbench maquettes et peut naviguer dans le catalogue d'ecrans sans installation locale
+
 ### Requirement: L'interface MUST appliquer un style neutre et lisible
 L'application MUST appliquer un style visuel sobre, coherent et non rebutant afin de prioriser la comprehension fonctionnelle.
 
