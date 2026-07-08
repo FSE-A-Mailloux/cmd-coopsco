@@ -12,16 +12,16 @@ Les détails d’implémentation de l’interface legacy MUST être considérés
 - **THEN** elle respecte les exigences fonctionnelles sans reproduire les mécanismes techniques legacy
 
 ### Requirement: Le shell frontend MUST fournir un cadre applicatif stable
-L’application MUST fournir un cadre stable comprenant authentification, navigation contextuelle, zone de contenu métier et retours utilisateur.  
-Avant implémentation dynamique, ce cadre MUST être représenté par des maquettes statiques de référence consultables dans un dossier dédié.
+L'application MUST fournir un cadre stable comprenant authentification, navigation contextuelle, zone de contenu metier et retours utilisateur.  
+Avant implementation dynamique, ce cadre MUST etre represente par des maquettes statiques de reference consultables dans un dossier dedie.
 
 #### Scenario: Rendu initial du shell
-- **WHEN** un utilisateur ouvre l’application
-- **THEN** l’interface affiche les zones principales nécessaires au parcours utilisateur
+- **WHEN** un utilisateur ouvre l'application
+- **THEN** l'interface affiche les zones principales necessaires au parcours utilisateur
 
-#### Scenario: Résolution de route au démarrage
-- **WHEN** aucun contexte d’entrée spécifique n’est fourni
-- **THEN** l’application charge le parcours ou composant métier par défaut
+#### Scenario: Resolution de route au demarrage
+- **WHEN** aucun contexte d'entree specifique n'est fourni
+- **THEN** l'application charge le parcours ou composant metier par defaut
 
 #### Scenario: Indicateurs commandes par statut sur la periode en cours
 - **WHEN** un utilisateur consulte l'ecran `Shell de reference`
@@ -43,9 +43,9 @@ Avant implémentation dynamique, ce cadre MUST être représenté par des maquet
 - **WHEN** un utilisateur consulte l'ecran `Shell de reference`
 - **THEN** la maquette affiche un recapitulatif des periodes passees (au minimum `CA` et `Nb commandes` par periode) pour comparer la periode en cours avec l'historique
 
-#### Scenario: Référentiel visuel de shell en phase de réécriture
-- **WHEN** l’équipe prépare la réécriture de l’interface
-- **THEN** elle dispose d’une maquette statique du shell, consultable dans l’espace dédié des maquettes, comme référence de validation
+#### Scenario: Referentiel visuel de shell en phase de reecriture
+- **WHEN** l'equipe prepare la reecriture de l'interface
+- **THEN** elle dispose d'une maquette statique du shell, consultable dans l'espace dedie des maquettes, comme reference de validation
 
 #### Scenario: Navigation shell adaptee au role famille pour les commandes
 - **WHEN** un utilisateur famille navigue dans le shell maquette
@@ -69,7 +69,7 @@ Avant implémentation dynamique, ce cadre MUST être représenté par des maquet
 
 #### Scenario: Navigation shell gestionnaire pour l'encaissement commande
 - **WHEN** un gestionnaire doit enregistrer des paiements de commande
-- **THEN** il suit un parcours dedie comprenant recherche de commande puis saisie d'un ou plusieurs paiements (cheque ou espece)
+- **THEN** il suit un parcours dedie declenche depuis l'action `Encaisser (cheque/espece)` d'une commande `Confirmee` (depuis la liste des commandes ou le detail de commande), ouvrant directement la saisie d'un ou plusieurs paiements
 
 #### Scenario: Navigation shell famille pour la commande de fournitures scolaires
 - **WHEN** une famille prepare une commande

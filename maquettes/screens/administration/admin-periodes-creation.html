@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Creation periode</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Periodes - Creation</h1><p class="subtitle">Domaine gestionnaire - creation d'une nouvelle periode</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="layout-2">
+        <article>
+          <div class="field"><label>Nom de periode</label><input class="input" value="Rentree 2028"></div>
+          <div class="field"><label>Date debut</label><input class="input" value="01/06/2028"></div>
+          <div class="field"><label>Date fin</label><input class="input" value="30/09/2028"></div>
+        </article>
+        <article>
+          <div class="field"><label>Statut periode</label><select class="select"><option>Non en cours (periode en preparation)</option><option>En cours</option></select></div>
+          <div class="field"><label>Etat d'ouverture</label><select class="select"><option>Fermee</option><option>Ouverte (si statut En cours)</option></select></div>
+          <div class="field"><label>Periode source pour reprise tarifs (recommande)</label><select class="select"><option>Rentrée 2027</option><option>Noel 2026</option><option>Aucune</option></select></div>
+          <p class="muted">La reprise de tarifs est recommandee pour eviter une periode avec tarifs vides.</p>
+          <p class="muted">Par regle de gestion, une periode ne peut etre `Ouverte` que si son statut est `En cours`.</p>
+        </article>
+      </div>
+      <section class="card">
+        <h2 class="card-title">Cotisation de periode</h2>
+        <div class="layout-3">
+          <div class="field"><label>Cotisation 1er enfant (EUR)</label><input class="input" value="12"></div>
+          <div class="field"><label>Cotisation 2e enfant (EUR)</label><input class="input" value="8"></div>
+          <div class="field"><label>Cotisation 3e enfant et suivants (EUR)</label><input class="input" value="5"></div>
+        </div>
+      </section>
+      <div class="actions">
+        <a class="button" href="./admin-periodes.html">Annuler</a>
+        <button class="button primary">Creer la periode</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

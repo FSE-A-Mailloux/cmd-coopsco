@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestionnaire - Modification periode</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Periodes - Modification</h1><p class="subtitle">Domaine gestionnaire - mise a jour d'une periode existante</p></div>
+      <span class="static-pill">Previsualisation statique</span>
+    </header>
+    <section class="card">
+      <div class="layout-2">
+        <article>
+          <div class="field"><label>Nom de periode</label><input class="input" value="Rentree 2026"></div>
+          <div class="field"><label>Date debut</label><input class="input" value="01/06/2026"></div>
+          <div class="field"><label>Date fin</label><input class="input" value="30/09/2026"></div>
+        </article>
+        <article>
+          <div class="field">
+            <label>Statut periode</label>
+            <label class="toggle-control">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Non en cours (periode passee ou en preparation)</span>
+            </label>
+          </div>
+          <div class="field">
+            <label>Etat d'ouverture</label>
+            <label class="toggle-control">
+              <input type="checkbox" disabled>
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Fermee (indisponible hors statut En cours)</span>
+            </label>
+          </div>
+          <p class="muted">Regles: une seule periode peut avoir le statut `En cours`. Une periode `Non en cours` (passee ou en preparation) ne peut pas etre `Ouverte`.</p>
+        </article>
+      </div>
+      <section class="card">
+        <h2 class="card-title">Cotisation de periode</h2>
+        <div class="layout-3">
+          <div class="field"><label>Cotisation 1er enfant (EUR)</label><input class="input" value="12"></div>
+          <div class="field"><label>Cotisation 2e enfant (EUR)</label><input class="input" value="8"></div>
+          <div class="field"><label>Cotisation 3e enfant et suivants (EUR)</label><input class="input" value="5"></div>
+        </div>
+      </section>
+      <div class="actions">
+        <a class="button" href="./admin-periodes-detail.html">Annuler</a>
+        <button class="button primary">Enregistrer les modifications</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

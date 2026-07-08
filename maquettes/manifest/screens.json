@@ -98,6 +98,20 @@
     "source": "../screens/administration/admin-periodes-detail.html"
   },
   {
+    "id": "gestionnaire-periodes-creation",
+    "roles": ["gestionnaire"],
+    "category": "Domaine gestionnaire",
+    "title": "Periodes - Creation",
+    "source": "../screens/administration/admin-periodes-creation.html"
+  },
+  {
+    "id": "gestionnaire-periodes-modification",
+    "roles": ["gestionnaire"],
+    "category": "Domaine gestionnaire",
+    "title": "Periodes - Modification",
+    "source": "../screens/administration/admin-periodes-modification.html"
+  },
+  {
     "id": "gestionnaire-articles-liste",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",

@@ -75,6 +75,12 @@ Exemple:
 - Le prix article est unique en **TTC** (pas de prix standard/reseau) et peut etre formule soit en **TTC direct**, soit via **prix fournisseur HT + marge (%)**.
 - Le mode de calcul d'un tarif est persiste en plus du total TTC (par periode et par article).
 - La modification de prix cible une **periode** (pas de date d'effet) et ne comporte pas de champ **motif de modification**.
-- Le domaine periodes expose le **listing avec actions** (ouvrir, fermer, definir en cours, reprise de tarifs) et un ecran **detail periode**.
+- Le domaine periodes expose le **listing avec actions** (ouvrir, fermer, definir en cours, reprise de tarifs), un ecran **detail periode**, un ecran **creation periode** et un ecran **modification periode**.
+- Dans `Periodes - Listing et actions`, une seule periode est marquee **en cours**; seul cet enregistrement peut utiliser l'action **Ouvrir**; l'action **Definir en cours** est active uniquement pour les periodes non courantes.
+- Le statut d'une periode est **En cours** ou **Non en cours** (periode passee ou en preparation) et son etat d'ouverture est **Ouverte** ou **Fermee**.
+- Une periode ne peut etre **Ouverte** que si son statut est **En cours**.
+- Dans `Periodes - Detail`, un bouton de modification ouvre l'ecran **Periodes - Modification**.
+- Ecrans de listing tabulaires identifies dans le referentiel: `Periodes - Listing et actions`, `Liste des commandes (gestionnaire)`, `Mes commandes`, `Articles - Listing`, `Stock`, `Consolidation`, `Utilisateurs`.
+- Les tableaux des ecrans de listing sont rendus en mode responsive via un conteneur a defilement horizontal en vue telephone, tout en conservant la lecture tabulaire complete en desktop.
 
 Ce dossier est la référence d'entrée pour les futures tâches d'implémentation frontend.

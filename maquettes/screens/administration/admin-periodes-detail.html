@@ -13,15 +13,14 @@
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="layout-3">
-      <div class="kpi"><span class="muted">Etat</span><strong>Ouverte</strong></div>
-      <div class="kpi"><span class="muted">Periode en cours</span><strong>Oui</strong></div>
+      <div class="kpi"><span class="muted">Statut periode</span><strong>En cours</strong></div>
+      <div class="kpi"><span class="muted">Etat d'ouverture</span><strong>Ouverte</strong></div>
       <div class="kpi"><span class="muted">Commandes</span><strong>924</strong></div>
     </section>
     <section class="card">
       <table>
         <thead><tr><th>Champ</th><th>Valeur</th></tr></thead>
         <tbody>
-          <tr><td>Code periode</td><td>PER-2026-RENTREE</td></tr>
           <tr><td>Date debut</td><td>01/06/2026</td></tr>
           <tr><td>Date fin</td><td>30/09/2026</td></tr>
           <tr><td>Tarifs source</td><td>Noel 2025 (reprise appliquee)</td></tr>
@@ -30,8 +29,9 @@
       </table>
       <div class="actions">
         <button class="button">Fermer la periode</button>
-        <button class="button">Definir en cours</button>
-        <button class="button primary">Retour a la liste</button>
+        <a class="button" href="./admin-periodes-modification.html">Modifier la periode</a>
+        <button class="button" disabled>Definir en cours</button>
+        <a class="button primary" href="./admin-periodes.html">Retour a la liste</a>
       </div>
     </section>
     <section class="card">

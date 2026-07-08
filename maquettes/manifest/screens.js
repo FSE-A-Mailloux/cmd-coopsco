@@ -13,6 +13,8 @@ window.SCREEN_MANIFEST = [
   { id: "admin-roles-permissions", roles: ["admin"], category: "Administration", title: "Roles et permissions", source: "../screens/administration/admin-roles-permissions.html" },
   { id: "gestionnaire-periodes", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Listing et actions", source: "../screens/administration/admin-periodes.html" },
   { id: "gestionnaire-periodes-detail", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Detail", source: "../screens/administration/admin-periodes-detail.html" },
+  { id: "gestionnaire-periodes-creation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Creation", source: "../screens/administration/admin-periodes-creation.html" },
+  { id: "gestionnaire-periodes-modification", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Modification", source: "../screens/administration/admin-periodes-modification.html" },
   { id: "gestionnaire-articles-liste", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Articles - Listing", source: "../screens/administration/admin-articles.html" },
   { id: "gestionnaire-articles-creation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Articles - Creation", source: "../screens/administration/admin-articles-creation.html" },
   { id: "gestionnaire-articles-tarifs", roles: ["gestionnaire"], category: "Articles - Sous-ecrans tarifs", title: "Article - Tarifs par periode", source: "../screens/administration/admin-tarifs.html" },
