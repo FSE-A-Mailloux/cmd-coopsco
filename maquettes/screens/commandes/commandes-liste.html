@@ -22,7 +22,7 @@
         <h2 class="card-title">Filtres de recherche</h2>
         <div class="layout-2">
           <article>
-            <div class="field"><label>Recherche multicriteres (email, nom, prenom parent/enfant)</label><input class="input" value="dupont marie lina"></div>
+            <div class="field"><label>Recherche multicriteres (numero de commande, email, nom, prenom parent/enfant)</label><input class="input" value="CMD-2406 dupont marie lina"></div>
             <div class="field"><label>Periode</label><select class="select"><option>Rentree 2026 (en cours)</option><option>Rentree 2025</option><option>Rentree 2024</option></select></div>
           </article>
           <article>
@@ -43,7 +43,7 @@
           <button class="button primary">Rechercher</button>
           <button class="button ghost">Reinitialiser</button>
         </div>
-        <p class="muted">Le champ de recherche unique interroge email, nom et prenom du parent et de l'enfant; la periode est preselectionnee sur la periode en cours; les statuts sont filtrables en selection multiple.</p>
+        <p class="muted">Le champ de recherche unique interroge le numero de commande, l'email, le nom et le prenom du parent et de l'enfant; la periode est preselectionnee sur la periode en cours; les statuts sont filtrables en selection multiple.</p>
       </section>
       <p class="muted">Referentiel statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmee, Annulee.</p>
       <p class="muted">Une commande peut etre annulee tant qu'aucun paiement n'a ete enregistre.</p>
@@ -55,7 +55,7 @@
           <tr><td>CMD-2403</td><td>fatou.ndiaye@exemple.fr</td><td>Fatou Ndiaye</td><td>Yanis Ndiaye</td><td>04/09/2026</td><td>En attente de paiement</td><td>59 EUR</td><td><button class="button">Annuler commande</button></td></tr>
           <tr><td>CMD-2404</td><td>julie.martin@exemple.fr</td><td>Julie Martin</td><td>Emma Martin</td><td>05/09/2026</td><td>Paiement partiel</td><td>64 EUR</td><td><span class="tag">Non annulable (paiement enregistre)</span></td></tr>
           <tr><td>CMD-2405</td><td>samir.benali@exemple.fr</td><td>Samir Benali</td><td>Nour Benali</td><td>05/09/2026</td><td>Paiement en cours</td><td>43 EUR</td><td><span class="tag">Non annulable (paiement enregistre)</span></td></tr>
-          <tr><td>CMD-2406</td><td>camille.roche@exemple.fr</td><td>Camille Roche</td><td>Tom Roche</td><td>06/09/2026</td><td>Confirmee</td><td>55 EUR</td><td><span class="tag">Non annulable (paiement effectue)</span></td></tr>
+          <tr><td>CMD-2406</td><td>camille.roche@exemple.fr</td><td>Camille Roche</td><td>Tom Roche</td><td>06/09/2026</td><td>Confirmee</td><td>55 EUR</td><td><div class="actions"><a class="button primary" href="./commandes-paiements-saisie.html">Encaisser (cheque/espece)</a><span class="tag">Non annulable</span></div></td></tr>
           <tr><td>CMD-2407</td><td>ines.moreau@exemple.fr</td><td>Ines Moreau</td><td>Mila Moreau</td><td>06/09/2026</td><td>Annulee</td><td>38 EUR</td><td><span class="tag">Commande annulee</span></td></tr>
         </tbody>
       </table>

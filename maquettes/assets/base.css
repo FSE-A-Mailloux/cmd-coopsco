@@ -159,6 +159,11 @@ p {
   border-radius: 8px;
   padding: 10px 14px;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .button.primary {

@@ -9,11 +9,12 @@
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Encaissement - Saisie paiements</h1><p class="subtitle">Association d'un ou plusieurs paiements a une commande</p></div>
+      <div class="title-stack"><h1>Encaissement - Saisie paiements</h1><p class="subtitle">Association d'un ou plusieurs paiements a une commande (depuis la liste ou le detail de commande)</p></div>
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="layout-3">
       <div class="kpi"><span class="muted">Commande</span><strong>CMD-2402</strong></div>
+      <div class="kpi"><span class="muted">Beneficiaire de la commande</span><strong>Leo Bernard (5e)</strong></div>
       <div class="kpi"><span class="muted">Montant total</span><strong>1 860 EUR</strong></div>
       <div class="kpi"><span class="muted">Reste a regler</span><strong>1 100 EUR</strong></div>
     </section>
@@ -23,9 +24,12 @@
         <thead><tr><th>Date</th><th>Mode</th><th>Montant</th><th>Banque</th><th>Titulaire du compte</th><th>Action</th></tr></thead>
         <tbody>
           <tr><td>07/09/2026</td><td>Espece</td><td>300 EUR</td><td>-</td><td>-</td><td><button class="button">Modifier</button></td></tr>
-          <tr><td>07/09/2026</td><td>Cheque</td><td>460 EUR</td><td>Credit Agricole</td><td>Association Parents Eleves</td><td><button class="button">Modifier</button></td></tr>
+          <tr><td>07/09/2026</td><td>Cheque</td><td>460 EUR</td><td>Credit Agricole</td><td>Thomas Bernard</td><td><button class="button">Modifier</button></td></tr>
         </tbody>
       </table>
+      <div class="actions">
+        <button class="button">Ajouter la ligne de paiement</button>
+      </div>
     </section>
     <section class="card">
       <h2 class="card-title">Ajouter un paiement</h2>
@@ -34,18 +38,18 @@
           <div class="field"><label>Mode de paiement</label><select class="select"><option>Cheque</option><option>Espece</option></select></div>
           <div class="field"><label>Montant (EUR)</label><input class="input" value="340"></div>
           <div class="field"><label>Banque (si cheque)</label><input class="input" value="Banque Populaire"></div>
-          <div class="field"><label>Titulaire du compte (si cheque)</label><input class="input" value="Cooperative Scolaire Jules Verne"></div>
+          <div class="field"><label>Titulaire du compte (si cheque)</label><input class="input" value="Thomas Bernard"></div>
         </article>
         <article class="card">
           <h3 class="card-title">Regles metier</h3>
           <p class="muted">Le gestionnaire peut associer plusieurs paiements a la commande.</p>
           <p class="muted">Les informations banque + titulaire sont obligatoires pour un cheque afin de preparer les bordereaux de fin de periode.</p>
+          <p class="muted">Le titulaire du compte est renseigne en contexte particulier/famille (responsable legal de la commande).</p>
           <p class="muted">Paiement CB: suivi en statut "Paiement en cours" pendant le traitement.</p>
         </article>
       </div>
       <div class="actions">
-        <button class="button">Retour recherche</button>
-        <button class="button">Ajouter la ligne de paiement</button>
+        <a class="button" href="./commandes-detail.html">Retour commande</a>
         <button class="button primary">Valider l'encaissement</button>
       </div>
     </section>

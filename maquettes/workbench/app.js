@@ -23,6 +23,54 @@ const elements = {
   viewButtons: Array.from(document.querySelectorAll("[data-view-mode]"))
 };
 
+function disableInnerFrameScroll(frameDocument) {
+  if (!frameDocument || !frameDocument.head) {
+    return;
+  }
+
+  const styleId = "workbench-no-inner-scroll";
+  if (frameDocument.getElementById(styleId)) {
+    return;
+  }
+
+  const style = frameDocument.createElement("style");
+  style.id = styleId;
+  style.textContent = "html, body { overflow: hidden !important; }";
+  frameDocument.head.appendChild(style);
+}
+
+function syncFrameHeight() {
+  const frameDocument = elements.frame.contentDocument;
+  if (!frameDocument) {
+    return;
+  }
+
+  disableInnerFrameScroll(frameDocument);
+
+  const docElement = frameDocument.documentElement;
+  const body = frameDocument.body;
+  const nextHeight = Math.max(
+    docElement ? docElement.scrollHeight : 0,
+    body ? body.scrollHeight : 0,
+    docElement ? docElement.offsetHeight : 0,
+    body ? body.offsetHeight : 0,
+    body ? Math.ceil(body.getBoundingClientRect().height) : 0
+  );
+
+  if (nextHeight > 0) {
+    elements.frame.style.height = `${nextHeight + 4}px`;
+  }
+}
+
+function scheduleFrameHeightSync() {
+  window.requestAnimationFrame(() => {
+    syncFrameHeight();
+    window.setTimeout(syncFrameHeight, 80);
+    window.setTimeout(syncFrameHeight, 180);
+    window.setTimeout(syncFrameHeight, 320);
+  });
+}
+
 function normalizeRole(role) {
  if (typeof role !== "string" || role.trim() === "") {
    return "non-classe";
@@ -86,6 +134,7 @@ function updateQueryString(id, viewMode) {
 function setFrameSource(screen) {
   const useDirectFileMode = window.location.protocol === "file:";
   const sourceUrl = new URL(screen.source, window.location.href);
+  elements.frame.style.height = "";
 
   if (useDirectFileMode) {
     elements.frame.removeAttribute("srcdoc");
@@ -257,9 +306,13 @@ async function initializeWorkbench() {
   selectScreen(initialSelection, { updateUrl: false });
 }
 
+elements.frame.addEventListener("load", scheduleFrameHeightSync);
+window.addEventListener("resize", scheduleFrameHeightSync);
+
 elements.viewButtons.forEach((button) => {
   button.addEventListener("click", () => {
     setViewMode(button.dataset.viewMode || "phone");
+    scheduleFrameHeightSync();
   });
 });
 

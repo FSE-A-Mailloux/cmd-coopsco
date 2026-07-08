@@ -8,7 +8,6 @@ window.SCREEN_MANIFEST = [
   { id: "commandes-liste-famille", roles: ["famille"], category: "Parcours commandes", title: "Mes commandes", source: "../screens/commandes/commandes-liste-famille.html" },
   { id: "commandes-formulaire", roles: ["famille", "gestionnaire"], category: "Parcours commandes", title: "Creation commande famille (multi-etapes)", source: "../screens/commandes/commandes-formulaire.html" },
   { id: "commandes-detail", roles: ["famille", "gestionnaire"], category: "Parcours commandes", title: "Detail commande", source: "../screens/commandes/commandes-detail.html" },
-  { id: "gestionnaire-paiements-recherche", roles: ["gestionnaire"], category: "Parcours paiements", title: "Encaissement - Recherche commande", source: "../screens/commandes/commandes-paiements-recherche.html" },
   { id: "gestionnaire-paiements-saisie", roles: ["gestionnaire"], category: "Parcours paiements", title: "Encaissement - Saisie paiements", source: "../screens/commandes/commandes-paiements-saisie.html" },
   { id: "admin-utilisateurs", roles: ["admin"], category: "Administration", title: "Utilisateurs", source: "../screens/administration/admin-utilisateurs.html" },
   { id: "admin-roles-permissions", roles: ["admin"], category: "Administration", title: "Roles et permissions", source: "../screens/administration/admin-roles-permissions.html" },

@@ -63,13 +63,6 @@
     "source": "../screens/commandes/commandes-detail.html"
   },
   {
-    "id": "gestionnaire-paiements-recherche",
-    "roles": ["gestionnaire"],
-    "category": "Parcours paiements",
-    "title": "Encaissement - Recherche commande",
-    "source": "../screens/commandes/commandes-paiements-recherche.html"
-  },
-  {
     "id": "gestionnaire-paiements-saisie",
     "roles": ["gestionnaire"],
     "category": "Parcours paiements",
