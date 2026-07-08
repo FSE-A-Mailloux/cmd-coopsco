@@ -9,13 +9,11 @@
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Stock</h1><p class="subtitle">Domaine gestionnaire - suivi des disponibilites et alertes</p></div>
+      <div class="title-stack"><h1>Stock</h1><p class="subtitle">Domaine gestionnaire - suivi des disponibilites et historique article</p></div>
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="layout-3">
       <div class="kpi"><span class="muted">Articles en rupture</span><strong>6</strong></div>
-      <div class="kpi"><span class="muted">Articles en alerte</span><strong>21</strong></div>
-      <div class="kpi"><span class="muted">Entrepots suivis</span><strong>4</strong></div>
     </section>
     <section class="card">
       <div class="actions">
@@ -23,13 +21,40 @@
       </div>
       <div class="listing-table-wrap">
         <table>
-          <thead><tr><th>Code reference</th><th>Article</th><th>Marque</th><th>Disponible</th><th>Seuil mini</th><th>Etat</th></tr></thead>
+          <thead><tr><th>Code reference</th><th>Article</th><th>Marque</th><th>Disponible</th><th>Etat stock</th><th>Actions</th></tr></thead>
           <tbody>
-            <tr><td>ART-1003</td><td>Agenda scolaire</td><td>Exacompta</td><td>80</td><td>120</td><td>Alerte</td></tr>
-            <tr><td>ART-1044</td><td>Trousse college</td><td>Maped</td><td>12</td><td>50</td><td>Rupture proche</td></tr>
+            <tr><td>ART-1003</td><td>Agenda scolaire</td><td>Exacompta</td><td>80</td><td>Disponible</td><td><div class="actions"><button class="button">Voir courbe</button><button class="button">Modifier stock</button></div></td></tr>
+            <tr><td>ART-1044</td><td>Trousse college</td><td>Maped</td><td>0</td><td>Rupture</td><td><div class="actions"><button class="button">Voir courbe</button><button class="button">Modifier stock</button></div></td></tr>
           </tbody>
         </table>
       </div>
+      <section class="card">
+        <h2 class="card-title">Courbe de stock - ART-1003 Agenda scolaire</h2>
+        <p class="muted">Visualisation de l'evolution du stock aux dates de modification de stock.</p>
+        <table>
+          <thead><tr><th>Date de modification</th><th>Variation</th><th>Stock disponible</th></tr></thead>
+          <tbody>
+            <tr><td>02/06/2026 10:14</td><td>+40</td><td>140</td></tr>
+            <tr><td>09/06/2026 15:52</td><td>-14</td><td>126</td></tr>
+            <tr><td>16/06/2026 12:07</td><td>-16</td><td>110</td></tr>
+            <tr><td>23/06/2026 09:33</td><td>-12</td><td>98</td></tr>
+            <tr><td>30/06/2026 17:21</td><td>-12</td><td>86</td></tr>
+            <tr><td>07/07/2026 11:05</td><td>-6</td><td>80</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="card">
+        <h2 class="card-title">Modifier le stock - ART-1044 Trousse college</h2>
+        <div class="layout-2">
+          <article>
+            <div class="field"><label>Nombre disponible</label><input class="input" value="0"></div>
+          </article>
+        </div>
+        <p class="muted">L'etat est calcule automatiquement: `Rupture` si le nombre disponible est egal a 0, sinon `Disponible`.</p>
+        <div class="actions">
+          <button class="button primary">Enregistrer disponible</button>
+        </div>
+      </section>
       <p class="muted">Les articles marques "indisponible stock" ne sont pas affiches dans cet inventaire.</p>
     </section>
   </div>
