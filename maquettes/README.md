@@ -49,6 +49,11 @@ Exemple:
 - Le tableau de l'ecran **Stock** ne contient pas de colonne **seuil mini**.
 - Chaque ligne article du **Stock** propose une action **Voir courbe** pour visualiser l'evolution du stock selon les **dates de modification de stock**.
 - Chaque ligne article du **Stock** propose une action de mise a jour du **nombre disponible**; l'**etat de stock** est calcule automatiquement (**Rupture** si disponible = 0, sinon **Disponible**).
+- L'ecran **Consolidation** est un **snapshot horodate** sur la **periode en cours** (pas un simple tableau de synthese global) et n'expose pas de selecteur de periode.
+- Le tableau de **Consolidation** expose par article le **stock disponible**, la **quantite commandee familles**, la saisie du **besoin FSE (stock a conserver)** et la **quantite a commander** calculee avec `max(0, qte commandee familles + besoin FSE - stock disponible)`.
+- Une consolidation peut etre **enregistree** puis **consultee ulterieurement** dans un historique horodate.
+- L'ecran **Consolidation** affiche `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` pour la periode en cours, avec indication explicite en cas d'**estimation partielle** (tarifs fournisseur HT manquants).
+- L'ecran **Consolidation** n'affiche pas de **taux de service**.
 - Les commandes utilisent le referentiel de statuts: **Brouillon**, **En attente de paiement**, **Paiement partiel**, **Paiement en cours** (CB en traitement), **Confirmee**, **Annulee**.
 - Une commande peut etre **annulee tant qu'aucun paiement n'a ete enregistre**; l'annulation n'est plus possible apres paiement.
 - La maquette **Liste des commandes (gestionnaire)** propose un **champ de recherche multicriteres unique** (numero de commande, email, nom/prenom parent, nom/prenom enfant), un filtre **Periode** avec la **periode en cours** par defaut, et un filtre **Statuts** en selection multiple.

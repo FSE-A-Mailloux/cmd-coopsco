@@ -9,21 +9,52 @@
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Consolidation</h1><p class="subtitle">Domaine gestionnaire - synthese transversale commandes, stock et chiffres</p></div>
+      <div class="title-stack"><h1>Consolidation</h1><p class="subtitle">Domaine gestionnaire - snapshot horodate de besoin fournisseur par periode</p></div>
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="layout-3">
-      <div class="kpi"><span class="muted">CA cumule</span><strong>428 000 EUR</strong></div>
-      <div class="kpi"><span class="muted">Commandes traitees</span><strong>1 284</strong></div>
-      <div class="kpi"><span class="muted">Taux service</span><strong>96%</strong></div>
+      <div class="kpi"><span class="muted">CA estime (periode en cours)</span><strong>20 400 EUR</strong></div>
+      <div class="kpi"><span class="muted">Marge estimee (periode en cours)</span><strong>4 200 EUR</strong></div>
+      <div class="kpi"><span class="muted">Cout du stock prevu (besoin FSE)</span><strong>8 600 EUR</strong></div>
     </section>
     <section class="card">
+      <div class="layout-2">
+        <article>
+          <p class="muted">Periode de consolidation</p>
+          <p><strong>Periode en cours: Rentrée 2026</strong></p>
+        </article>
+        <article>
+          <div class="actions">
+            <span class="tag">Snapshot courant non enregistre</span>
+            <button class="button primary">Enregistrer consolidation</button>
+          </div>
+        </article>
+      </div>
+      <p class="muted">Regle de calcul: quantite a commander = max(0, quantite commandee familles + besoin FSE - stock disponible).</p>
       <div class="listing-table-wrap">
         <table>
-          <thead><tr><th>Periode</th><th>CA</th><th>Commandes</th><th>Taux service</th></tr></thead>
+          <thead><tr><th>Reference</th><th>Article</th><th>Stock disponible</th><th>Qte commandee familles</th><th>Besoin FSE (stock a conserver)</th><th>Qte a commander</th><th>Tarif fournisseur HT</th><th>Cout besoin FSE</th></tr></thead>
           <tbody>
-            <tr><td>Rentrée 2026</td><td>312 000 EUR</td><td>924</td><td>95%</td></tr>
-            <tr><td>Noel 2026</td><td>116 000 EUR</td><td>360</td><td>98%</td></tr>
+            <tr><td>ART-1003</td><td>Agenda scolaire</td><td>80</td><td>150</td><td><input class="input" value="40"></td><td>110</td><td>2,40 EUR</td><td>96,00 EUR</td></tr>
+            <tr><td>ART-1044</td><td>Trousse college</td><td>0</td><td>210</td><td><input class="input" value="60"></td><td>270</td><td>4,80 EUR</td><td>288,00 EUR</td></tr>
+            <tr><td>ART-2088</td><td>Lot de surligneurs</td><td>25</td><td>90</td><td><input class="input" value="30"></td><td>95</td><td class="muted">Non renseigne</td><td class="muted">N/A</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <button class="button">Recalculer consolidation</button>
+        <button class="button">Exporter la consolidation</button>
+      </div>
+      <p class="muted">Estimation partielle: 1 article sans tarif fournisseur HT. La marge et le cout du stock prevu sont calcules sur les articles renseignes.</p>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Consolidations enregistrees (horodatees)</h2>
+      <div class="listing-table-wrap">
+        <table>
+          <thead><tr><th>Date/heure d'enregistrement</th><th>Periode</th><th>Articles consolides</th><th>Total qte a commander</th><th>Etat estimation</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td>08/07/2026 16:42</td><td>Rentrée 2026</td><td>128</td><td>2 940</td><td>Partielle</td><td><button class="button">Consulter</button></td></tr>
+            <tr><td>04/07/2026 10:15</td><td>Rentrée 2026</td><td>128</td><td>2 770</td><td>Complete</td><td><button class="button">Consulter</button></td></tr>
           </tbody>
         </table>
       </div>
