@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-08-23
+goal: Retirer l'entite fournisseur geree du PRD, des specs et des maquettes, en
+  conservant la denomination prix fournisseur HT comme prix d'achat

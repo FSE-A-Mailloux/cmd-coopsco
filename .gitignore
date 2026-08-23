@@ -1,3 +1,4 @@
+# Dépendances legacy installées, hors corpus de refonte (voir docs/legacy-scope.md)
 /legacy/ws/vendor
 
 /legacy/libs/

@@ -1,0 +1,40 @@
+name: Couverture des use-cases legacy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/legacy-use-cases.md"
+      - "docs/legacy-coverage-matrix.md"
+      - "openspec/prd-rewrite-agnostique.md"
+      - "openspec/specs/**"
+      - "maquettes/manifest/screens.json"
+      - "scripts/check-legacy-coverage.ps1"
+      - ".github/workflows/legacy-coverage.yml"
+  pull_request:
+    paths:
+      - "docs/legacy-use-cases.md"
+      - "docs/legacy-coverage-matrix.md"
+      - "openspec/prd-rewrite-agnostique.md"
+      - "openspec/specs/**"
+      - "maquettes/manifest/screens.json"
+      - "scripts/check-legacy-coverage.ps1"
+      - ".github/workflows/legacy-coverage.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    name: Controle structurel de la matrice
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Le controle echoue en dur sur toute anomalie bloquante : use-case absent
+      # de la matrice, decision manquante ou invalide, reprise sans rattachement,
+      # reference pointant un artefact inexistant.
+      - name: Verifier la couverture des use-cases legacy
+        shell: pwsh
+        run: ./scripts/check-legacy-coverage.ps1

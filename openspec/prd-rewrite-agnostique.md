@@ -93,7 +93,8 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-011** Le système doit délivrer un jeton de session à authentification réussie.  
 **FR-012** Le système doit supporter l’activation de compte via code/lien.  
 **FR-013** Le système doit invalider les sessions expirées et forcer la déconnexion côté expérience utilisateur.  
-**FR-014** Le système doit maintenir l’état de session actif tant que l’utilisateur reste dans la fenêtre de validité.
+**FR-014** Le système doit maintenir l’état de session actif tant que l’utilisateur reste dans la fenêtre de validité.  
+**FR-015** Le système doit permettre à un utilisateur de demander le renvoi de son code d’activation lorsque le message initial ne lui est pas parvenu.
 
 ## 6.3 Autorisations et menu contextuel
 
@@ -101,7 +102,10 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-021** Le système doit contrôler les droits d’accès aux composants métier.  
 **FR-022** Le système doit construire un menu adapté aux permissions effectives de l’utilisateur.  
 **FR-023** Le système doit gérer un mode non connecté avec droits limités.
-**FR-024** Le système doit permettre à un utilisateur multi-rôles de basculer de rôle actif dans l’interface, avec recalcul immédiat des permissions et du menu.
+**FR-024** Le système doit permettre à un utilisateur multi-rôles de basculer de rôle actif dans l’interface, avec recalcul immédiat des permissions et du menu.  
+**FR-025** Le système doit permettre la gestion des groupes porteurs de droits (création, modification, suppression).  
+**FR-026** Le système doit permettre l’affectation et le retrait d’utilisateurs sur un groupe, le retrait entraînant la perte immédiate des droits associés.  
+**FR-027** Le système doit permettre la gestion des fonctions applicatives structurant les habilitations (création, modification, suppression).
 
 ## 6.4 Cycle de vie des comptes
 
@@ -112,7 +116,8 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-034** Le système doit permettre le changement de mot de passe authentifié.  
 **FR-035** Le système doit empêcher les suppressions de comptes non autorisées (ex. auto-suppression interdite si règle métier).  
 **FR-036** Le système doit anonymiser les données historiques requises lors de suppression selon la politique définie.  
-**FR-037** Le système doit permettre la désinscription à la communication de diffusion.
+**FR-037** Le système doit permettre la désinscription à la communication de diffusion.  
+**FR-038** Le système doit permettre à un administrateur d’imposer à un utilisateur le changement de son mot de passe à sa prochaine connexion.
 
 ## 6.5 Requêtes métier référencées
 
@@ -137,7 +142,8 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-052** Le système doit permettre de modifier l’état de commande selon règles (validation, annulation, relance).  
 **FR-053** Le système doit gérer les règlements partiels/multiples et la cohérence des montants.  
 **FR-054** Le système doit rejeter un règlement invalide (montant, informations obligatoires manquantes).  
-**FR-055** Le système doit rattacher une commande au bon compte selon règles de correspondance autorisées.
+**FR-055** Le système doit rattacher une commande au bon compte selon règles de correspondance autorisées.  
+**FR-065** Le système doit permettre l’annulation d’une commande déjà réglée, sans la conditionner à l’absence de paiement, en déclenchant l’émission d’un avoir conformément à la réglementation applicable.
 
 ### 6.7.1 Règles spécifiques cotisation
 
@@ -177,7 +183,9 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FACT-03** Le contenu de facture doit inclure au minimum: identité de commande, période, date, bénéficiaires, lignes d’articles, prix unitaires, quantités, total.  
 **FACT-04** Le nom du document de facture doit suivre une convention métier traçable avec le numéro de commande.  
 **FACT-05** Le système doit signaler explicitement l’échec de génération de facture (commande introuvable, gabarit absent, erreur de production document).
-**FACT-06** Le processus de facturation doit respecter les obligations de la réglementation française applicable (mentions, émission, conservation et archivage).
+**FACT-06** Le processus de facturation doit respecter les obligations de la réglementation française applicable (mentions, émission, conservation et archivage).  
+**FACT-07** Le système doit permettre l’émission d’un avoir rattaché à une commande facturée, lorsque celle-ci est annulée après règlement.  
+**FACT-08** L’avoir doit être produit depuis un gabarit dédié, distinct des gabarits de facture et de confirmation de commande, et suivre une convention de nommage traçable avec le numéro de commande d’origine.
 
 ## 6.11 Envoi de mail (relances et campagnes)
 
@@ -192,7 +200,9 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-080** Le système doit exposer un contrat de réponse homogène pour succès et erreurs.  
 **FR-081** Le système doit distinguer au minimum: erreur fonctionnelle, erreur de sécurité, session expirée, erreur technique.  
 **FR-082** Le système doit journaliser les anomalies non fonctionnelles avec contexte suffisant pour diagnostic.
-**FR-083** Le système doit assurer un audit horodaté des créations, modifications et suppressions sur l’ensemble des entités métier, avec identification de l’acteur.
+**FR-083** Le système doit assurer un audit horodaté des créations, modifications et suppressions sur l’ensemble des entités métier, avec identification de l’acteur.  
+**FR-084** Le système doit permettre aux gestionnaires de consulter le journal des actions applicatives, en restituant au minimum le domaine, l’action, le contexte et la date-heure.  
+**FR-085** Le système doit permettre la consultation des anomalies applicatives enregistrées, avec leur action et leur contexte associés.
 
 ---
 
@@ -347,17 +357,19 @@ Chaque phase doit livrer des scénarios d’acceptation traçables vers les exig
 ## 13. Traçabilité OpenSpec → PRD
 
 1. `frontend-shell-and-dynamic-components` → FR-001 à FR-004  
-2. `authentication-and-session-token-lifecycle` → FR-010 à FR-014  
-3. `authorization-and-menu-resolution` → FR-020 à FR-023  
-4. `user-account-lifecycle-management` → FR-030 à FR-037  
+2. `authentication-and-session-token-lifecycle` → FR-010 à FR-015  
+3. `authorization-and-menu-resolution` → FR-020 à FR-027  
+4. `user-account-lifecycle-management` → FR-030 à FR-038  
 5. `request-catalog-execution` → FR-040 à FR-042  
-6. `fse-order-and-payment-workflow` → FR-050 à FR-064  
+6. `fse-order-and-payment-workflow` → FR-050 à FR-055, FR-060 à FR-065  
 7. `templated-mail-and-document-generation` → FR-070 à FR-079  
-8. `webservice-dispatch-and-response-contract` → FR-080 à FR-083  
+8. `webservice-dispatch-and-response-contract` → FR-080 à FR-085  
 9. Compléments référentiels (périodes, articles, prix par période) extraits des comportements métier existants → FR-043 à FR-049
 10. Compléments stock et consolidation fournisseur extraits des comportements métier existants → FR-056 à FR-059
 11. Compléments cotisation extraits des comportements métier existants → COTIS-01 à COTIS-05
-12. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-06
+12. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-08
+
+Traçabilité ascendante depuis le legacy: la couverture de chaque use-case legacy par ces exigences est tenue dans `docs/legacy-coverage-matrix.md`, contrôlée par `scripts/check-legacy-coverage.ps1`.
 
 ---
 
@@ -375,7 +387,17 @@ Chaque phase doit livrer des scénarios d’acceptation traçables vers les exig
 8. **Consolidation fournisseur**: la consolidation est consultable à tout moment, sans changement d’état ni étape d’approbation.
 9. **Cotisation**: la cotisation fait partie de la commande; sa suppression est interdite dès qu’une commande est validée et facturée.
 10. **Conformité réglementaire française**: la gestion des commandes et la facturation doivent respecter la réglementation française applicable.
+11. **Éditions et exports**: le domaine est repris en partie; une phase d'expression de besoin doit déterminer les éditions conservées. Aucune édition n'est abandonnée à ce stade.
+12. **Référentiel fournisseurs**: l'entité fournisseur n'est pas gérée dans la solution cible. La dénomination « prix fournisseur HT » est conservée car elle désigne le prix d'achat de l'article, indépendamment de l'identité du fournisseur.
+13. **Annulation d'une commande réglée**: l'annulation reste possible après paiement et déclenche l'émission d'un avoir. La restriction conditionnant l'annulation à l'absence de paiement est invalidée, le comportement legacy qui annulait sans pièce comptable l'est également.
+14. **Méta-configuration applicative**: le menu, les modules et le référentiel de composants administrables en base sont abandonnés, obsolètes par construction. L'administration des habilitations (groupes, affectations, fonctions) est en revanche conservée.
+15. **Consultation des historiques**: le journal des actions applicatives est consultable par les gestionnaires, et non réservé aux administrateurs comme dans le legacy. Les anomalies applicatives sont consultables sur le même principe.
+16. **Liste de diffusion d'un groupe**: sa gestion n'est pas reprise à ce stade; seul le ciblage d'un groupe comme destinataire est conservé.
+17. **Désactivation de compte à l'initiative de l'utilisateur**: le comportement est repris. Son périmètre reste à cadrer, et il doit être distingué de la désinscription aux communications de diffusion, que le legacy confondait sous un même lien.
 
 ### 14.2 Questions restant à arbitrer
 
 1. Politique de délivrabilité email (gestion rebonds, taux d’échec, anti-spam, fréquence maximale par cible) — non arbitrée à ce stade.
+2. Pages d'accueil contextuelles par profil: à préciser dans ce document.
+3. Correction d'une saisie d'encaissement erronée: il n'est pas établi qu'elle relève du même mécanisme que l'annulation commerciale avec avoir.
+4. Désactivation de compte: réversibilité, articulation avec l'anonymisation prévue par FR-036 et sort des commandes rattachées.

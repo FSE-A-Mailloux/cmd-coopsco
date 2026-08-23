@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-08-23
+goal: Specifier la gestion des groupes, des affectations utilisateurs et des
+  fonctions, ainsi que le forcage de changement de mot de passe

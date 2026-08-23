@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-08-23
+goal: Autoriser l'annulation d'une commande reglee avec emission d'un avoir
+  conforme a la reglementation

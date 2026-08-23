@@ -1,0 +1,5 @@
+schema: spec-driven
+created: 2026-08-23
+goal: Exprimer le besoin sur le domaine editions et exports pour determiner les
+  editions conservees, y compris la generation en lot des documents de commandes
+  reglees par carte
