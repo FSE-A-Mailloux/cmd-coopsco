@@ -1,0 +1,8 @@
+# Zones legacy exclues du corpus de refonte.
+# Source de vérité : docs/legacy-scope.md (section 2).
+legacy/ws/vendor/
+legacy/libs/
+legacy/imgs/
+legacy/assets/
+legacy/style/
+legacy/ws/composer.lock
