@@ -23,8 +23,11 @@ cadrage n'est pas rendu.
 | CAT | Catalogue & articles | Articles, prix, fournisseurs, années FSE |
 | STOCK | Stock & consolidation | Stocks, consolidation, outils de gestion |
 | ADMIN | Administration & sécurité | Utilisateurs, groupes, fonctions, autorisations, menus, modules |
-| EDI | Éditions & exports | États, paramètres d'édition, requêtes, modèles HTML |
 | COM | Communication | E-mails, modèles de mail, listes de diffusion |
+
+La verticale `EDI` (éditions & exports) a été retirée : le domaine legacy correspondant est
+abandonné, ses use-cases décrivant un moteur de reporting configurable et non un besoin
+métier (cf. `docs/legacy-coverage-matrix.md`, arbitrage 1).
 
 ## Lot pilote (verticale COMMANDE)
 
@@ -79,6 +82,7 @@ Premier lot d'adoption du format standard de ticket.
 ## Amorces par verticale
 
 Chaque verticale dispose d'au moins un ticket avec sources legacy explicites.
+La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exports ».
 
 ### [AUTH] Authentifier un utilisateur
 
@@ -163,24 +167,6 @@ Chaque verticale dispose d'au moins un ticket avec sources legacy explicites.
 - **Critères d'acceptation**:
   - [ ] Le retrait d'un groupe retire immédiatement les droits associés.
   - [ ] Un compte désactivé ne peut plus se connecter.
-
-### [EDI] Produire une édition paramétrée
-
-> **Ticket suspendu.** `UC-EDT-1` et `UC-EDT-2` sont en décision `À CADRER` dans
-> `docs/legacy-coverage-matrix.md` : le domaine « Éditions & exports » est repris en
-> partie, mais une phase d'expression de besoin doit déterminer les éditions conservées.
-> Ce ticket ne peut être affiné qu'une fois le change `cadrer-editions-et-exports` rendu.
-
-- **Use-cases couverts**: UC-EDT-1, UC-EDT-2
-- **Sources legacy (1 à 3)**:
-  - `legacy/app/components/impressionListeParamGest/impressionListeParamGest.js`
-  - `legacy/app/components/impressionListeExport/impressionListeExport.js`
-  - `legacy/ws/phpWs/impressionListeManage.php`
-- **Comportement historique attendu**: paramétrage d'une liste puis export du résultat.
-- **Cible de refonte**: module `editions`.
-- **Critères d'acceptation**:
-  - [ ] Les colonnes exportées correspondent au paramétrage enregistré.
-  - [ ] Les filtres appliqués à l'écran sont repris dans l'export.
 
 ### [COM] Envoyer un e-mail depuis un modèle
 

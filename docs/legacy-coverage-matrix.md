@@ -131,20 +131,22 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | --- | --- | --- | --- | --- | --- | --- |
 | UC-CON-1 | Génération du PDF de consolidation | REPRIS | FR-058, FR-059 | stock-and-supplier-consolidation, frontend-reference-screen-flows | gestionnaire-consolidation | **Divergence de nature assumée** (arbitrage PRD §14.1 point 8) : le legacy produit un PDF, la cible expose une consolidation consultable en continu sous forme de snapshot, sans workflow d'approbation. |
 | UC-CON-2 | Clôture de la période de commande | REPRIS | FR-043, FR-045 | period-catalog-and-pricing-management, frontend-reference-screen-flows | gestionnaire-periodes, gestionnaire-periodes-detail | Rattaché au domaine périodes dans la cible, au lieu de l'écran de consolidation. |
-| UC-CON-3 | Génération en lot des PDF de commandes réglées par CB | À CADRER | — | — | — | **Rattaché au domaine « Éditions & exports »** (arbitrage 6), donc soumis à la même phase d'expression de besoin. Change `cadrer-editions-et-exports`. |
+| UC-CON-3 | Génération en lot des PDF de commandes réglées par CB | À CADRER | — | — | — | **Cadrage attendu** : traitement métier concret, à distinguer du moteur d'éditions abandonné par l'arbitrage 1. `FR-070` ne couvre que la génération documentaire unitaire. Reste à préciser le déclenchement, le critère de regroupement en lots et la restitution attendue. Change `cadrer-generation-documents-en-lot`. |
 
 ### Éditions & exports
 
-Le domaine est **repris en partie** (arbitrage 1). Une phase d'expression de besoin doit déterminer quelles éditions sont conservées. Aucune édition n'est abandonnée à ce stade. Cadrage porté par le change `cadrer-editions-et-exports`.
+Le domaine est **abandonné** (arbitrage 1, révisé). Les six use-cases décrivent un **moteur** de reporting — listes paramétrables, états configurés en base, gabarits HTML administrables, requêtes SQL stockées — et non un besoin métier. Ils relèvent de la même nature que la méta-configuration applicative de l'arbitrage 4 : du framework générique piloté par la base de données.
+
+L'abandon porte sur le moteur, **pas sur le besoin d'éditions**. La solution cible exprime ses éditions comme des fonctionnalités métier concrètes, directement dans les exigences — ainsi de l'édition de bordereaux de chèques en fin de période, portée par `frontend-reference-screen-flows`. Toute édition future suivra ce mode d'expression, sans passer par un mécanisme configurable.
 
 | UC | Libellé | Décision | PRD | Spec | Maquette | Écart / justification |
 | --- | --- | --- | --- | --- | --- | --- |
-| UC-EDT-1 | Paramétrage des listes d'impression | À CADRER | — | — | — | Cadrage attendu : déterminer si le paramétrage de listes est conservé, et sous quelle forme. |
-| UC-EDT-2 | Export d'une liste configurable | À CADRER | — | — | — | Cadrage attendu : déterminer les exports à conserver et leur niveau de configurabilité. |
-| UC-EDT-3 | Gestion des états de reporting | À CADRER | — | — | — | Cadrage attendu : déterminer si les états restent administrables ou deviennent des éditions figées. |
-| UC-EDT-4 | Génération d'un état de reporting | À CADRER | — | — | — | Cadrage attendu : déterminer la liste des états effectivement nécessaires. |
-| UC-EDT-5 | Gestion des modèles HTML | À CADRER | — | — | — | Cadrage attendu : `FR-071` **utilise** des gabarits de fusion ; reste à décider si leur administration est ouverte aux utilisateurs ou relève du développement. |
-| UC-EDT-6 | Gestion des requêtes SQL paramétrables | À CADRER | FR-040, FR-041, FR-042 | request-catalog-execution | — | **Divergence de périmètre.** Legacy : l'administrateur édite des requêtes SQL stockées en base. Cible : les requêtes sont identifiées par code fonctionnel et définies par le développement, ce qui **retire l'autonomie de l'administrateur**. Cadrage attendu : cet écart n'est acceptable que si l'expression de besoin de l'arbitrage 1 conserve un moyen de reporting suffisant. |
+| UC-EDT-1 | Paramétrage des listes d'impression | ABANDONNÉ | — | — | — | Moteur de configuration de listes, sans équivalent dans une solution où les listings sont des écrans métier spécifiés. |
+| UC-EDT-2 | Export d'une liste configurable | ABANDONNÉ | — | — | — | Export piloté par le paramétrage de UC-EDT-1, abandonné avec lui. Un besoin d'export métier identifié sera exprimé comme fonctionnalité dédiée. |
+| UC-EDT-3 | Gestion des états de reporting | ABANDONNÉ | — | — | — | Administration d'états définis en base (code, type de données, modèle HTML ou requête SQL) : méta-configuration sans équivalent cible. |
+| UC-EDT-4 | Génération d'un état de reporting | ABANDONNÉ | — | — | — | Exécution du moteur d'états de UC-EDT-3, abandonnée avec lui. |
+| UC-EDT-5 | Gestion des modèles HTML | ABANDONNÉ | — | — | — | `FR-071` conserve la **fusion** de gabarits, mais leur administration par l'utilisateur relève du moteur abandonné. Les gabarits deviennent des artefacts de développement. |
+| UC-EDT-6 | Gestion des requêtes SQL paramétrables | ABANDONNÉ | — | — | — | L'édition de requêtes SQL stockées en base est abandonnée. La cible conserve un mécanisme distinct et non administrable — exécution de requêtes identifiées par code fonctionnel, définies par le développement (`FR-040` à `FR-042`, capacité `request-catalog-execution`) — qui ne couvre pas ce use-case et n'est donc pas référencé ici. |
 
 ### Communication / e-mail
 
@@ -169,8 +171,8 @@ Les cas ci-dessous sont ceux où un libellé identique recouvre deux comportemen
 | --- | --- | --- |
 | D1 | UC-AUTH-8 | Désinscription : désactivation de compte (legacy) contre désinscription des communications de diffusion (cible). Deux comportements distincts sous un même mot. La désactivation est reprise, son périmètre reste à cadrer. |
 | D2 | UC-CMD-5, UC-PAY-2 | Annulation : le legacy annulait sans produire de pièce comptable, la cible impose l'émission d'un avoir. La restriction intermédiaire « annulation refusée après paiement » est invalidée. |
-| D3 | UC-EDT-6 | Requêtes paramétrables : perte de l'autonomie d'édition côté administrateur. Acceptabilité conditionnée au cadrage du domaine « Éditions & exports ». |
-| D4 | UC-ADM-7, UC-ADM-9, UC-NAV-1 | Méta-configuration : données administrables en base (legacy) contre code et permissions (cible). |
+| D3 | UC-EDT-6 | Requêtes paramétrables : moteur SQL administrable (legacy) contre requêtes identifiées par code fonctionnel et définies par le développement (cible). Deux mécanismes distincts, le premier abandonné. |
+| D4 | UC-ADM-7, UC-ADM-9, UC-NAV-1, UC-EDT-1 à UC-EDT-6 | Méta-configuration : données administrables en base (legacy) contre code et permissions (cible). Le moteur d'éditions relève de la même nature que le menu et les composants. |
 | D5 | UC-CON-1 | Consolidation : document PDF ponctuel (legacy) contre vue consultable en continu (cible). Écart assumé au PRD §14.1 point 8. |
 | D6 | UC-ART-5 | Renommage « années de campagne » en « périodes ». Vocabulaire uniquement, sans effet sur le comportement. |
 | D7 | UC-ART-4 | Fournisseur : entité gérée (legacy) contre simple qualification du prix d'achat (cible). « Prix fournisseur HT » subsiste sans référentiel derrière. |
@@ -182,13 +184,14 @@ Décisions issues de la revue d'arbitrage. Le détail de l'instruction figure da
 
 | N° | Objet | Décision rendue | Use-cases |
 | --- | --- | --- | --- |
-| 1 | Domaine « Éditions & exports » | Repris en partie. Expression de besoin nécessaire pour déterminer les éditions conservées. | UC-EDT-1 à UC-EDT-6, UC-CON-3 |
+| 1 | Domaine « Éditions & exports » | **Abandonné** (décision révisée). Les six use-cases décrivent un moteur de reporting configurable, pas un besoin métier : même nature que la méta-configuration de l'arbitrage 4. Le besoin d'éditions subsiste, mais s'exprime désormais comme fonctionnalité métier concrète. | UC-EDT-1 à UC-EDT-6 |
 | 2 | Référentiel fournisseurs | Pas de référentiel. La dénomination « prix fournisseur HT » est conservée comme prix d'achat. | UC-ART-4 |
 | 3 | Annulation d'une commande payée | Annulation possible, avec émission d'un avoir. Le legacy n'était pas conforme à la réglementation. | UC-CMD-5, UC-PAY-2 |
 | 4 | Méta-configuration applicative | Menu, modules et composants abandonnés, obsolètes par construction. L'administration des habilitations est en revanche conservée. | UC-ADM-7, UC-ADM-8, UC-ADM-9 / UC-ADM-3, UC-ADM-4, UC-ADM-5 |
 | 5 | Audit et anomalies | Repris avec règles modifiées : consultation ouverte aux gestionnaires, restituant domaine, action, contexte et date-heure. | UC-HISTO-2, UC-HISTO-3 |
-| 6 | Use-cases isolés | Renvoi du code et forçage de mot de passe repris ; génération en lot rattachée aux éditions ; liste de diffusion non reprise ; accueils contextuels à préciser au PRD. | UC-AUTH-7, UC-ADM-2, UC-CON-3, UC-MAIL-2, UC-NAV-3 |
+| 6 | Use-cases isolés | Renvoi du code et forçage de mot de passe repris ; liste de diffusion non reprise ; accueils contextuels à préciser au PRD. | UC-AUTH-7, UC-ADM-2, UC-MAIL-2, UC-NAV-3 |
 | 7 | Désactivation de compte à l'initiative de l'utilisateur | Reprise. Périmètre à cadrer : réversibilité, articulation avec l'anonymisation, sort des commandes rattachées, et séparation d'avec la désinscription des communications. | UC-AUTH-8 |
+| 8 | Génération de documents en lot | À cadrer. Traitement métier concret, détaché du moteur d'éditions abandonné par l'arbitrage 1. | UC-CON-3 |
 
 **Aucun arbitrage en attente.** Les 57 use-cases portent une décision. Les décisions `À CADRER` restent à instruire dans leur change respectif, mais leur principe est acquis.
 
@@ -199,7 +202,8 @@ Chaque ensemble cohérent de use-cases repris ou à cadrer, non encore spécifi�
 | Changement | Use-cases couverts |
 | --- | --- |
 | `retirer-referentiel-fournisseur` | UC-ART-4 |
-| `cadrer-editions-et-exports` | UC-EDT-1 à UC-EDT-6, UC-CON-3 |
+| `cadrer-editions-et-exports` | *(clos — le domaine est abandonné, arbitrage 1 révisé)* |
+| `cadrer-generation-documents-en-lot` | UC-CON-3 |
 | `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4, UC-ADM-5 |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
 | `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |
