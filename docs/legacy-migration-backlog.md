@@ -1,7 +1,34 @@
-# Backlog de refonte par verticale métier
+# Backlog de production des spécifications et maquettes
 
-Lotissement des travaux de migration par flux métier, conformément à la décision 4 de
-`openspec/changes/scope-legacy-context/design.md`.
+> Le nom de fichier est conservé pour ne pas rompre les références des artefacts
+> archivés. Le document ne pilote plus une migration de code, mais la production des
+> spécifications et des maquettes.
+
+## Objectif et horizons
+
+La refonte se déroule en deux horizons. Ce document est actuellement centré sur le
+premier ; le second n'est pas encore ouvert.
+
+| Horizon | Objectif | Livrables |
+| --- | --- | --- |
+| **H1 — en cours** | Disposer d'une spécification à jour et de maquettes qui la représentent | Exigences et scénarios sous `openspec/specs/`, écrans sous `maquettes/` |
+| **H2 — ultérieur** | Construire la nouvelle application | Code, en prenant H1 comme source de vérité |
+
+À l'issue de H1, **la spécification et les maquettes deviennent la source de vérité**.
+Le legacy cesse alors d'être une référence : il n'aura servi qu'à établir ce qui devait
+être spécifié.
+
+## Rôle des sources legacy
+
+Le legacy reste cité dans chaque ticket, conformément à l'exigence
+« Chaque tâche de refonte MUST être traçable vers ses sources legacy »
+(`openspec/specs/legacy-refactor-context-curation/spec.md`). Mais son statut change selon
+l'horizon :
+
+- **En H1**, une source legacy est une **preuve comportementale** : elle atteste qu'une
+  règle métier a existé, et sert de matériau pour rédiger l'exigence. Elle n'est pas un
+  modèle à reproduire.
+- **En H2**, elle redeviendra une référence de comparaison lors de la recette.
 
 Chaque ticket suit `docs/legacy-migration-ticket-template.md` : 1 à 3 fichiers legacy
 source, dans le périmètre défini par `docs/legacy-scope.md`, rattachés aux use-cases de
@@ -11,6 +38,45 @@ Les décisions de reprise faisant autorité sont tenues dans
 `docs/legacy-coverage-matrix.md`. Un ticket ne peut pas porter un use-case décidé comme
 `ABANDONNÉ`, et un ticket portant un use-case `À CADRER` reste suspendu tant que le
 cadrage n'est pas rendu.
+
+## Vue de pilotage
+
+Le travail restant en H1 n'est pas tenu à la main : il est **dérivé de la matrice de
+couverture**. Un use-case décidé `REPRIS` mais dépourvu de spécification ou de maquette
+est une descente incomplète, et c'est exactement ce qu'il reste à produire.
+
+```powershell
+pwsh -File scripts/check-legacy-coverage.ps1
+```
+
+La commande restitue deux listes qui font foi sur l'état d'avancement :
+
+- **Descentes incomplètes** — les specs et maquettes à produire.
+- **Cadrages en cours** — les use-cases dont le principe est acquis mais dont le
+  périmètre doit être instruit avant toute rédaction.
+
+Ce document ne recopie pas ces listes, qui se périmeraient. Il précise **comment** traiter
+chaque cas, en distinguant deux natures de travail :
+
+| Nature du trou | Traitement | Où |
+| --- | --- | --- |
+| Périmètre à instruire ou décision structurante à prendre | Changement OpenSpec dédié | `openspec/changes/` |
+| Production directe, décision déjà rendue au PRD | Ticket H1 | ce document, section « Lots H1 » |
+
+### Trous portés par un changement OpenSpec
+
+| Changement | Use-cases |
+| --- | --- |
+| `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4 |
+| `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |
+| `renvoyer-code-de-validation` | UC-AUTH-7 |
+| `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
+| `cadrer-desactivation-de-compte` | UC-AUTH-8 |
+| `cadrer-generation-documents-en-lot` | UC-CON-3 |
+| `retirer-referentiel-fournisseur` | UC-ART-4 |
+
+`UC-NAV-3` ne relève pas d'un changement : son cadrage consiste à préciser les accueils
+contextuels dans le PRD.
 
 ## Verticales
 
@@ -29,9 +95,133 @@ La verticale `EDI` (éditions & exports) a été retirée : le domaine legacy co
 abandonné, ses use-cases décrivant un moteur de reporting configurable et non un besoin
 métier (cf. `docs/legacy-coverage-matrix.md`, arbitrage 1).
 
-## Lot pilote (verticale COMMANDE)
+## Lots H1 — spécifications et maquettes à produire
 
-Premier lot d'adoption du format standard de ticket.
+Use-cases décidés `REPRIS` au PRD, sans arbitrage restant, dont la spécification ou la
+maquette manque. Ils se traitent directement, sans passer par un changement dédié.
+
+### [AUTH] Permettre à un utilisateur de changer son mot de passe
+
+- **Use-cases couverts**: UC-AUTH-5
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/changeMyPass/changeMyPass.js`
+  - `legacy/ws/phpWs/userManage.php`
+- **Comportement historique observé**: l'utilisateur connecté modifie son mot de passe
+  depuis son profil.
+- **Livrables**:
+  - Spec: `user-account-lifecycle-management` — couverte par `FR-034`, à compléter si le
+    parcours écran révèle des règles absentes.
+  - Maquette: écran de profil utilisateur, inexistant à ce jour.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] L'écran figure au manifeste `maquettes/manifest/screens.json`.
+  - [ ] Les règles de validation du nouveau mot de passe sont couvertes par un scénario.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-AUTH-5`.
+- **Écarts assumés vs legacy**: aucun.
+
+### [CMD] Rattacher une commande à un compte utilisateur
+
+- **Use-cases couverts**: UC-CMD-6
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/fseListCmdEnCours/fseListCmdEnCours.js`
+  - `legacy/ws/phpWs/fseCmdManage.php`
+- **Comportement historique observé**: le gestionnaire associe une commande anonyme à un
+  compte utilisateur existant.
+- **Livrables**:
+  - Spec: `fse-order-and-payment-workflow` — exigence à rédiger à partir de `FR-055`.
+  - Maquette: action de rattachement depuis `commandes-liste` ou `commandes-detail`.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] Les règles de correspondance autorisées sont explicitées par des scénarios.
+  - [ ] Le cas d'une commande déjà rattachée est couvert.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-CMD-6`.
+- **Écarts assumés vs legacy**: aucun.
+
+### [CMD] Relancer une commande non réglée
+
+- **Use-cases couverts**: UC-CMD-7
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/fseListCmdEnCours/fseListCmdEnCours.js`
+  - `legacy/ws/phpWs/fseCmdManage.php`
+  - `legacy/ws/phpClasses/appMail.php`
+- **Comportement historique observé**: le gestionnaire envoie une relance par courriel au
+  commanditaire dont la commande n'est pas réglée.
+- **Livrables**:
+  - Spec: exigence à rédiger à partir de `FR-078` et `FR-079`, incluant l'interdiction de
+    relancer une commande déjà validée et la trace de l'envoi.
+  - Maquette: action de relance depuis `commandes-liste`.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] Un scénario couvre le refus de relance sur commande déjà validée.
+  - [ ] Un scénario couvre la traçabilité de l'envoi dans l'historique des actions.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-CMD-7`.
+- **Écarts assumés vs legacy**: aucun.
+
+### [PAY] Restituer le retour d'un paiement par carte
+
+- **Use-cases couverts**: UC-PAY-4
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/paiementcb/paiementcb.js`
+  - `legacy/app/components/paiementcb/paiementcb.html`
+  - `legacy/ws/phpWs/fseCmdManage.php`
+- **Comportement historique observé**: l'application traite le retour du prestataire et
+  affiche le résultat (succès, échec, abandon).
+- **Livrables**:
+  - Spec: `fse-order-and-payment-workflow` — couverte par `FR-061` et `FR-064`, y compris
+    le statut « à vérifier » et sa reprise manuelle.
+  - Maquette: écran de retour de paiement, inexistant à ce jour.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] L'écran couvre les trois issues et le statut « à vérifier ».
+  - [ ] La reprise manuelle après timeout est représentée.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-PAY-4`.
+- **Écarts assumés vs legacy**: le statut « à vérifier » est un ajout, arbitré au PRD
+  §14.1 point 5.
+
+### [PAY] Retirer la cotisation d'une commande
+
+- **Use-cases couverts**: UC-PAY-6
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/fseListCmdEnCours/fseListCmdEnCours.js`
+  - `legacy/ws/phpWs/fseCmdManage.php`
+- **Comportement historique observé**: le gestionnaire retire une ligne de cotisation
+  d'une commande.
+- **Livrables**:
+  - Spec: `fse-order-and-payment-workflow` — couverte par `COTIS-01` à `COTIS-05`.
+  - Maquette: action de retrait depuis `commandes-detail`, avec confirmation explicite.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] L'action est absente lorsque la commande est validée et facturée.
+  - [ ] La confirmation préalable est représentée.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-PAY-6`.
+- **Écarts assumés vs legacy**: retrait interdit dès validation et facturation, arbitré au
+  PRD §14.1 point 9.
+
+### [COM] Composer et envoyer un courriel depuis un gabarit
+
+- **Use-cases couverts**: UC-MAIL-1
+- **Sources legacy (entrée, 1 à 3)**:
+  - `legacy/app/components/mailGest/mailGest.js`
+  - `legacy/ws/phpWs/mailManage.php`
+  - `legacy/ws/phpClasses/appMail.php`
+- **Comportement historique observé**: le gestionnaire rédige un message, choisit un
+  gabarit, prévisualise le rendu fusionné puis envoie à un utilisateur, un groupe ou une
+  adresse libre.
+- **Livrables**:
+  - Spec: `templated-mail-and-document-generation` — couverte par `FR-075` à `FR-077`.
+  - Maquette: écran de composition et de prévisualisation, inexistant à ce jour.
+- **Critères d'acceptation (phase spec & maquettes)**:
+  - [ ] Les trois modes de ciblage sont représentés.
+  - [ ] La prévisualisation du rendu fusionné précède l'envoi.
+  - [ ] L'envoi en destinataire masqué est représenté pour les diffusions.
+  - [ ] La matrice ne signale plus de descente incomplète pour `UC-MAIL-1`.
+- **Écarts assumés vs legacy**: exclusion des destinataires désinscrits et plafond annuel,
+  arbitrés au PRD §14.1 point 4.
+
+## Lots différés en H2
+
+Ces tickets portent des use-cases **déjà couverts par la spécification et les maquettes**.
+Ils n'ont plus d'objet en H1 et sont conservés pour la phase de construction, où leurs
+critères d'acceptation redeviendront des critères de recette comportementale.
+
+Ils restent rédigés au format H2 du template : le champ « Cible de refonte » et des
+critères formulés en « comportement reproduit » y sont donc attendus.
+La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exports ».
 
 ### [CMD] Initialiser une commande sur l'année en cours
 
@@ -78,11 +268,6 @@ Premier lot d'adoption du format standard de ticket.
   - [ ] Le détail affiché correspond aux lignes réellement enregistrées.
   - [ ] L'accès est restreint au propriétaire de la commande ou à un gestionnaire.
 - **Écarts assumés vs legacy**: aucun.
-
-## Amorces par verticale
-
-Chaque verticale dispose d'au moins un ticket avec sources legacy explicites.
-La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exports ».
 
 ### [AUTH] Authentifier un utilisateur
 
@@ -156,6 +341,10 @@ La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exp
 
 ### [ADMIN] Gérer les utilisateurs et leurs groupes
 
+> `UC-ADM-4` est encore une descente incomplète en H1 : sa spécification et sa maquette
+> sont produites par le changement `reprendre-administration-habilitations`. Ce ticket ne
+> devient exploitable qu'en H2, une fois ce changement rendu.
+
 - **Use-cases couverts**: UC-ADM-1, UC-ADM-4
 - **Sources legacy (1 à 3)**:
   - `legacy/app/components/userGest/userGest.js`
@@ -169,6 +358,10 @@ La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exp
   - [ ] Un compte désactivé ne peut plus se connecter.
 
 ### [COM] Envoyer un e-mail depuis un modèle
+
+> Ticket H2. Le travail H1 correspondant est porté par le lot
+> « [COM] Composer et envoyer un courriel depuis un gabarit », qui produit la maquette
+> manquante. Ce ticket ne sert qu'à la recette comportementale ultérieure.
 
 - **Use-cases couverts**: UC-MAIL-1
 - **Sources legacy (1 à 3)**:
