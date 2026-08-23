@@ -1,4 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
-goal: Ouvrir aux gestionnaires la consultation du journal des actions
-  applicatives et des anomalies
+goal: >-
+  Specifier la consultation par les gestionnaires du journal des actions applicatives et des anomalies, et produire les maquettes associees. Use-cases couverts : UC-HISTO-2, UC-HISTO-3.

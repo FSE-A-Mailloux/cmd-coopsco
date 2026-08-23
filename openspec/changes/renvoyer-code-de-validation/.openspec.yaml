@@ -1,3 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
-goal: Permettre a un utilisateur de demander le renvoi de son code d'activation
+goal: >-
+  Specifier le renvoi du code d'activation a la demande de l'utilisateur, et produire la maquette associee. Use-cases couverts : UC-AUTH-7.

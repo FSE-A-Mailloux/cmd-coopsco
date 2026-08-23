@@ -1,4 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
-goal: Cadrer la desactivation de compte a l'initiative de l'utilisateur et la
-  distinguer de la desinscription aux communications
+goal: >-
+  Cadrer puis specifier la desactivation de compte a l'initiative de l'utilisateur, distincte de la desinscription aux communications, et produire les maquettes associees. Use-cases couverts : UC-AUTH-8.

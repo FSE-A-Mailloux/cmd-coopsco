@@ -1,4 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
-goal: "Cadrer la generation en lot des documents de commandes reglees par carte
-  : declenchement, regroupement et restitution"
+goal: >-
+  Cadrer puis specifier la generation en lot des documents de commandes reglees par carte, et produire les maquettes associees. Use-cases couverts : UC-CON-3.

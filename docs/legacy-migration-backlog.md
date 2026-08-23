@@ -62,6 +62,16 @@ chaque cas, en distinguant deux natures de travail :
 | --- | --- | --- |
 | Périmètre à instruire ou décision structurante à prendre | Changement OpenSpec dédié | `openspec/changes/` |
 | Production directe, décision déjà rendue au PRD | Ticket H1 | ce document, section « Lots H1 » |
+| Correction d'un artefact existant devenu non conforme à une décision | Changement OpenSpec dédié | `openspec/changes/` |
+
+La troisième nature n'apparaît pas dans les listes du contrôle, puisqu'elle ne concerne
+pas un manque mais un **excès ou une non-conformité** : un artefact présent qui contredit
+une décision rendue. Deux cas actuellement :
+
+- `UC-ART-4` — le référentiel fournisseurs est abandonné, mais la notion subsiste dans le
+  PRD et les spécifications ; le travail consiste à l'en retirer.
+- `UC-CMD-5` — la spécification `frontend-reference-screen-flows` refuse l'annulation
+  après paiement, règle invalidée par l'arbitrage 3 ; le travail consiste à la corriger.
 
 ### Trous portés par un changement OpenSpec
 
@@ -77,6 +87,24 @@ chaque cas, en distinguant deux natures de travail :
 
 `UC-NAV-3` ne relève pas d'un changement : son cadrage consiste à préciser les accueils
 contextuels dans le PRD.
+
+### Attendus d'un changement OpenSpec en H1
+
+Le schéma `spec-driven` produit des spécifications **par construction**, mais jamais de
+maquettes. Un changement qui ne produirait que des exigences laisserait donc intacte la
+descente incomplète qu'il est censé combler. Tout changement H1 doit par conséquent livrer
+les quatre éléments suivants, sur le modèle des changements déjà archivés :
+
+1. **La ou les maquettes** — écran créé ou mis à jour sous `maquettes/screens/`, déclaré
+   dans `maquettes/manifest/screens.json`.
+2. **Le delta de spécification métier** — la capacité concernée sous `openspec/specs/`.
+3. **Le delta `frontend-reference-screen-flows`** — les règles portées par l'écran, dès
+   lors qu'une maquette est produite ou modifiée.
+4. **La mise à jour de la matrice** — rattachements renseignés, puis exécution du contrôle
+   de couverture pour vérifier que la descente incomplète a disparu.
+
+Chaque changement H1 cite ses use-cases dans son objectif, afin que le lien avec la
+matrice soit lisible dans les deux sens.
 
 ## Verticales
 

@@ -1,4 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
-goal: Autoriser l'annulation d'une commande reglee avec emission d'un avoir
-  conforme a la reglementation
+goal: >-
+  Specifier l'annulation d'une commande reglee avec emission d'un avoir, et produire les maquettes associees. Use-cases couverts : UC-CMD-5, UC-PAY-2.

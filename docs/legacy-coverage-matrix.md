@@ -204,7 +204,7 @@ Chaque ensemble cohérent de use-cases repris ou à cadrer, non encore spécifi�
 | `retirer-referentiel-fournisseur` | UC-ART-4 |
 | `cadrer-editions-et-exports` | *(clos — le domaine est abandonné, arbitrage 1 révisé)* |
 | `cadrer-generation-documents-en-lot` | UC-CON-3 |
-| `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4, UC-ADM-5 |
+| `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4 |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
 | `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |
 | `renvoyer-code-de-validation` | UC-AUTH-7 |
