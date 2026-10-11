@@ -1,11 +1,11 @@
 ## Purpose
 
-Définir les règles métier cibles pour une gestion de stock annuelle simple et la consolidation fournisseur.
+Définir les règles métier cibles pour une gestion de stock annuelle simple et la consolidation des besoins d'achat.
 
 ## Requirements
 
 ### Requirement: La gestion de stock MUST supporter un modèle d’exploitation annuel simple
-La gestion de stock MUST rester simple, avec ajustements de quantités article, inventaires périodiques et préparation d’un cycle de commande fournisseur annuel.
+La gestion de stock MUST rester simple, avec ajustements de quantités article, inventaires périodiques et préparation d’un cycle annuel d'achat.
 
 #### Scenario: Ajustement de stock
 - **WHEN** un utilisateur autorisé ajuste une quantité de stock
@@ -31,8 +31,8 @@ L'etat de stock MUST etre derive automatiquement de la quantite disponible: `Rup
 - **THEN** le systeme enregistre la quantite disponible de l'article avec tracabilite
 - **AND** le systeme met a jour l'etat de stock derive en fonction de la quantite disponible
 
-### Requirement: La consolidation fournisseur MUST rester consultable en continu
-La consolidation fournisseur MUST permettre de consulter l'etat courant de travail de la periode en cours, sans choix manuel de periode, et MUST permettre de consulter les consolidations enregistrees avec horodatage.
+### Requirement: La consolidation des besoins d'achat MUST rester consultable en continu
+La consolidation des besoins d'achat MUST permettre de consulter l'etat courant de travail de la periode en cours, sans choix manuel de periode, et MUST permettre de consulter les consolidations enregistrees avec horodatage.
 
 #### Scenario: Consultation de la consolidation courante
 - **WHEN** un utilisateur autorise consulte la consolidation courante
@@ -45,9 +45,18 @@ La consolidation fournisseur MUST permettre de consulter l'etat courant de trava
 ### Requirement: La consolidation MUST calculer la quantite a commander par article
 La consolidation MUST calculer, pour chaque article, la quantite a commander avec la regle `max(0, quantite commandee familles + besoin FSE - stock disponible)`.
 
-#### Scenario: Calcul unitaire de commande fournisseur
+#### Scenario: Calcul unitaire de quantité d'achat
 - **WHEN** les valeurs stock, quantite commandee familles et besoin FSE sont connues pour un article
 - **THEN** le systeme calcule la quantite a commander pour cet article avec un plancher a 0
+
+### Requirement: La consolidation MUST utiliser un prix d'achat sans identité fournisseur
+La consolidation MUST utiliser, pour chaque article et periode concernés, une valeur `prix fournisseur HT` comme prix d'achat. Cette valeur MUST etre exploitable sans creer, selectionner ou maintenir une entite fournisseur.
+
+#### Scenario: Calcul de consolidation avec prix d'achat
+- **GIVEN** un article dispose d'un prix fournisseur HT pour la periode concernee
+- **WHEN** un utilisateur autorise consulte ou calcule la consolidation
+- **THEN** le systeme utilise ce prix comme prix d'achat de l'article
+- **AND** aucun fournisseur identifiable n'est requis pour produire le resultat
 
 ### Requirement: La consolidation MUST supporter la saisie du besoin FSE par article
 Le systeme MUST permettre la saisie et la persistence du besoin FSE (stock a conserver) pour chaque article dans le contexte d'une consolidation.
@@ -56,13 +65,25 @@ Le systeme MUST permettre la saisie et la persistence du besoin FSE (stock a con
 - **WHEN** un utilisateur autorise saisit le besoin FSE d'un article dans la consolidation
 - **THEN** le systeme enregistre cette valeur pour la consolidation ciblee
 
+### Requirement: La consolidation MUST NOT gérer de référentiel fournisseur
+La solution cible MUST NOT exposer de creation, modification, suppression, consultation ou rattachement d'une entite fournisseur. Les donnees et calculs de consolidation MUST rester centres sur l'article, la periode, le stock, le besoin FSE, les quantites et le prix d'achat.
+
+#### Scenario: Accès à l'administration des articles
+- **WHEN** un utilisateur autorise administre les donnees d'un article
+- **THEN** il peut renseigner le prix fournisseur HT si cette donnee est requise
+- **AND** il ne peut pas rattacher l'article a un fournisseur
+
+#### Scenario: Recherche d'une capacité abandonnée
+- **WHEN** un utilisateur consulte les menus ou capacites disponibles
+- **THEN** aucun ecran ou action de gestion du referentiel fournisseur n'est propose
+
 ### Requirement: La consolidation MUST exposer les indicateurs financiers d'estimation conditionnels
-Le systeme MUST calculer et exposer `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` pour la periode en cours lorsque les tarifs fournisseur HT necessaires sont renseignes; sinon le systeme MUST signaler une estimation partielle.
+Le systeme MUST calculer et exposer `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` pour la periode en cours lorsque les prix d'achat necessaires sont renseignes; sinon le systeme MUST signaler une estimation partielle.
 
 #### Scenario: Estimation complete disponible
-- **WHEN** tous les tarifs fournisseur HT necessaires sont renseignes pour la periode en cours
+- **WHEN** tous les prix fournisseur HT necessaires sont renseignes pour la periode en cours
 - **THEN** le systeme retourne les trois indicateurs financiers d'estimation
 
 #### Scenario: Estimation partielle
-- **WHEN** au moins un tarif fournisseur HT necessaire est absent
+- **WHEN** au moins un prix fournisseur HT necessaire est absent
 - **THEN** le systeme retourne les indicateurs disponibles et signale explicitement que l'estimation est partielle

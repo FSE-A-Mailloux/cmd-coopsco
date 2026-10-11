@@ -58,7 +58,7 @@ Exemple:
 - L'ecran **Consolidation** est un **snapshot horodate** sur la **periode en cours** (pas un simple tableau de synthese global) et n'expose pas de selecteur de periode.
 - Le tableau de **Consolidation** expose par article le **stock disponible**, la **quantite commandee familles**, la saisie du **besoin FSE (stock a conserver)** et la **quantite a commander** calculee avec `max(0, qte commandee familles + besoin FSE - stock disponible)`.
 - Une consolidation peut etre **enregistree** puis **consultee ulterieurement** dans un historique horodate.
-- L'ecran **Consolidation** affiche `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` pour la periode en cours, avec indication explicite en cas d'**estimation partielle** (tarifs fournisseur HT manquants).
+- L'ecran **Consolidation** affiche `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` pour la periode en cours, avec indication explicite en cas d'**estimation partielle** (prix fournisseur HT manquants).
 - L'ecran **Consolidation** n'affiche pas de **taux de service**.
 - Les commandes utilisent le referentiel de statuts: **Brouillon**, **En attente de paiement**, **Paiement partiel**, **Paiement en cours** (CB en traitement), **Confirmee**, **Annulee**.
 - Une commande peut etre **annulee tant qu'aucun paiement n'a ete enregistre**; l'annulation n'est plus possible apres paiement.
@@ -90,6 +90,7 @@ Exemple:
 - Les tarifs sont un **sous-ecran d'un article**: liste des prix de l'article selon les periodes, avec un ecran de **modification du prix par periode**.
 - La liste des tarifs d'un article est triee par date de periode **decroissante** (plus recentes en premier).
 - Le prix article est unique en **TTC** (pas de prix standard/reseau) et peut etre formule soit en **TTC direct**, soit via **prix fournisseur HT + marge (%)**.
+- Le prix fournisseur HT est le prix d'achat de l'article; aucun fournisseur n'est gere, selectionne ou rattache.
 - Le mode de calcul d'un tarif est persiste en plus du total TTC (par periode et par article).
 - La modification de prix cible une **periode** (pas de date d'effet) et ne comporte pas de champ **motif de modification**.
 - Le domaine periodes expose le **listing avec actions** (ouvrir, fermer, definir en cours, reprise de tarifs), un ecran **detail periode**, un ecran **creation periode** et un ecran **modification periode**.

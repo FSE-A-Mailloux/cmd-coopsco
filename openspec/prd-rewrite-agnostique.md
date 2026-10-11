@@ -15,10 +15,10 @@ La solution cible est une plateforme de gestion de comptes utilisateurs, d’aut
 - navigation contextuelle par rôles,
 - gestion de cycle de vie des comptes,
 - gestion des périodes de campagne (en cours, ouverte/fermée, verrouillée),
-- gestion du référentiel articles et des fournisseurs,
+- gestion du référentiel articles,
 - gestion des prix articles par période,
 - gestion du stock par article,
-- consolidation des besoins pour préparation de commande fournisseur,
+- consolidation des besoins d'achat,
 - gestion de la cotisation FSE dans le cycle de commande,
 - gestion complète du cycle commande (création, suivi, règlement, justificatifs),
 - envoi de mails transactionnels, relances et campagnes de mailing,
@@ -39,10 +39,10 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 4. Gestion des comptes (création, modification, suppression, désinscription communication).
 5. Exécution de requêtes métiers référencées (catalogue logique).
 6. Gestion des périodes de commande (création, modification, suppression, activation, ouverture/fermeture, verrouillage logique).
-7. Gestion du catalogue articles (création, modification, suppression, attributs métier et rattachement fournisseur).
-8. Gestion des prix articles par période (prix famille, prix fournisseur, lot fournisseur, copie depuis période en cours).
+7. Gestion du catalogue articles (création, modification, suppression et attributs métier).
+8. Gestion des prix articles par période (prix famille, prix fournisseur HT, taille de lot de commande et copie depuis période en cours).
 9. Gestion des stocks article (consultation et ajustement de quantité).
-10. Consolidation des besoins par fournisseur avant commande.
+10. Consolidation des besoins d'achat par article et période.
 11. Workflow de commande: saisie, validation, règlement, annulation, relance.
 12. Paiement en ligne via prestataire externe.
 13. Génération de documents téléchargeables (dont factures).
@@ -130,9 +130,9 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-043** Le système doit gérer des périodes de commande avec au minimum: libellé, préfixe de numérotation, date butoir, statut période en cours, statut ouverte/fermée et statut verrouillée.  
 **FR-044** Le système doit garantir qu’une seule période est marquée "en cours" à un instant donné.  
 **FR-045** Le système doit permettre l’ouverture/fermeture d’une période sans changer son identité métier.  
-**FR-046** Le système doit permettre la gestion du référentiel articles (description, code, marque, ordre, type, fournisseur, usage en commande, usage en stock).  
+**FR-046** Le système doit permettre la gestion du référentiel articles (description, code, marque, ordre, type, usage en commande, usage en stock), sans rattachement à une identité fournisseur.
 **FR-047** Le système doit permettre la suppression d’un article avec suppression/neutralisation cohérente des données dépendantes prévues par la politique métier (stock, prix périodiques).  
-**FR-048** Le système doit gérer les prix d’un article par période, avec au minimum un prix famille, un prix fournisseur et un lot fournisseur.  
+**FR-048** Le système doit gérer les prix d’un article par période, avec au minimum un prix famille, un prix fournisseur HT utilisé comme prix d’achat et une taille de lot de commande.
 **FR-049** Le système doit permettre la duplication complète des prix d’une période source vers une période cible, avec confirmation d’écrasement, blocage si la période cible est verrouillée, puis ajustement unitaire des prix dupliqués.
 
 ## 6.7 Workflow commande
@@ -153,12 +153,12 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **COTIS-04** Le système doit permettre, sur action explicite d’un utilisateur autorisé, de retirer la ligne cotisation d’une commande existante uniquement tant que la commande n’est ni validée ni facturée.  
 **COTIS-05** Le retrait de cotisation est une action irréversible au niveau fonctionnel courant, doit être confirmé avant exécution, et devient interdit dès qu’une commande est validée et facturée.
 
-## 6.8 Stock et consolidation fournisseur
+## 6.8 Stock et consolidation des besoins d'achat
 
 **FR-056** Le système doit maintenir une quantité de stock par article, modifiable par un utilisateur autorisé, dans un pilotage volontairement simple adapté à un cycle annuel (environ 3 inventaires par an).  
 **FR-057** Le système doit garantir qu’une quantité de stock reste un entier positif ou nul (jamais négatif).  
-**FR-058** Le système doit consolider les besoins d’achat par fournisseur pour la période ciblée en tenant compte des unités déjà commandées, des besoins complémentaires internes et du stock disponible; la consolidation doit rester visualisable à tout moment sans changement d’état ni workflow d’approbation.  
-**FR-059** Le système doit calculer un nombre de lots fournisseur à commander par article, à partir des unités nettes à acheter et de la taille de lot, avec arrondi supérieur et plancher à zéro, pour préparer une commande fournisseur annuelle.
+**FR-058** Le système doit consolider, par article et pour la période ciblée, les besoins d’achat en tenant compte des unités déjà commandées, des besoins complémentaires internes et du stock disponible; la consolidation doit rester visualisable à tout moment sans changement d’état ni workflow d’approbation.
+**FR-059** Le système doit calculer un nombre de lots de commande par article, à partir des unités nettes à acheter et de la taille de lot, avec arrondi supérieur et plancher à zéro, pour préparer le cycle annuel d'achat.
 
 ## 6.9 Paiement en ligne
 
@@ -218,7 +218,7 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 8. Une et une seule période doit être active "en cours" à un instant donné.
 9. Les prix d’une période verrouillée ne sont pas modifiables.
 10. Le stock article ne peut jamais devenir négatif.
-11. La consolidation fournisseur applique la formule d’unités nettes et un arrondi par lot à l’entier supérieur.
+11. La consolidation applique la formule d’unités nettes et un arrondi par lot à l’entier supérieur.
 12. Une consolidation est consultable à tout moment et ne déclenche aucun changement d’état ni approbation dédiée.
 13. Une relance de règlement ne peut être envoyée que pour une commande non validée.
 14. Une campagne de mailing doit respecter le mode de confidentialité destinataire choisi.
@@ -246,10 +246,9 @@ Entités métier minimales:
 6. **Menu**: options visibles selon contexte et permissions.
 7. **Période de commande**: libellé, date butoir, préfixe de numérotation, statut actif, statut ouvert, statut verrouillé.
 8. **Article**: code, description, marque, type, ordre, options d’usage.
-9. **Tarification article par période**: prix famille, prix fournisseur, lot fournisseur.
-10. **Fournisseur**: identité commerciale de rattachement article.
+9. **Tarification article par période**: prix famille, prix fournisseur HT utilisé comme prix d'achat et taille de lot de commande.
 11. **Stock article**: quantité disponible interne par article.
-12. **Consolidation fournisseur**: regroupement des besoins d’achat par période et fournisseur.
+12. **Consolidation**: regroupement des besoins d’achat par période et article.
 13. **Ligne de consolidation**: article, unités commandées, besoin interne complémentaire, stock, unités nettes, taille de lot, lots à commander.
 14. **Commande**: en-tête, statut, totaux, rattachement utilisateur, rattachement période.
 15. **Ligne de commande**: article, quantité, prix, réduction éventuelle.
@@ -310,7 +309,7 @@ Entités métier minimales:
 7. **Relance impayés**: déclenchement d’un mail de relance depuis la gestion des commandes en cours, selon éligibilité métier.
 8. **Campagne de mailing**: sélection d’un gabarit, choix du ciblage (groupe/utilisateur/libre), prévisualisation puis envoi, sous consentement explicite pour la diffusion générale et fréquence annuelle limitée (2 à 3 campagnes maximum).
 9. **Administration stock**: ajustement des stocks par article et pilotage simple avec environ 3 inventaires annuels.
-10. **Consolidation fournisseur**: regroupement des besoins par fournisseur, simulation des lots à commander, génération d’un document de consolidation, consultation à tout moment sans approbation.
+10. **Consolidation**: calcul des besoins d'achat par article, simulation des quantités à commander, génération d’un document de consolidation et consultation à tout moment sans approbation.
 11. **Administration référentiel**: gestion périodes (en cours, ouverture, verrouillage), gestion articles, gestion prix par période et duplication complète d’un barème inter-périodes avec ajustements unitaires.
 12. **Administration**: gestion comptes, permissions, paramètres, relances.
 
@@ -327,7 +326,7 @@ Entités métier minimales:
 7. L’administration peut gérer les périodes et garantir une période active unique.
 8. Les prix article/période respectent les règles de verrouillage, de duplication complète inter-périodes et de modification unitaire.
 9. Les niveaux de stock article sont modifiables sans créer de valeurs négatives, dans un pilotage simple compatible avec un cycle annuel et environ 3 inventaires par an.
-10. La consolidation produit des quantités et lots fournisseur cohérents et vérifiables, reste consultable à tout moment et ne change pas d’état.
+10. La consolidation produit des quantités et lots de commande cohérents et vérifiables, reste consultable à tout moment et ne change pas d’état.
 11. Les campagnes de mailing sont envoyables via gabarit, prévisualisation et ciblage multi-mode, dans la limite d’une fréquence annuelle faible et sous consentement explicite pour la diffusion générale.
 12. Les relances sont autorisées uniquement pour les commandes éligibles.
 13. La cotisation est automatiquement calculée sur la commande en fonction du nombre d’enfants.
@@ -345,7 +344,7 @@ Entités métier minimales:
 1. **Phase 1 — Fondations**: modèle métier, identité/session, autorisations, contrat d’erreur.
 2. **Phase 2 — Parcours utilisateurs**: navigation, comptes, récupération accès.
 3. **Phase 3 — Référentiels métier**: périodes, catalogue articles, tarification par période.
-4. **Phase 4 — Stock & consolidation**: gestion des stocks, calcul des besoins et préparation commande fournisseur.
+4. **Phase 4 — Stock & consolidation**: gestion des stocks, calcul des besoins et préparation des achats.
 5. **Phase 5 — Cœur métier commande**: création/suivi/validation/règlement.
 6. **Phase 6 — Paiement, documents & mailing**: paiement en ligne, génération documentaire, relances et campagnes mailing.
 7. **Phase 7 — Administration & observabilité**: gestion avancée, audit, robustesse opérationnelle.
@@ -365,7 +364,7 @@ Chaque phase doit livrer des scénarios d’acceptation traçables vers les exig
 7. `templated-mail-and-document-generation` → FR-070 à FR-079  
 8. `webservice-dispatch-and-response-contract` → FR-080 à FR-085  
 9. Compléments référentiels (périodes, articles, prix par période) extraits des comportements métier existants → FR-043 à FR-049
-10. Compléments stock et consolidation fournisseur extraits des comportements métier existants → FR-056 à FR-059
+10. Compléments stock et consolidation des besoins d'achat extraits des comportements métier existants → FR-056 à FR-059
 11. Compléments cotisation extraits des comportements métier existants → COTIS-01 à COTIS-05
 12. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-08
 
@@ -383,8 +382,8 @@ Traçabilité ascendante depuis le legacy: la couverture de chaque use-case lega
 4. **Politique de communication**: communications générales très légères (2 à 3 emails par an pour ouverture/fermeture de campagne), avec consentement explicite requis; les emails nécessaires au parcours de commande restent autorisés.
 5. **Cas limites paiement**: traitement volontairement simple des timeouts/statuts intermédiaires, via statut explicite "à vérifier" et résolution manuelle.
 6. **Évolution annuelle des prix et audit**: duplication complète des prix d’une période à l’autre, ajustements unitaires ensuite, et audit attendu sur l’ensemble des éléments du modèle métier.
-7. **Pilotage stock**: gestion volontairement simple, adaptée à un usage annuel, avec une commande fournisseur unique par an et environ trois inventaires annuels.
-8. **Consolidation fournisseur**: la consolidation est consultable à tout moment, sans changement d’état ni étape d’approbation.
+7. **Pilotage stock**: gestion volontairement simple, adaptée à un usage annuel, avec un cycle annuel d'achat et environ trois inventaires annuels.
+8. **Consolidation des besoins d'achat**: la consolidation est consultable à tout moment, sans changement d’état ni étape d’approbation.
 9. **Cotisation**: la cotisation fait partie de la commande; sa suppression est interdite dès qu’une commande est validée et facturée.
 10. **Conformité réglementaire française**: la gestion des commandes et la facturation doivent respecter la réglementation française applicable.
 11. **Éditions et exports**: le domaine legacy est abandonné. Ses use-cases décrivent un moteur de reporting configurable en base (listes paramétrables, états, gabarits HTML, requêtes SQL administrables), et non un besoin métier. L'abandon porte sur le moteur, pas sur le besoin d'éditions: toute édition nécessaire est exprimée comme fonctionnalité métier concrète, à l'image de l'édition de bordereaux de chèques en fin de période.

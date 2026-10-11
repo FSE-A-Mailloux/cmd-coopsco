@@ -91,7 +91,7 @@ L'application MUST presenter un prix TTC unique par article et par periode, sans
 - **THEN** chaque ligne de periode affiche un seul prix TTC (et pas de colonnes standard/reseau)
 
 ### Requirement: Le sous-ecran tarifs MUST supporter deux modes de formulation du prix
-L'application MUST permettre de formuler le prix d'un article soit par saisie directe du prix TTC, soit par prix fournisseur HT avec marge en pourcentage, donnant le prix TTC. Pour chaque periode, le mode de calcul choisi MUST etre persiste en plus du total TTC.
+L'application MUST permettre de formuler le prix d'un article soit par saisie directe du prix TTC, soit par prix fournisseur HT utilisé comme prix d'achat avec marge en pourcentage, donnant le prix TTC. Les écrans MUST NOT afficher de champ, filtre, action ou libellé demandant l'identité d'un fournisseur. Pour chaque periode, le mode de calcul choisi MUST etre persiste en plus du total TTC.
 
 #### Scenario: Formulation en TTC direct
 - **WHEN** un utilisateur choisit le mode TTC direct
@@ -100,6 +100,7 @@ L'application MUST permettre de formuler le prix d'un article soit par saisie di
 #### Scenario: Formulation HT fournisseur + marge
 - **WHEN** un utilisateur choisit le mode HT fournisseur + marge
 - **THEN** il saisit le prix fournisseur HT et la marge en pourcentage, et l'interface affiche le prix TTC correspondant
+- **AND** aucun fournisseur n'est demandé
 
 #### Scenario: Persistance du mode de calcul et du total TTC
 - **WHEN** un utilisateur enregistre un prix d'article pour une periode
@@ -272,12 +273,13 @@ L'etat de stock affiche MUST etre calcule automatiquement: `Rupture` lorsque le 
 - **AND** l'etat affiche est `Rupture` si le disponible vaut 0, sinon `Disponible`
 
 ### Requirement: L'ecran Consolidation MUST representer un snapshot par periode
-L'ecran `Consolidation` MUST etre centre sur la periode en cours, affichee en libelle non editable, et MUST presenter, a un instant donne, les donnees article necessaires a la decision de commande fournisseur.
+L'ecran `Consolidation` MUST etre centre sur la periode en cours, affichee en libelle non editable, et MUST presenter, a un instant donne, les donnees de stock, de besoin FSE, de quantite a commander et de prix d'achat necessaires a la decision. Il MUST NOT presenter de colonne, filtre ou action de sélection d'un fournisseur.
 
 #### Scenario: Consultation du snapshot courant
 - **WHEN** un gestionnaire ouvre l'ecran `Consolidation`
 - **THEN** l'interface rappelle la periode en cours via un libelle non modifiable et n'affiche pas de selecteur de periode
-- **THEN** l'interface affiche, par article, le stock disponible, la quantite commandee familles, la saisie du besoin FSE et la quantite a commander calculee
+- **AND** l'interface affiche, par article, le stock disponible, la quantite commandee familles, la saisie du besoin FSE, la quantite a commander calculee et le prix d'achat
+- **AND** aucune identité fournisseur n'est affichée
 
 ### Requirement: L'ecran Consolidation MUST calculer la quantite a commander a partir du differentiel metier
 Pour chaque article, l'ecran `Consolidation` MUST calculer la quantite a commander selon la regle `max(0, quantite commandee familles + besoin FSE - stock disponible)`.
@@ -294,11 +296,11 @@ L'ecran `Consolidation` MUST permettre d'enregistrer une consolidation et MUST p
 - **THEN** la consolidation est stockee avec horodatage et devient consultable dans l'historique
 
 ### Requirement: L'ecran Consolidation MUST afficher les indicateurs financiers d'estimation et MUST NOT afficher le taux de service
-L'ecran `Consolidation` MUST afficher `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` sur la periode en cours quand les donnees tarifaires fournisseur HT necessaires sont disponibles, et MUST NOT afficher de taux de service.
+L'ecran `Consolidation` MUST afficher `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` sur la periode en cours quand les prix fournisseur HT necessaires, utilises comme prix d'achat, sont disponibles, et MUST NOT afficher de taux de service.
 
 #### Scenario: Affichage des indicateurs d'estimation
 - **WHEN** un gestionnaire consulte la consolidation de la periode en cours
-- **THEN** l'interface affiche `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` avec indication explicite si une partie des tarifs fournisseur HT est manquante
+- **THEN** l'interface affiche `CA estime`, `Marge estimee` et `Cout du stock prevu (besoin FSE)` avec indication explicite si une partie des prix fournisseur HT est manquante
 - **AND** l'interface n'affiche aucun KPI ni colonne `Taux service`
 
 ### Requirement: Le role famille MUST inclure un ecran dedie de creation de compte
