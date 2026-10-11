@@ -4,6 +4,7 @@ window.SCREEN_MANIFEST = [
   { id: "entree-activation", roles: ["famille"], category: "Parcours d'entree", title: "Activation de compte", source: "../screens/entree/entree-activation.html" },
   { id: "entree-creation-compte", roles: ["famille"], category: "Parcours d'entree", title: "Creation de compte", source: "../screens/entree/entree-creation-compte.html" },
   { id: "entree-recuperation-acces", roles: ["famille"], category: "Parcours d'entree", title: "Recuperation d'acces", source: "../screens/entree/entree-recuperation-acces.html" },
+  { id: "compte-suppression", roles: ["famille"], category: "Compte", title: "Suppression de mon compte", source: "../screens/compte/compte-suppression.html" },
   { id: "commandes-liste", roles: ["gestionnaire"], category: "Parcours commandes", title: "Liste des commandes (gestionnaire)", source: "../screens/commandes/commandes-liste.html" },
   { id: "commandes-liste-famille", roles: ["famille"], category: "Parcours commandes", title: "Mes commandes", source: "../screens/commandes/commandes-liste-famille.html" },
   { id: "commandes-formulaire", roles: ["famille", "gestionnaire"], category: "Parcours commandes", title: "Creation commande famille (multi-etapes)", source: "../screens/commandes/commandes-formulaire.html" },

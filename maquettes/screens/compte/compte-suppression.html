@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppression de mon compte</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack"><h1>Suppression de mon compte</h1><p class="subtitle">Action définitive réservée au titulaire connecté</p></div>
+      <span class="static-pill">Prévisualisation statique</span>
+    </header>
+    <section class="card">
+      <h2 class="card-title">Avant de confirmer</h2>
+      <p>La suppression de votre compte est définitive. Vous ne pourrez plus vous connecter ni récupérer ce compte.</p>
+      <p>Vos commandes et leurs informations nécessaires à leur historique seront conservées. Les coordonnées et les noms associés seront anonymisés.</p>
+      <p class="muted">La désinscription aux courriels de diffusion est une action différente : elle arrête ces communications sans supprimer votre compte.</p>
+      <div class="actions">
+        <button class="button" type="button">Gérer mes communications</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Confirmer la suppression définitive</h2>
+      <div class="field">
+        <label for="current-password">Saisissez à nouveau votre mot de passe</label>
+        <input class="input" id="current-password" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <label class="toggle-control" for="confirm-deletion">
+        <input id="confirm-deletion" name="confirm" type="checkbox" required>
+        <span>Je comprends que cette suppression est définitive et je confirme ma demande.</span>
+      </label>
+      <div class="actions">
+        <button class="button" type="button">Annuler</button>
+        <button class="button primary" type="button">Supprimer définitivement mon compte</button>
+      </div>
+      <p class="muted">Maquette statique : aucune demande n'est transmise ni exécutée depuis cet écran.</p>
+    </section>
+  </div>
+</body>
+</html>

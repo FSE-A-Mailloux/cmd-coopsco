@@ -392,11 +392,10 @@ Traçabilité ascendante depuis le legacy: la couverture de chaque use-case lega
 14. **Méta-configuration applicative**: le menu, les modules et le référentiel de composants administrables en base sont abandonnés, obsolètes par construction. L'administration des habilitations (groupes, affectations, fonctions) est en revanche conservée.
 15. **Consultation des historiques**: le journal des actions applicatives est consultable par les gestionnaires, et non réservé aux administrateurs comme dans le legacy. Les anomalies applicatives sont consultables sur le même principe.
 16. **Liste de diffusion d'un groupe**: sa gestion n'est pas reprise à ce stade; seul le ciblage d'un groupe comme destinataire est conservé.
-17. **Désactivation de compte à l'initiative de l'utilisateur**: le comportement est repris. Son périmètre reste à cadrer, et il doit être distingué de la désinscription aux communications de diffusion, que le legacy confondait sous un même lien.
+17. **Suppression définitive de compte à l'initiative du titulaire**: le titulaire connecté peut demander la suppression après récapitulatif, nouvelle validation de son mot de passe et confirmation explicite. Le compte, ses affectations et ses sessions sont supprimés; les commandes sont conservées avec les données personnelles anonymisées. Ce parcours est distinct du désabonnement aux communications, qui ne modifie que la préférence de diffusion.
 
 ### 14.2 Questions restant à arbitrer
 
 1. Politique de délivrabilité email (gestion rebonds, taux d’échec, anti-spam, fréquence maximale par cible) — non arbitrée à ce stade.
 2. Pages d'accueil contextuelles par profil: à préciser dans ce document.
 3. Correction d'une saisie d'encaissement erronée: il n'est pas établi qu'elle relève du même mécanisme que l'annulation commerciale avec avoir.
-4. Désactivation de compte: réversibilité, articulation avec l'anonymisation prévue par FR-036 et sort des commandes rattachées.

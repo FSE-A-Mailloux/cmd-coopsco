@@ -10,6 +10,11 @@ Il sert de base d'alignement fonctionnel avant l'implémentation dynamique.
 - `assets/`: style partagé
 - `manifest/`: catalogue des écrans
 
+Le catalogue est déclaré dans `manifest/screens.json` et `manifest/screens.js`.
+Toute modification doit être reportée dans les deux fichiers : le workbench charge
+le manifeste JavaScript en priorité pour permettre aussi la consultation locale
+sans serveur.
+
 ## Convention de nommage
 
 Chaque écran respecte la convention suivante:
@@ -45,7 +50,8 @@ Exemple:
 
 - Les maquettes sont construites en **mobile-first** (mise en page mobile par defaut, enrichie en desktop via media queries).
 - Le workbench permet de changer le mode de previsualisation sans backend.
-- Le role **famille** couvre les parcours d'entree: connexion, creation de compte, activation et recuperation d'acces.
+- Le role **famille** couvre les parcours d'entree (connexion, creation de compte, activation, recuperation d'acces) et le parcours authentifie de suppression de compte.
+- L'ecran **Suppression de mon compte** distingue la suppression definitive de la desinscription aux communications de diffusion.
 - Le domaine gestionnaire couvre periodes, articles, tarifs, stock et consolidation.
 - Le domaine articles est separe en deux ecrans: **listing** et **creation**.
 - Le listing **Articles** propose une **recherche multicriteres unique** sur la reference article, le libelle et la marque.

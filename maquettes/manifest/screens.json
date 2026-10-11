@@ -35,6 +35,13 @@
     "source": "../screens/entree/entree-recuperation-acces.html"
   },
   {
+    "id": "compte-suppression",
+    "roles": ["famille"],
+    "category": "Compte",
+    "title": "Suppression de mon compte",
+    "source": "../screens/compte/compte-suppression.html"
+  },
+  {
     "id": "commandes-liste",
     "roles": ["gestionnaire"],
     "category": "Parcours commandes",

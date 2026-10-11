@@ -45,7 +45,7 @@ tickets de refonte (`docs/legacy-migration-backlog.md`).
 - **Sources legacy**: `legacy/ws/phpWs/resendCode.php`, `legacy/ws/mail/newValidationCode.html`, `legacy/ws/phpWs/userManage.php`
 
 ### UC-AUTH-8 — Désinscription (désabonnement)
-- **Description**: L'utilisateur clique sur le lien de désabonnement depuis un e-mail ; le système désactive son compte.
+- **Description**: L'utilisateur clique sur le lien de désabonnement depuis un e-mail ; le système désactive uniquement son inscription aux communications de diffusion (`comGroupe_uti = 0`). Le compte reste actif. La suppression définitive du compte est un parcours cible séparé, défini dans `user-account-lifecycle-management`.
 - **Acteur**: utilisateur
 - **Sources legacy**: `legacy/app/components/desabo/desabo.js`, `legacy/ws/phpWs/userManage.php`
 
