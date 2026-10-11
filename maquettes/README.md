@@ -85,6 +85,7 @@ Exemple:
 - Le cout de cotisation est affiche des le choix du nombre d'enfants et integre au total de commande.
 - Le gestionnaire dispose d'un parcours d'**encaissement** dedie declenche depuis une action sur la commande (liste ou detail), ouvrant directement la saisie d'un ou plusieurs paiements cheque/espece.
 - L'ecran de saisie paiements affiche le beneficiaire de la commande, positionne l'ajout de ligne au plus proche du tableau des paiements et n'affiche pas de bouton de recherche.
+- Le detail d'une commande annulee avec avoir presente les remboursements manuels deja saisis, le montant restant et l'action qui ouvre l'ecran `commandes-remboursement-saisie`; ces maquettes illustrent le parcours cible sans executer ni persister un remboursement.
 - Pour un paiement par cheque, la saisie inclut **montant**, **banque** et **titulaire du compte** en contexte particulier/famille pour l'edition des bordereaux de fin de periode.
 - Les tarifs sont un **sous-ecran d'un article**: liste des prix de l'article selon les periodes, avec un ecran de **modification du prix par periode**.
 - La liste des tarifs d'un article est triee par date de periode **decroissante** (plus recentes en premier).

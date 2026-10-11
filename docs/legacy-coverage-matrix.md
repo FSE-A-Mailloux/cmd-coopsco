@@ -92,7 +92,7 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | UC-CMD-2 | Sélection et quantification des articles | REPRIS | FR-050 | fse-order-and-payment-workflow, frontend-reference-screen-flows | commandes-formulaire | |
 | UC-CMD-3 | Confirmation et enregistrement de la commande | REPRIS | FR-050, FR-052 | fse-order-and-payment-workflow, frontend-reference-screen-flows | commandes-formulaire | |
 | UC-CMD-4 | Consultation du détail d'une commande | REPRIS | FR-050 | fse-order-and-payment-workflow, frontend-reference-screen-flows | commandes-detail | |
-| UC-CMD-5 | Annulation d'une commande | REPRIS | FR-052, FR-065, FACT-07, FACT-08 | fse-order-and-payment-workflow, frontend-reference-screen-flows | commandes-liste, commandes-detail | **Règle modifiée** (arbitrage 3). Une commande réglée **peut** être annulée, avec **émission d'un avoir**. La restriction posée par `frontend-reference-screen-flows` (« annulation refusée après paiement ») est **invalidée** : elle n'était pas conforme à la réglementation applicable, pas davantage que le comportement legacy qui annulait sans produire de pièce comptable. `FR-065`, `FACT-07` et `FACT-08` créés. Mise en cohérence de la spécification des statuts : change `annuler-commande-reglee-avec-avoir`. |
+| UC-CMD-5 | Annulation d'une commande | REPRIS | FR-052, FR-065, FACT-07, FACT-08 | fse-order-and-payment-workflow, frontend-reference-screen-flows | commandes-liste, commandes-detail | **Règle modifiée** (arbitrage 3). Une commande réglée **peut** être annulée, avec **émission d'un avoir**. La restriction posée par `frontend-reference-screen-flows` (« annulation refusée après paiement ») est **invalidée** : elle n'était pas conforme à la réglementation applicable, pas davantage que le comportement legacy qui annulait sans produire de pièce comptable. `FR-065`, `FACT-07` et `FACT-08` créés. Mise en cohérence de la spécification des statuts : change `annuler-commande-reglee-avec-avoir`. Le remboursement manuel consécutif à l'annulation fait l'objet du change `rembourser-commande-annulee`. |
 | UC-CMD-6 | Liaison d'une commande à un utilisateur existant | REPRIS | FR-055 | — | — | Descente incomplète : aucune spécification ni maquette ne porte le rattachement d'une commande à un compte. |
 | UC-CMD-7 | Relance d'une commande non réglée | REPRIS | FR-078, FR-079 | — | — | Descente incomplète : décidé au PRD, absent des spécifications et des maquettes. |
 | UC-CMD-8 | Liste des commandes en cours (vue gestionnaire) | REPRIS | FR-052 | frontend-reference-screen-flows | commandes-liste | |
@@ -206,6 +206,7 @@ Chaque ensemble cohérent de use-cases repris ou à cadrer, non encore spécifi�
 | `cadrer-generation-documents-en-lot` | UC-CON-3 |
 | `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4 |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
+| `rembourser-commande-annulee` | UC-CMD-5 |
 | `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |
 | `renvoyer-code-de-validation` | UC-AUTH-7 |
 | `cadrer-desactivation-de-compte` | UC-AUTH-8 |

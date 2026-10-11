@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detail commande</title>
+  <title>Detail commande annulee</title>
   <link rel="stylesheet" href="../../assets/base.css">
 </head>
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Detail commande CMD-2401</h1><p class="subtitle">Consultation complete d'une commande famille</p></div>
+      <div class="title-stack"><h1>Detail commande CMD-2401</h1><p class="subtitle">Commande annulee avec avoir - consultation des paiements et remboursements</p></div>
       <span class="static-pill">Previsualisation statique</span>
     </header>
     <section class="layout-3">
-      <div class="kpi"><span class="muted">Statut</span><strong>Paiement partiel</strong></div>
-      <div class="kpi"><span class="muted">Montant total</span><strong>69,30 EUR</strong></div>
-      <div class="kpi"><span class="muted">Date livraison</span><strong>15/09/2026</strong></div>
+      <div class="kpi"><span class="muted">Statut commande</span><strong>Annulee</strong></div>
+      <div class="kpi"><span class="muted">Montant total regle</span><strong>69,30 EUR</strong></div>
+      <div class="kpi"><span class="muted">Montant rembourse</span><strong>20,00 EUR</strong></div>
+      <div class="kpi"><span class="muted">Reste a rembourser</span><strong>49,30 EUR</strong></div>
     </section>
     <section class="card">
-      <p class="muted">Cycle statuts commande: Brouillon -> En attente de paiement -> (Annulee ou Paiement partiel / Paiement en cours -> Confirmee).</p>
-      <p class="muted">Regle d'annulation: une commande est annulable tant qu'aucun paiement n'a ete enregistre; des qu'un paiement existe, l'annulation est refusee.</p>
+      <h2 class="card-title">Facturation de l'annulation</h2>
+      <p>Facture <strong>FAC-2026-2401</strong> - emise le 05/09/2026</p>
+      <p>Avoir <strong>AV-2026-2401</strong> - emis le 12/09/2026</p>
+      <p class="muted">L'avoir corrige la facture. Le remboursement des sommes deja encaissees est suivi separement ci-dessous.</p>
     </section>
     <section class="card">
       <table>
@@ -45,20 +48,39 @@
       </table>
       <div class="actions">
         <a class="button" href="./commandes-liste.html">Retour liste</a>
-        <a class="button primary" href="./commandes-paiements-saisie.html">Encaisser (cheque/espece)</a>
-        <button class="button">Exporter PDF</button>
+        <a class="button primary" href="./commandes-remboursement-saisie.html">Enregistrer un remboursement</a>
+        <button class="button">Consulter l'avoir</button>
       </div>
-      <p class="muted">L'ecran de saisie paiements est ouvert directement depuis l'action de la commande, sans etape de recherche intermediaire.</p>
+      <p class="muted">Le remboursement est effectue manuellement par un gestionnaire et ne modifie pas l'historique des paiements.</p>
     </section>
     <section class="card">
       <h2 class="card-title">Paiements associes</h2>
-      <table>
-        <thead><tr><th>Date</th><th>Mode</th><th>Montant</th><th>Reference</th></tr></thead>
-        <tbody>
-          <tr><td>05/09/2026</td><td>Cheque</td><td>40,00 EUR</td><td>CA-45812</td></tr>
-          <tr><td>07/09/2026</td><td>Espece</td><td>10,00 EUR</td><td>ES-0907</td></tr>
-        </tbody>
-      </table>
+      <div class="listing-table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Mode</th><th>Montant</th><th>Reference</th></tr></thead>
+          <tbody>
+            <tr><td>05/09/2026</td><td>Cheque</td><td>42,00 EUR</td><td>CA-45812</td></tr>
+            <tr><td>07/09/2026</td><td>Espece</td><td>27,30 EUR</td><td>ES-0907</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="card">
+      <h2 class="card-title">Historique des remboursements</h2>
+      <p class="muted">Vue gestionnaire uniquement. Une famille ne voit pas les montants ni l'historique interne des remboursements.</p>
+      <p><strong>Etat :</strong> Partiellement remboursee</p>
+      <div class="listing-table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Moyen</th><th>Montant</th><th>Reference</th><th>Gestionnaire responsable</th></tr></thead>
+          <tbody>
+            <tr><td>13/09/2026</td><td>Cheque</td><td>20,00 EUR</td><td>REM-CH-2609-014</td><td>Marie Lefebvre</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="./commandes-remboursement-saisie.html">Enregistrer un remboursement de 49,30 EUR</a>
+      </div>
+      <p class="muted">L'action est reservee aux gestionnaires habilites et disponible tant qu'un montant reste a rembourser.</p>
     </section>
   </div>
 </body>

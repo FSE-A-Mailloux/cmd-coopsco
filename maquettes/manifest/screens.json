@@ -70,6 +70,13 @@
     "source": "../screens/commandes/commandes-paiements-saisie.html"
   },
   {
+    "id": "gestionnaire-remboursements-saisie",
+    "roles": ["gestionnaire"],
+    "category": "Parcours paiements",
+    "title": "Remboursement - Saisie",
+    "source": "../screens/commandes/commandes-remboursement-saisie.html"
+  },
+  {
     "id": "admin-utilisateurs",
     "roles": ["admin"],
     "category": "Administration",
