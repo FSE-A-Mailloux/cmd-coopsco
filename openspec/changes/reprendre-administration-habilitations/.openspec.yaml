@@ -1,4 +1,4 @@
 schema: spec-driven
 created: 2026-08-23
 goal: >-
-  Specifier la gestion des groupes, l'affectation des utilisateurs et le forcage de changement de mot de passe, et produire les maquettes associees. Use-cases couverts : UC-ADM-2, UC-ADM-3, UC-ADM-4.
+  Specifier le forcage de changement de mot de passe par un admin et produire les maquettes associees. Use-case restant : UC-ADM-2. La gestion des groupes (UC-ADM-3) est abandonnee : Famille, Gestionnaire et Admin ont des permissions fixes. L'affectation cible d'un role existant (reprise adaptee de UC-ADM-4) est deja cadree par cadrer-changement-role-utilisateur et user-role-administration-and-audit ; elle ne modifie pas les permissions des roles.

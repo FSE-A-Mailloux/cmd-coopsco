@@ -35,7 +35,7 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 
 1. Authentification, activation de compte, récupération/changement de mot de passe.
 2. Session utilisateur avec expiration et gestion de déconnexion.
-3. Contrôle d’accès par rôles/groupes et menus contextuels.
+3. Contrôle d’accès par rôles prédéfinis (Famille, Gestionnaire, Admin) et menus contextuels.
 4. Gestion des comptes (création, modification, suppression, désinscription communication).
 5. Exécution de requêtes métiers référencées (catalogue logique).
 6. Gestion des périodes de commande (création, modification, suppression, activation, ouverture/fermeture, verrouillage logique).
@@ -61,7 +61,7 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 
 1. **Parent / Responsable**: crée et suit ses commandes, règle en ligne ou hors ligne, récupère ses documents.
 2. **Gestionnaire / Administration**: configure, pilote les commandes, gère les règlements, envoie relances/communications.
-3. **Administrateur fonctionnel**: gère utilisateurs, groupes, autorisations, référentiels.
+3. **Administrateur fonctionnel**: gère utilisateurs, affectations aux rôles prédéfinis et référentiels, sans modifier les permissions des rôles.
 4. **Support**: traite incidents et anomalies via traces et historiques d’actions.
 5. **Direction / Pilotage**: suit qualité de service, taux de validation, paiements, adoption.
 
@@ -98,14 +98,14 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 
 ## 6.3 Autorisations et menu contextuel
 
-**FR-020** Le système doit contrôler les droits par rôle/groupe pour chaque action sensible.  
+**FR-020** Le système doit contrôler chaque action sensible selon les permissions prédéfinies des rôles Famille, Gestionnaire et Admin, en conservant les restrictions métier liées au contexte et à la propriété des données.\
 **FR-021** Le système doit contrôler les droits d’accès aux composants métier.  
 **FR-022** Le système doit construire un menu adapté aux permissions effectives de l’utilisateur.  
 **FR-023** Le système doit gérer un mode non connecté avec droits limités.
 **FR-024** Le système doit permettre à un utilisateur multi-rôles de basculer de rôle actif dans l’interface, avec recalcul immédiat des permissions et du menu.  
-**FR-025** Le système doit permettre la gestion des groupes porteurs de droits (création, modification, suppression).  
-**FR-026** Le système doit permettre l’affectation et le retrait d’utilisateurs sur un groupe, le retrait entraînant la perte immédiate des droits associés.  
-**FR-027** Le système doit permettre la gestion des fonctions applicatives structurant les habilitations (création, modification, suppression).
+**FR-025** Le système doit limiter le référentiel aux trois rôles fixes Famille, Gestionnaire et Admin, sans création, duplication, renommage ou suppression de rôle ni gestion de groupes porteurs de droits.\
+**FR-026** Le système doit permettre uniquement à un Admin de changer le rôle d’un utilisateur parmi Famille, Gestionnaire et Admin, avec validation du rôle cible et journalisation de l’ancien rôle, du nouveau rôle, de l’acteur et de l’horodatage ; l’historique doit rester consultable par les admins. Cette affectation ne modifie pas les permissions des rôles.\
+**FR-027** Le système doit appliquer des permissions et fonctions d’habilitation prédéfinies, non administrables par les utilisateurs, y compris les admins. Aucune interface ni requête directe ne doit permettre de les modifier ; toute tentative doit être refusée explicitement.
 
 ## 6.4 Cycle de vie des comptes
 
@@ -239,8 +239,8 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 Entités métier minimales:
 
 1. **Utilisateur**: identité, contact, état d’activation, préférences de communication.
-2. **Rôle/Groupe**: périmètre de droits.
-3. **Permission**: action autorisée sur composant/fonction.
+2. **Rôle**: Famille, Gestionnaire ou Admin, avec un périmètre de droits prédéfini non administrable.
+3. **Permission**: action autorisée sur composant/fonction, définie par l’application et non modifiable par un utilisateur.
 4. **Session**: jeton, utilisateur, dates de validité.
 5. **Composant métier**: écran/fonctionnalité navigable.
 6. **Menu**: options visibles selon contexte et permissions.
@@ -311,7 +311,7 @@ Entités métier minimales:
 9. **Administration stock**: ajustement des stocks par article et pilotage simple avec environ 3 inventaires annuels.
 10. **Consolidation**: calcul des besoins d'achat par article, simulation des quantités à commander, génération d’un document de consolidation et consultation à tout moment sans approbation.
 11. **Administration référentiel**: gestion périodes (en cours, ouverture, verrouillage), gestion articles, gestion prix par période et duplication complète d’un barème inter-périodes avec ajustements unitaires.
-12. **Administration**: gestion comptes, permissions, paramètres, relances.
+12. **Administration**: gestion comptes, affectation de rôles prédéfinis et consultation de leur historique, paramètres, relances ; aucune gestion des permissions des rôles.
 
 ---
 
@@ -336,6 +336,7 @@ Entités métier minimales:
 17. Les mécanismes d’anonymisation respectent les délais réglementaires définis.
 18. Les cas limites de paiement basculent en statut "à vérifier" et sont traitables manuellement.
 19. Toute donnée métier est couverte par une piste d’audit de ses créations, modifications et suppressions.
+20. Les rôles Famille, Gestionnaire et Admin et leurs permissions sont fixes ; aucune fonctionnalité ne permet d’en modifier la définition, tandis qu’un admin peut changer le rôle d’un utilisateur avec une trace consultable.
 
 ---
 
@@ -367,6 +368,7 @@ Chaque phase doit livrer des scénarios d’acceptation traçables vers les exig
 10. Compléments stock et consolidation des besoins d'achat extraits des comportements métier existants → FR-056 à FR-059
 11. Compléments cotisation extraits des comportements métier existants → COTIS-01 à COTIS-05
 12. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-08
+13. `user-role-administration-and-audit` → FR-026
 
 Traçabilité ascendante depuis le legacy: la couverture de chaque use-case legacy par ces exigences est tenue dans `docs/legacy-coverage-matrix.md`, contrôlée par `scripts/check-legacy-coverage.ps1`.
 
@@ -389,7 +391,7 @@ Traçabilité ascendante depuis le legacy: la couverture de chaque use-case lega
 11. **Éditions et exports**: le domaine legacy est abandonné. Ses use-cases décrivent un moteur de reporting configurable en base (listes paramétrables, états, gabarits HTML, requêtes SQL administrables), et non un besoin métier. L'abandon porte sur le moteur, pas sur le besoin d'éditions: toute édition nécessaire est exprimée comme fonctionnalité métier concrète, à l'image de l'édition de bordereaux de chèques en fin de période.
 12. **Référentiel fournisseurs**: l'entité fournisseur n'est pas gérée dans la solution cible. La dénomination « prix fournisseur HT » est conservée car elle désigne le prix d'achat de l'article, indépendamment de l'identité du fournisseur.
 13. **Annulation d'une commande réglée**: l'annulation reste possible après paiement et déclenche l'émission d'un avoir. La restriction conditionnant l'annulation à l'absence de paiement est invalidée, le comportement legacy qui annulait sans pièce comptable l'est également.
-14. **Méta-configuration applicative**: le menu, les modules et le référentiel de composants administrables en base sont abandonnés, obsolètes par construction. L'administration des habilitations (groupes, affectations, fonctions) est en revanche conservée.
+14. **Méta-configuration applicative et rôles fixes**: le menu, les modules et le référentiel de composants administrables en base sont abandonnés, obsolètes par construction. La gestion des groupes porteurs de droits, des fonctions d’habilitation et des permissions est également abandonnée : les rôles Famille, Gestionnaire et Admin ont des permissions prédéfinies non modifiables. Seule l’affectation d’un rôle existant à un utilisateur par un admin est conservée, avec son historique. Le référentiel de maquettes ne propose aucun écran de gestion des rôles et permissions.
 15. **Consultation des historiques**: le journal des actions applicatives est consultable par les gestionnaires, et non réservé aux administrateurs comme dans le legacy. Les anomalies applicatives sont consultables sur le même principe.
 16. **Liste de diffusion d'un groupe**: sa gestion n'est pas reprise à ce stade; seul le ciblage d'un groupe comme destinataire est conservé.
 17. **Suppression définitive de compte à l'initiative du titulaire**: le titulaire connecté peut demander la suppression après récapitulatif, nouvelle validation de son mot de passe et confirmation explicite. Le compte, ses affectations et ses sessions sont supprimés; les commandes sont conservées avec les données personnelles anonymisées. Ce parcours est distinct du désabonnement aux communications, qui ne modifie que la préférence de diffusion.

@@ -91,13 +91,6 @@
     "source": "../screens/administration/admin-utilisateurs.html"
   },
   {
-    "id": "admin-roles-permissions",
-    "roles": ["admin"],
-    "category": "Administration",
-    "title": "Roles et permissions",
-    "source": "../screens/administration/admin-roles-permissions.html"
-  },
-  {
     "id": "gestionnaire-periodes",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",

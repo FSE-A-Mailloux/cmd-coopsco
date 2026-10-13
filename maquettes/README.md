@@ -50,6 +50,8 @@ Exemple:
 
 - Les maquettes sont construites en **mobile-first** (mise en page mobile par defaut, enrichie en desktop via media queries).
 - Le workbench permet de changer le mode de previsualisation sans backend.
+- Les trois roles **Famille**, **Gestionnaire** et **Admin** sont fixes, avec des permissions predefinies non modifiables, y compris par un admin. Aucun ecran de gestion des roles ou permissions n'est propose.
+- Dans le listing **Utilisateurs**, un admin peut affecter un role existant a un compte et consulter l'historique de ses changements de role, sans modifier les permissions des roles.
 - Le role **famille** couvre les parcours d'entree (connexion, creation de compte, activation, recuperation d'acces) et le parcours authentifie de suppression de compte.
 - L'ecran **Suppression de mon compte** distingue la suppression definitive de la desinscription aux communications de diffusion.
 - Le domaine gestionnaire couvre periodes, articles, tarifs, stock et consolidation.

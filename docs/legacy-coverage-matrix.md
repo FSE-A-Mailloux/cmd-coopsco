@@ -66,10 +66,10 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | --- | --- | --- | --- | --- | --- | --- |
 | UC-ADM-1 | Gestion des utilisateurs | REPRIS | FR-030, FR-032, FR-035, FR-036 | user-account-lifecycle-management | admin-utilisateurs | |
 | UC-ADM-2 | Forcer le changement de mot de passe d'un utilisateur | REPRIS | FR-038 | — | — | Repris (arbitrage 6). `FR-038` créé. Descente incomplète, change `reprendre-administration-habilitations`. |
-| UC-ADM-3 | Gestion des groupes | REPRIS | FR-025 | authorization-and-menu-resolution | — | Repris (arbitrage 4). Le regroupement initial classait à tort ce use-case en méta-configuration : il relève de l'administration des habilitations, portée par le persona « Administrateur fonctionnel ». `FR-025` créé. Descente incomplète côté maquette. |
-| UC-ADM-4 | Affectation d'utilisateurs à des groupes | REPRIS | FR-026 | authorization-and-menu-resolution | — | Repris (arbitrage 4). `FR-026` créé, incluant la perte immédiate des droits au retrait. Descente incomplète côté maquette. |
-| UC-ADM-5 | Gestion des fonctions applicatives | REPRIS | FR-027 | authorization-and-menu-resolution | admin-roles-permissions | Repris (arbitrage 4). `FR-027` créé pour combler l'exigence produit absente alors que l'écran existait déjà. |
-| UC-ADM-6 | Gestion des autorisations par groupe | REPRIS | FR-020, FR-021 | authorization-and-menu-resolution | admin-roles-permissions | |
+| UC-ADM-3 | Gestion des groupes | ABANDONNÉ | — | — | — | **Rôles fixes** (arbitrage 4 révisé). Les rôles Famille, Gestionnaire et Admin sont prédéfinis ; aucun groupe porteur de droits n'est administrable. `FR-025` formalise ce référentiel non administrable. |
+| UC-ADM-4 | Affectation d'utilisateurs à des groupes | REPRIS | FR-026 | authorization-and-menu-resolution, user-role-administration-and-audit, frontend-reference-screen-flows | admin-utilisateurs | **Reprise adaptée** (arbitrage 4 révisé) : un admin change le rôle d'un utilisateur parmi Famille, Gestionnaire et Admin, avec validation et historique consultable. Il ne gère ni groupes ni permissions. Cadrage livré par `cadrer-changement-role-utilisateur`. |
+| UC-ADM-5 | Gestion des fonctions applicatives | ABANDONNÉ | — | — | — | **Rôles fixes** (arbitrage 4 révisé). Les fonctions d'habilitation sont définies par l'application, non créées, modifiées ou supprimées par un utilisateur. `FR-027` interdit leur administration. |
+| UC-ADM-6 | Gestion des autorisations par groupe | ABANDONNÉ | — | — | — | **Permissions fixes** (arbitrage 4 révisé). Les permissions des trois rôles ne sont pas modifiables, y compris par un admin. Les contrôles d'accès de `FR-020` et `FR-021` restent en vigueur mais ne reprennent pas l'administration des autorisations legacy. |
 | UC-ADM-7 | Gestion du menu de navigation | ABANDONNÉ | — | — | — | **Obsolète par construction** (arbitrage 4). Legacy : le menu est une donnée administrable en base. Cible : `FR-022` calcule le menu à partir des permissions effectives, il n'y a donc plus de menu à administrer. |
 | UC-ADM-8 | Gestion des modules | ABANDONNÉ | — | — | — | **Obsolète par construction** (arbitrage 4). La notion de module applicatif paramétrable en base n'a pas d'équivalent dans l'architecture cible. |
 | UC-ADM-9 | Gestion des composants applicatifs | ABANDONNÉ | — | — | — | **Obsolète par construction** (arbitrage 4). Legacy : les composants sont des lignes de table. Cible : les composants sont du code, `FR-021` n'en contrôle que l'accès. |
@@ -177,6 +177,7 @@ Les cas ci-dessous sont ceux où un libellé identique recouvre deux comportemen
 | D6 | UC-ART-5 | Renommage « années de campagne » en « périodes ». Vocabulaire uniquement, sans effet sur le comportement. |
 | D7 | UC-ART-4 | Fournisseur : entité gérée (legacy) contre simple qualification du prix d'achat (cible). « Prix fournisseur HT » subsiste sans référentiel derrière. |
 | D8 | UC-HISTO-2 | Journal des actions : réservé aux administrateurs (legacy) contre ouvert aux gestionnaires (cible). |
+| D9 | UC-ADM-3 à UC-ADM-6 | Habilitations administrables par groupes et fonctions (legacy) contre rôles Famille, Gestionnaire et Admin aux permissions fixes (cible). Seule l'affectation d'un rôle existant à un utilisateur est reprise, avec audit, sans édition de permissions. |
 
 ## Arbitrages rendus
 
@@ -187,7 +188,7 @@ Décisions issues de la revue d'arbitrage. Le détail de l'instruction figure da
 | 1 | Domaine « Éditions & exports » | **Abandonné** (décision révisée). Les six use-cases décrivent un moteur de reporting configurable, pas un besoin métier : même nature que la méta-configuration de l'arbitrage 4. Le besoin d'éditions subsiste, mais s'exprime désormais comme fonctionnalité métier concrète. | UC-EDT-1 à UC-EDT-6 |
 | 2 | Référentiel fournisseurs | Pas de référentiel. La dénomination « prix fournisseur HT » est conservée comme prix d'achat. | UC-ART-4 |
 | 3 | Annulation d'une commande payée | Annulation possible, avec émission d'un avoir. Le legacy n'était pas conforme à la réglementation. | UC-CMD-5, UC-PAY-2 |
-| 4 | Méta-configuration applicative | Menu, modules et composants abandonnés, obsolètes par construction. L'administration des habilitations est en revanche conservée. | UC-ADM-7, UC-ADM-8, UC-ADM-9 / UC-ADM-3, UC-ADM-4, UC-ADM-5 |
+| 4 | Méta-configuration applicative et rôles fixes | **Décision révisée** : menu, modules et composants abandonnés, ainsi que gestion des groupes, fonctions et autorisations. Les trois rôles Famille, Gestionnaire et Admin ont des permissions fixes. Seule l'affectation d'un rôle existant par un admin est reprise, avec historique. | UC-ADM-3 à UC-ADM-9 |
 | 5 | Audit et anomalies | Repris avec règles modifiées : consultation ouverte aux gestionnaires, restituant domaine, action, contexte et date-heure. | UC-HISTO-2, UC-HISTO-3 |
 | 6 | Use-cases isolés | Renvoi du code et forçage de mot de passe repris ; liste de diffusion non reprise ; accueils contextuels à préciser au PRD. | UC-AUTH-7, UC-ADM-2, UC-MAIL-2, UC-NAV-3 |
 | 7 | Désactivation de compte à l'initiative de l'utilisateur | Reprise. Périmètre à cadrer : réversibilité, articulation avec l'anonymisation, sort des commandes rattachées, et séparation d'avec la désinscription des communications. | UC-AUTH-8 |
@@ -204,7 +205,7 @@ Chaque ensemble cohérent de use-cases repris ou à cadrer, non encore spécifi�
 | `retirer-referentiel-fournisseur` | UC-ART-4 |
 | `cadrer-editions-et-exports` | *(clos — le domaine est abandonné, arbitrage 1 révisé)* |
 | `cadrer-generation-documents-en-lot` | UC-CON-3 |
-| `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4 |
+| `reprendre-administration-habilitations` | UC-ADM-2 uniquement ; groupes abandonnés, affectation cible de rôles déjà cadrée par `cadrer-changement-role-utilisateur` |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
 | `rembourser-commande-annulee` | UC-CMD-5 |
 | `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |

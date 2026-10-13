@@ -77,7 +77,7 @@ une décision rendue. Deux cas actuellement :
 
 | Changement | Use-cases |
 | --- | --- |
-| `reprendre-administration-habilitations` | UC-ADM-2, UC-ADM-3, UC-ADM-4 |
+| `reprendre-administration-habilitations` | UC-ADM-2 uniquement ; groupes abandonnés, affectation de rôles déjà cadrée |
 | `consulter-journal-actions-et-anomalies` | UC-HISTO-2, UC-HISTO-3 |
 | `renvoyer-code-de-validation` | UC-AUTH-7 |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
@@ -116,7 +116,7 @@ matrice soit lisible dans les deux sens.
 | HIST | Historique & suivi | Commandes en cours, historique utilisateur, journal d'actions |
 | CAT | Catalogue & articles | Articles, prix, fournisseurs, années FSE |
 | STOCK | Stock & consolidation | Stocks, consolidation, outils de gestion |
-| ADMIN | Administration & sécurité | Utilisateurs, groupes, fonctions, autorisations, menus, modules |
+| ADMIN | Administration & sécurité | Utilisateurs, affectation de rôles prédéfinis et contrôle d'accès ; groupes, fonctions et permissions non administrables |
 | COM | Communication | E-mails, modèles de mail, listes de diffusion |
 
 La verticale `EDI` (éditions & exports) a été retirée : le domaine legacy correspondant est
@@ -367,11 +367,13 @@ La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exp
   - [ ] Un ajustement est historisé avec son auteur.
   - [ ] Le stock négatif est traité comme dans le legacy (autorisé ou bloqué, à confirmer).
 
-### [ADMIN] Gérer les utilisateurs et leurs groupes
+### [ADMIN] Gérer les utilisateurs et leur affecter un rôle prédéfini
 
-> `UC-ADM-4` est encore une descente incomplète en H1 : sa spécification et sa maquette
-> sont produites par le changement `reprendre-administration-habilitations`. Ce ticket ne
-> devient exploitable qu'en H2, une fois ce changement rendu.
+> Ticket H2. La reprise adaptée de `UC-ADM-4` est déjà cadrée par
+> `cadrer-changement-role-utilisateur`, la capacité `user-role-administration-and-audit`
+> et la maquette `admin-utilisateurs`. Les permissions des rôles Famille, Gestionnaire
+> et Admin sont fixes ; le changement `reprendre-administration-habilitations` ne porte
+> plus que le changement forcé de mot de passe (`UC-ADM-2`).
 
 - **Use-cases couverts**: UC-ADM-1, UC-ADM-4
 - **Sources legacy (1 à 3)**:
@@ -380,9 +382,12 @@ La verticale `EDI` est sans objet depuis l'abandon du domaine « Éditions & exp
   - `legacy/ws/phpWs/userManage.php`
 - **Comportement historique attendu**: création, modification et rattachement des
   utilisateurs à des groupes porteurs de droits.
+- **Adaptation cible**: remplacer l'affectation à des groupes administrables par
+  l'affectation d'un rôle existant par un admin, sans modifier les permissions du rôle.
 - **Cible de refonte**: module `administration`.
 - **Critères d'acceptation**:
-  - [ ] Le retrait d'un groupe retire immédiatement les droits associés.
+  - [ ] Seul un admin peut changer le rôle d'un utilisateur parmi Famille, Gestionnaire et Admin.
+  - [ ] Le changement conserve les permissions prédéfinies et produit une trace complète consultable par les admins.
   - [ ] Un compte désactivé ne peut plus se connecter.
 
 ### [COM] Envoyer un e-mail depuis un modèle

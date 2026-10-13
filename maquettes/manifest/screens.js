@@ -12,7 +12,6 @@ window.SCREEN_MANIFEST = [
   { id: "gestionnaire-paiements-saisie", roles: ["gestionnaire"], category: "Parcours paiements", title: "Encaissement - Saisie paiements", source: "../screens/commandes/commandes-paiements-saisie.html" },
   { id: "gestionnaire-remboursements-saisie", roles: ["gestionnaire"], category: "Parcours paiements", title: "Remboursement - Saisie", source: "../screens/commandes/commandes-remboursement-saisie.html" },
   { id: "admin-utilisateurs", roles: ["admin"], category: "Administration", title: "Utilisateurs", source: "../screens/administration/admin-utilisateurs.html" },
-  { id: "admin-roles-permissions", roles: ["admin"], category: "Administration", title: "Roles et permissions", source: "../screens/administration/admin-roles-permissions.html" },
   { id: "gestionnaire-periodes", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Listing et actions", source: "../screens/administration/admin-periodes.html" },
   { id: "gestionnaire-periodes-detail", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Detail", source: "../screens/administration/admin-periodes-detail.html" },
   { id: "gestionnaire-periodes-creation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Periodes - Creation", source: "../screens/administration/admin-periodes-creation.html" },
