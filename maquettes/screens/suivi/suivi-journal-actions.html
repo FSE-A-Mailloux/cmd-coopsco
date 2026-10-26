@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal des actions applicatives</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen journal-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack">
+        <h1>Journal des actions applicatives</h1>
+        <p class="subtitle">Consultation en lecture seule des actions métier</p>
+      </div>
+      <span class="static-pill">Maquette statique - exemples fictifs</span>
+    </header>
+
+    <section class="card" aria-label="Variantes de consultation">
+      <details class="card" name="journal-variantes" open>
+        <summary class="card-title">Variante : liste renseignée - exemples fictifs</summary>
+        <div class="actions">
+          <span class="tag">Ordre : du plus récent au plus ancien</span>
+          <span class="tag">Consultation uniquement</span>
+        </div>
+        <p class="muted">Les exemples ci-dessous sont fictifs. Cette maquette ne charge ni ne modifie aucune trace. La visibilité dans le catalogue ne remplace pas un contrôle d’accès côté serveur.</p>
+        <div class="mobile-only">
+          <div class="journal-entries" role="list" aria-label="Actions applicatives, de la plus récente à la plus ancienne">
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Commandes</p>
+              <p><strong>Action :</strong> Modification du statut</p>
+              <p><strong>Contexte :</strong> Statut mis à jour après validation métier</p>
+              <p><strong>Date-heure :</strong> 24/10/2026 16:42</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Articles</p>
+              <p><strong>Action :</strong> Modification du tarif</p>
+              <p><strong>Contexte :</strong> Prix de la période mis à jour</p>
+              <p><strong>Date-heure :</strong> 24/10/2026 15:18</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Périodes</p>
+              <p><strong>Action :</strong> Ouverture</p>
+              <p><strong>Contexte :</strong> Période de rentrée ouverte</p>
+              <p><strong>Date-heure :</strong> 23/10/2026 09:05</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Articles</p>
+              <p><strong>Action :</strong> Consultation d’un libellé</p>
+              <p><strong>Contexte :</strong> <code>&lt;script&gt;alerte('exemple')&lt;/script&gt;</code> affiché comme texte inerte</p>
+              <p><strong>Date-heure :</strong> 22/10/2026 11:30</p>
+            </article>
+          </div>
+        </div>
+        <div class="listing-table-wrap desktop-only">
+          <table>
+            <thead>
+              <tr><th>Domaine</th><th>Action</th><th>Contexte</th><th>Date-heure</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Commandes</td><td>Modification du statut</td><td>Statut mis à jour après validation métier</td><td>24/10/2026 16:42</td></tr>
+              <tr><td>Articles</td><td>Modification du tarif</td><td>Prix de la période mis à jour</td><td>24/10/2026 15:18</td></tr>
+              <tr><td>Périodes</td><td>Ouverture</td><td>Période de rentrée ouverte</td><td>23/10/2026 09:05</td></tr>
+              <tr><td>Articles</td><td>Consultation d’un libellé</td><td><code>&lt;script&gt;alerte('exemple')&lt;/script&gt;</code> affiché comme texte inerte</td><td>22/10/2026 11:30</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="card" name="journal-variantes">
+        <summary class="card-title">Variante : liste vide</summary>
+        <p>Aucune action n’est enregistrée dans cette liste.</p>
+      </details>
+
+      <details class="card" name="journal-variantes">
+        <summary class="card-title">Variante : accès refusé</summary>
+        <p role="status">Vous n’êtes pas autorisé à consulter ce journal.</p>
+        <p class="muted">Aucune trace n’est affichée.</p>
+      </details>
+
+      <details class="card" name="journal-variantes">
+        <summary class="card-title">Variante : session expirée</summary>
+        <p role="status">Votre session a expiré. Connectez-vous de nouveau pour poursuivre.</p>
+        <p class="muted">Aucune trace n’est affichée.</p>
+      </details>
+
+      <details class="card" name="journal-variantes">
+        <summary class="card-title">Variante : erreur de chargement</summary>
+        <p role="alert">Le journal des actions n’a pas pu être chargé. Aucune donnée de remplacement n’est présentée.</p>
+      </details>
+    </section>
+  </div>
+</body>
+</html>

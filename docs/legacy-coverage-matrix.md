@@ -115,8 +115,8 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | UC | Libellé | Décision | PRD | Spec | Maquette | Écart / justification |
 | --- | --- | --- | --- | --- | --- | --- |
 | UC-HISTO-1 | Consultation de l'historique des commandes d'une campagne | REPRIS | FR-052 | frontend-reference-screen-flows | commandes-liste | Couvert par le filtre période et le filtre statuts de la liste gestionnaire, sans écran d'historique dédié. |
-| UC-HISTO-2 | Consultation du journal des actions applicatives | REPRIS | FR-083, FR-084 | — | — | **Règle modifiée** (arbitrage 5). La consultation est ouverte aux **gestionnaires**, et non réservée aux administrateurs comme dans le legacy. Informations restituées : domaine, action, contexte, date-heure. `FR-084` créé, `FR-083` ne couvrait que la production de la trace. Descente incomplète : change `consulter-journal-actions-et-anomalies`. |
-| UC-HISTO-3 | Consultation des anomalies applicatives | REPRIS | FR-082, FR-085 | — | — | Repris sur le même principe que UC-HISTO-2 (arbitrage 5). `FR-085` créé, `FR-082` ne couvrait que la journalisation. Descente incomplète : change `consulter-journal-actions-et-anomalies`. |
+| UC-HISTO-2 | Consultation du journal des actions applicatives | REPRIS | FR-083, FR-084 | application-journal-consultation, frontend-reference-screen-flows | suivi-journal-actions | **Règle modifiée** (arbitrage 5) : la consultation est ouverte aux gestionnaires et aux admins, sans ouvrir l’historique détaillé des changements de rôle réservé aux admins. Informations restituées : domaine, action, contexte, date-heure. `FR-083` couvre la production des traces ; `FR-084` leur consultation. |
+| UC-HISTO-3 | Consultation des anomalies applicatives | REPRIS | FR-082, FR-085 | application-journal-consultation, frontend-reference-screen-flows | suivi-anomalies | Repris sur le même principe que UC-HISTO-2 (arbitrage 5). `FR-082` couvre la journalisation des anomalies ; `FR-085` leur consultation par les gestionnaires et les admins. |
 
 ### Stock
 

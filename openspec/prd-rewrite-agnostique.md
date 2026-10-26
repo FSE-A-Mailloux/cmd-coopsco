@@ -201,8 +201,9 @@ La plateforme doit préserver les règles métier actuelles et permettre des év
 **FR-081** Le système doit distinguer au minimum: erreur fonctionnelle, erreur de sécurité, session expirée, erreur technique.  
 **FR-082** Le système doit journaliser les anomalies non fonctionnelles avec contexte suffisant pour diagnostic.
 **FR-083** Le système doit assurer un audit horodaté des créations, modifications et suppressions sur l’ensemble des entités métier, avec identification de l’acteur.  
-**FR-084** Le système doit permettre aux gestionnaires de consulter le journal des actions applicatives, en restituant au minimum le domaine, l’action, le contexte et la date-heure.  
-**FR-085** Le système doit permettre la consultation des anomalies applicatives enregistrées, avec leur action et leur contexte associés.
+**FR-084** Le système doit permettre aux gestionnaires et aux admins de consulter le journal des actions applicatives, en restituant au minimum le domaine, l’action, le contexte et la date-heure.
+
+**FR-085** Le système doit permettre aux gestionnaires et aux admins de consulter les anomalies applicatives enregistrées, avec leur action et leur contexte associés.
 
 ---
 
@@ -363,12 +364,13 @@ Chaque phase doit livrer des scénarios d’acceptation traçables vers les exig
 5. `request-catalog-execution` → FR-040 à FR-042  
 6. `fse-order-and-payment-workflow` → FR-050 à FR-055, FR-060 à FR-065  
 7. `templated-mail-and-document-generation` → FR-070 à FR-079  
-8. `webservice-dispatch-and-response-contract` → FR-080 à FR-085  
-9. Compléments référentiels (périodes, articles, prix par période) extraits des comportements métier existants → FR-043 à FR-049
-10. Compléments stock et consolidation des besoins d'achat extraits des comportements métier existants → FR-056 à FR-059
-11. Compléments cotisation extraits des comportements métier existants → COTIS-01 à COTIS-05
-12. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-08
-13. `user-role-administration-and-audit` → FR-026
+8. `webservice-dispatch-and-response-contract` → FR-080 à FR-083
+9. `application-journal-consultation` → FR-084 et FR-085
+10. Compléments référentiels (périodes, articles, prix par période) extraits des comportements métier existants → FR-043 à FR-049
+11. Compléments stock et consolidation des besoins d'achat extraits des comportements métier existants → FR-056 à FR-059
+12. Compléments cotisation extraits des comportements métier existants → COTIS-01 à COTIS-05
+13. Compléments facturation extraits des comportements métier existants → FACT-01 à FACT-08
+14. `user-role-administration-and-audit` → FR-026
 
 Traçabilité ascendante depuis le legacy: la couverture de chaque use-case legacy par ces exigences est tenue dans `docs/legacy-coverage-matrix.md`, contrôlée par `scripts/check-legacy-coverage.ps1`.
 
@@ -392,7 +394,7 @@ Traçabilité ascendante depuis le legacy: la couverture de chaque use-case lega
 12. **Référentiel fournisseurs**: l'entité fournisseur n'est pas gérée dans la solution cible. La dénomination « prix fournisseur HT » est conservée car elle désigne le prix d'achat de l'article, indépendamment de l'identité du fournisseur.
 13. **Annulation d'une commande réglée**: l'annulation reste possible après paiement et déclenche l'émission d'un avoir. La restriction conditionnant l'annulation à l'absence de paiement est invalidée, le comportement legacy qui annulait sans pièce comptable l'est également.
 14. **Méta-configuration applicative et rôles fixes**: le menu, les modules et le référentiel de composants administrables en base sont abandonnés, obsolètes par construction. La gestion des groupes porteurs de droits, des fonctions d’habilitation et des permissions est également abandonnée : les rôles Famille, Gestionnaire et Admin ont des permissions prédéfinies non modifiables. Seule l’affectation d’un rôle existant à un utilisateur par un admin est conservée, avec son historique. Le référentiel de maquettes ne propose aucun écran de gestion des rôles et permissions.
-15. **Consultation des historiques**: le journal des actions applicatives est consultable par les gestionnaires, et non réservé aux administrateurs comme dans le legacy. Les anomalies applicatives sont consultables sur le même principe.
+15. **Consultation des historiques**: le journal des actions applicatives et les anomalies applicatives sont consultables par les gestionnaires et les admins, et non réservés aux administrateurs comme dans le legacy. L’historique détaillé des changements de rôle reste réservé aux admins.
 16. **Liste de diffusion d'un groupe**: sa gestion n'est pas reprise à ce stade; seul le ciblage d'un groupe comme destinataire est conservé.
 17. **Suppression définitive de compte à l'initiative du titulaire**: le titulaire connecté peut demander la suppression après récapitulatif, nouvelle validation de son mot de passe et confirmation explicite. Le compte, ses affectations et ses sessions sont supprimés; les commandes sont conservées avec les données personnelles anonymisées. Ce parcours est distinct du désabonnement aux communications, qui ne modifie que la préférence de diffusion.
 

@@ -298,6 +298,25 @@ tr:last-child td {
   display: block;
 }
 
+.journal-screen .mockup-container {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.journal-screen .card {
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-wrap: anywhere;
+}
+
+.journal-screen .listing-table-wrap {
+  min-width: 0;
+}
+
+.journal-entries {
+  display: grid;
+  gap: var(--space-3);
+}
+
 .supply-mobile-list {
   display: grid;
   gap: var(--space-3);

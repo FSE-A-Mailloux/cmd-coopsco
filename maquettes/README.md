@@ -109,4 +109,12 @@ Exemple:
 - Ecrans de listing tabulaires identifies dans le referentiel: `Periodes - Listing et actions`, `Liste des commandes (gestionnaire)`, `Mes commandes`, `Articles - Listing`, `Stock`, `Consolidation`, `Utilisateurs`.
 - Les tableaux des ecrans de listing sont rendus en mode responsive via un conteneur a defilement horizontal en vue telephone, tout en conservant la lecture tabulaire complete en desktop.
 
+### Journaux applicatifs
+
+Les écrans **Journal des actions applicatives** et **Anomalies applicatives** sont des consultations partagées entre les groupes Gestionnaire et Admin, en lecture seule. Leurs variantes (liste renseignée, liste vide, accès refusé, session expirée et erreur de chargement) utilisent exclusivement des exemples fictifs ; les états de refus, d’expiration et d’erreur n’affichent aucune trace. Aucune action de modification ou de traitement n’est proposée.
+
+Sur téléphone, les entrées sont présentées en cartes avec domaine, action, contexte et date-heure, sans défilement horizontal de la page. À partir de 768 px, le tableau reprend les mêmes entrées dans le même ordre.
+
+Ces écrans statiques n’appellent aucun service et ne constituent pas un contrôle d’accès réel. La déclaration d’un rôle dans le catalogue du workbench organise uniquement la navigation ; tout accès aux données devra être contrôlé côté serveur.
+
 Ce dossier est la référence d'entrée pour les futures tâches d'implémentation frontend.

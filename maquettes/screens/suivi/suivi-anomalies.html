@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anomalies applicatives</title>
+  <link rel="stylesheet" href="../../assets/base.css">
+</head>
+<body class="mockup-screen journal-screen">
+  <div class="mockup-container">
+    <header class="mockup-header">
+      <div class="title-stack">
+        <h1>Anomalies applicatives</h1>
+        <p class="subtitle">Consultation en lecture seule des anomalies enregistrées</p>
+      </div>
+      <span class="static-pill">Maquette statique - exemples fictifs</span>
+    </header>
+
+    <section class="card" aria-label="Variantes de consultation">
+      <details class="card" name="anomalie-variantes" open>
+        <summary class="card-title">Variante : liste renseignée - exemples fictifs</summary>
+        <div class="actions">
+          <span class="tag">Ordre : du plus récent au plus ancien</span>
+          <span class="tag">Consultation uniquement</span>
+        </div>
+        <p class="muted">Les exemples ci-dessous sont fictifs. Cette maquette ne charge ni ne modifie aucune trace. La visibilité dans le catalogue ne remplace pas un contrôle d’accès côté serveur.</p>
+        <div class="mobile-only">
+          <div class="journal-entries" role="list" aria-label="Anomalies applicatives, de la plus récente à la plus ancienne">
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Paiements</p>
+              <p><strong>Action :</strong> Confirmation du règlement</p>
+              <p><strong>Contexte :</strong> La confirmation du règlement n’a pas abouti</p>
+              <p><strong>Date-heure :</strong> 24/10/2026 17:06</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Documents</p>
+              <p><strong>Action :</strong> Génération du document</p>
+              <p><strong>Contexte :</strong> Le document n’a pas pu être généré</p>
+              <p><strong>Date-heure :</strong> 24/10/2026 14:21</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Commandes</p>
+              <p><strong>Action :</strong> Enregistrement</p>
+              <p><strong>Contexte :</strong> L’enregistrement de la commande a échoué</p>
+              <p><strong>Date-heure :</strong> 23/10/2026 10:12</p>
+            </article>
+            <article class="card" role="listitem">
+              <p><strong>Domaine :</strong> Articles</p>
+              <p><strong>Action :</strong> Vérification du libellé</p>
+              <p><strong>Contexte :</strong> <code>&lt;script&gt;alerte('exemple')&lt;/script&gt;</code> affiché comme texte inerte</p>
+              <p><strong>Date-heure :</strong> 22/10/2026 08:47</p>
+            </article>
+          </div>
+        </div>
+        <div class="listing-table-wrap desktop-only">
+          <table>
+            <thead>
+              <tr><th>Domaine</th><th>Action</th><th>Contexte</th><th>Date-heure</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Paiements</td><td>Confirmation du règlement</td><td>La confirmation du règlement n’a pas abouti</td><td>24/10/2026 17:06</td></tr>
+              <tr><td>Documents</td><td>Génération du document</td><td>Le document n’a pas pu être généré</td><td>24/10/2026 14:21</td></tr>
+              <tr><td>Commandes</td><td>Enregistrement</td><td>L’enregistrement de la commande a échoué</td><td>23/10/2026 10:12</td></tr>
+              <tr><td>Articles</td><td>Vérification du libellé</td><td><code>&lt;script&gt;alerte('exemple')&lt;/script&gt;</code> affiché comme texte inerte</td><td>22/10/2026 08:47</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="card" name="anomalie-variantes">
+        <summary class="card-title">Variante : liste vide</summary>
+        <p>Aucune anomalie n’est enregistrée dans cette liste.</p>
+      </details>
+
+      <details class="card" name="anomalie-variantes">
+        <summary class="card-title">Variante : accès refusé</summary>
+        <p role="status">Vous n’êtes pas autorisé à consulter cette liste.</p>
+        <p class="muted">Aucune trace n’est affichée.</p>
+      </details>
+
+      <details class="card" name="anomalie-variantes">
+        <summary class="card-title">Variante : session expirée</summary>
+        <p role="status">Votre session a expiré. Connectez-vous de nouveau pour poursuivre.</p>
+        <p class="muted">Aucune trace n’est affichée.</p>
+      </details>
+
+      <details class="card" name="anomalie-variantes">
+        <summary class="card-title">Variante : erreur de chargement</summary>
+        <p role="alert">La liste des anomalies n’a pas pu être chargée. Aucune donnée de remplacement n’est présentée.</p>
+      </details>
+    </section>
+  </div>
+</body>
+</html>

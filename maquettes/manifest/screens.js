@@ -22,5 +22,7 @@ window.SCREEN_MANIFEST = [
   { id: "gestionnaire-articles-tarifs-edition-prix", roles: ["gestionnaire"], category: "Articles - Sous-ecrans tarifs", title: "Article - Modification prix par periode", source: "../screens/administration/admin-tarifs-edition-prix.html" },
   { id: "gestionnaire-stock", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Stock", source: "../screens/administration/admin-stock.html" },
   { id: "gestionnaire-consolidation", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Consolidation", source: "../screens/administration/admin-consolidation.html" },
-  { id: "gestionnaire-documents-commandes-lot", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Impression des bons de commande réglés par CB", source: "../screens/administration/admin-documents-commandes-lot.html" }
+  { id: "gestionnaire-documents-commandes-lot", roles: ["gestionnaire"], category: "Domaine gestionnaire", title: "Impression des bons de commande réglés par CB", source: "../screens/administration/admin-documents-commandes-lot.html" },
+  { id: "suivi-journal-actions", roles: ["gestionnaire", "admin"], category: "Historique et suivi", title: "Journal des actions applicatives", source: "../screens/suivi/suivi-journal-actions.html" },
+  { id: "suivi-anomalies", roles: ["gestionnaire", "admin"], category: "Historique et suivi", title: "Anomalies applicatives", source: "../screens/suivi/suivi-anomalies.html" }
 ];

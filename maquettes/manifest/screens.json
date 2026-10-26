@@ -166,5 +166,19 @@
     "category": "Domaine gestionnaire",
     "title": "Impression des bons de commande réglés par CB",
     "source": "../screens/administration/admin-documents-commandes-lot.html"
+  },
+  {
+    "id": "suivi-journal-actions",
+    "roles": ["gestionnaire", "admin"],
+    "category": "Historique et suivi",
+    "title": "Journal des actions applicatives",
+    "source": "../screens/suivi/suivi-journal-actions.html"
+  },
+  {
+    "id": "suivi-anomalies",
+    "roles": ["gestionnaire", "admin"],
+    "category": "Historique et suivi",
+    "title": "Anomalies applicatives",
+    "source": "../screens/suivi/suivi-anomalies.html"
   }
 ]
