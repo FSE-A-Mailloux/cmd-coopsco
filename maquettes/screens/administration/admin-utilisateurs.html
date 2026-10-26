@@ -30,6 +30,7 @@
               <th>Email</th>
               <th>Role</th>
               <th>Statut</th>
+              <th>Changement de mot de passe</th>
               <th>Changer le role</th>
               <th>Historique</th>
             </tr>
@@ -40,6 +41,7 @@
               <td>lea.martin@coopsco.fr</td>
               <td class="current-role">Gestionnaire</td>
               <td>Actif</td>
+              <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
                   <select class="select role-select" aria-label="Role cible Lea Martin">
@@ -57,6 +59,7 @@
               <td>romain.petit@coopsco.fr</td>
               <td class="current-role">Admin</td>
               <td>Actif</td>
+              <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
                   <select class="select role-select" aria-label="Role cible Romain Petit">
@@ -74,6 +77,7 @@
               <td>ines.caron@coopsco.fr</td>
               <td class="current-role">Famille</td>
               <td>Suspendu</td>
+              <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
                   <select class="select role-select" aria-label="Role cible Ines Caron">
@@ -90,6 +94,19 @@
         </table>
       </div>
       <p id="role-change-feedback" class="muted">Action reservee au role Admin. Les changements de role sont traces.</p>
+      <p class="muted">Action reservee au role Admin. Elle n'effectue pas une reinitialisation : le titulaire choisira son nouveau mot de passe a sa prochaine connexion.</p>
+      <p id="password-change-feedback" class="muted" role="status" aria-live="polite" hidden></p>
+
+      <dialog id="password-change-dialog" aria-labelledby="password-change-title">
+        <h2 id="password-change-title">Imposer un changement de mot de passe</h2>
+        <p>Le titulaire devra choisir lui-meme un nouveau mot de passe a sa prochaine connexion. Aucun mot de passe n'est defini ou affiche ici.</p>
+        <p>Compte cible : <strong id="password-change-user-name"></strong> (<span id="password-change-user-email"></span>)</p>
+        <div class="actions">
+          <button type="button" class="button primary" id="confirm-password-change">Confirmer (aperçu)</button>
+          <button type="button" class="button ghost" id="show-password-change-error">Exemple de retour d'erreur</button>
+          <button type="button" class="button" id="cancel-password-change">Annuler</button>
+        </div>
+      </dialog>
     </section>
 
     <section class="card">
@@ -123,7 +140,12 @@
     const historyFeedback = document.getElementById("history-feedback");
     const historyBody = document.getElementById("role-history-body");
     const historyUserLabel = document.getElementById("history-user-label");
+    const passwordChangeDialog = document.getElementById("password-change-dialog");
+    const passwordChangeFeedback = document.getElementById("password-change-feedback");
+    const passwordChangeUserName = document.getElementById("password-change-user-name");
+    const passwordChangeUserEmail = document.getElementById("password-change-user-email");
     const endpointRoot = "/api/admin/users";
+    let passwordChangeTarget = null;
 
     const fallbackHistory = {
       "U-1001": [
@@ -250,12 +272,53 @@
     roleRows.forEach((row) => {
       const applyButton = row.querySelector(".change-role-btn");
       const historyButton = row.querySelector(".view-history-btn");
+      const forcePasswordChangeButton = row.querySelector(".force-password-change-btn");
       if (applyButton) {
         applyButton.addEventListener("click", () => applyRoleChange(row));
       }
       if (historyButton) {
         historyButton.addEventListener("click", () => loadHistory(row.dataset.userId));
       }
+      if (forcePasswordChangeButton) {
+        forcePasswordChangeButton.addEventListener("click", () => {
+          const cells = row.querySelectorAll("td");
+          passwordChangeTarget = {
+            id: row.dataset.userId,
+            name: cells[0].textContent.trim(),
+            email: cells[1].textContent.trim()
+          };
+          passwordChangeUserName.textContent = passwordChangeTarget.name;
+          passwordChangeUserEmail.textContent = passwordChangeTarget.email;
+          passwordChangeDialog.showModal();
+        });
+      }
+    });
+
+    document.getElementById("confirm-password-change").addEventListener("click", () => {
+      if (!passwordChangeTarget) {
+        return;
+      }
+      passwordChangeFeedback.textContent =
+        "Aperçu de succès : le changement de mot de passe est imposé à " +
+        passwordChangeTarget.name + " (" + passwordChangeTarget.id + ") pour sa prochaine connexion.";
+      passwordChangeFeedback.hidden = false;
+      passwordChangeDialog.close();
+      passwordChangeTarget = null;
+    });
+
+    document.getElementById("show-password-change-error").addEventListener("click", () => {
+      if (!passwordChangeTarget) {
+        return;
+      }
+      passwordChangeFeedback.textContent =
+        "Exemple d'erreur : la demande pour " + passwordChangeTarget.name +
+        " a ete refusee. Aucune modification n'a ete effectuee.";
+      passwordChangeFeedback.hidden = false;
+    });
+
+    document.getElementById("cancel-password-change").addEventListener("click", () => {
+      passwordChangeDialog.close();
+      passwordChangeTarget = null;
     });
 
     searchInput.addEventListener("input", updateSearchFilter);
