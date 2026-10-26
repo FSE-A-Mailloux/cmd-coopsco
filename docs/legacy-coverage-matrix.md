@@ -131,7 +131,7 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | --- | --- | --- | --- | --- | --- | --- |
 | UC-CON-1 | Génération du PDF de consolidation | REPRIS | FR-058, FR-059 | stock-and-supplier-consolidation, frontend-reference-screen-flows | gestionnaire-consolidation | **Divergence de nature assumée** (arbitrage PRD §14.1 point 8) : le legacy produit un PDF, la cible expose une consolidation consultable en continu sous forme de snapshot, sans workflow d'approbation. |
 | UC-CON-2 | Clôture de la période de commande | REPRIS | FR-043, FR-045 | period-catalog-and-pricing-management, frontend-reference-screen-flows | gestionnaire-periodes, gestionnaire-periodes-detail | Rattaché au domaine périodes dans la cible, au lieu de l'écran de consolidation. |
-| UC-CON-3 | Génération en lot des PDF de commandes réglées par CB | À CADRER | — | — | — | **Cadrage attendu** : traitement métier concret, à distinguer du moteur d'éditions abandonné par l'arbitrage 1. `FR-070` ne couvre que la génération documentaire unitaire. Reste à préciser le déclenchement, le critère de regroupement en lots et la restitution attendue. Change `cadrer-generation-documents-en-lot`. |
+| UC-CON-3 | Génération en lot des PDF de commandes réglées par CB | REPRIS | — | batch-card-paid-order-documents, frontend-reference-screen-flows | gestionnaire-documents-commandes-lot | Cadrage H1 livré par `cadrer-generation-documents-en-lot` : commandes de la période en cours avec règlement CB non annulé, tri global par nom puis prénom du premier enfant lié (sans tri par numéro de commande), lots de 30 au maximum et un PDF par lot. Aucun FR dédié ne figure au PRD; la maquette statique illustre le lancement, l'ordre, la progression, l'absence de commandes et l'échec. La génération réelle relève de H2. |
 
 ### Éditions & exports
 
@@ -192,7 +192,7 @@ Décisions issues de la revue d'arbitrage. Le détail de l'instruction figure da
 | 5 | Audit et anomalies | Repris avec règles modifiées : consultation ouverte aux gestionnaires, restituant domaine, action, contexte et date-heure. | UC-HISTO-2, UC-HISTO-3 |
 | 6 | Use-cases isolés | Renvoi du code et forçage de mot de passe repris ; liste de diffusion non reprise ; accueils contextuels à préciser au PRD. | UC-AUTH-7, UC-ADM-2, UC-MAIL-2, UC-NAV-3 |
 | 7 | Désactivation de compte à l'initiative de l'utilisateur | Reprise. Périmètre à cadrer : réversibilité, articulation avec l'anonymisation, sort des commandes rattachées, et séparation d'avec la désinscription des communications. | UC-AUTH-8 |
-| 8 | Génération de documents en lot | À cadrer. Traitement métier concret, détaché du moteur d'éditions abandonné par l'arbitrage 1. | UC-CON-3 |
+| 8 | Génération de documents en lot | Cadré pour H1 : fonctionnalité métier documentée dans `batch-card-paid-order-documents` et représentée par une maquette gestionnaire; génération réelle à construire en H2. | UC-CON-3 |
 
 **Aucun arbitrage en attente.** Les 57 use-cases portent une décision. Les décisions `À CADRER` restent à instruire dans leur change respectif, mais leur principe est acquis.
 
@@ -204,7 +204,6 @@ Chaque ensemble cohérent de use-cases repris ou à cadrer, non encore spécifi�
 | --- | --- |
 | `retirer-referentiel-fournisseur` | UC-ART-4 |
 | `cadrer-editions-et-exports` | *(clos — le domaine est abandonné, arbitrage 1 révisé)* |
-| `cadrer-generation-documents-en-lot` | UC-CON-3 |
 | `reprendre-administration-habilitations` | UC-ADM-2 uniquement ; groupes abandonnés, affectation cible de rôles déjà cadrée par `cadrer-changement-role-utilisateur` |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
 | `rembourser-commande-annulee` | UC-CMD-5 |

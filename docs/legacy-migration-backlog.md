@@ -82,7 +82,6 @@ une décision rendue. Deux cas actuellement :
 | `renvoyer-code-de-validation` | UC-AUTH-7 |
 | `annuler-commande-reglee-avec-avoir` | UC-CMD-5, UC-PAY-2 |
 | `cadrer-desactivation-de-compte` | UC-AUTH-8 |
-| `cadrer-generation-documents-en-lot` | UC-CON-3 |
 | `retirer-referentiel-fournisseur` | UC-ART-4 |
 
 `UC-NAV-3` ne relève pas d'un changement : son cadrage consiste à préciser les accueils
