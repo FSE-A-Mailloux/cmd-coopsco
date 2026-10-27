@@ -145,7 +145,7 @@ function setFrameSource(screen) {
   fetch(sourceUrl.toString(), { cache: "no-store" })
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Apercu indisponible");
+        throw new Error("Aperçu indisponible");
       }
       return response.text();
     })
@@ -157,7 +157,7 @@ function setFrameSource(screen) {
     })
     .catch(() => {
       showEmpty(
-        "Apercu introuvable",
+        "Aperçu introuvable",
         "Le fichier source de cette maquette est absent ou invalide."
       );
     });
@@ -198,8 +198,8 @@ function selectScreen(id, options = {}) {
 
   if (!screen) {
     showEmpty(
-      "Ecran invalide",
-      "La selection demandee n'existe pas dans le manifest."
+      "Écran invalide",
+      "La sélection demandée n'existe pas dans le manifest."
     );
     state.selectedId = null;
     renderNavigation();
@@ -288,18 +288,18 @@ async function initializeWorkbench() {
   } catch (error) {
     showEmpty(
       "Manifest indisponible",
-      "Impossible de charger la liste des ecrans maquettes."
+      "Impossible de charger la liste des écrans maquettes."
     );
     return;
   }
 
-  elements.count.textContent = `${state.screens.length} ecrans`;
+  elements.count.textContent = `${state.screens.length} écrans`;
   setViewMode(getInitialViewMode(), { updateUrl: false });
   renderNavigation();
 
   const initialSelection = getInitialSelection();
   if (!initialSelection) {
-    showEmpty("Aucun ecran", "Le manifest ne contient aucun ecran.");
+    showEmpty("Aucun écran", "Le manifest ne contient aucun écran.");
     return;
   }
 

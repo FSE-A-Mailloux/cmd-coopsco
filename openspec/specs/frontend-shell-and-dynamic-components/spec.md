@@ -12,72 +12,72 @@ Les détails d’implémentation de l’interface legacy MUST être considérés
 - **THEN** elle respecte les exigences fonctionnelles sans reproduire les mécanismes techniques legacy
 
 ### Requirement: Le shell frontend MUST fournir un cadre applicatif stable
-L'application MUST fournir un cadre stable comprenant authentification, navigation contextuelle, zone de contenu metier et retours utilisateur.  
-Avant implementation dynamique, ce cadre MUST etre represente par des maquettes statiques de reference consultables dans un dossier dedie.
+L'application MUST fournir un cadre stable comprenant authentification, navigation contextuelle, zone de contenu métier et retours utilisateur.\
+Avant implémentation dynamique, ce cadre MUST être représenté par des maquettes statiques de référence consultables dans un dossier dédié.
 
 #### Scenario: Rendu initial du shell
 - **WHEN** un utilisateur ouvre l'application
-- **THEN** l'interface affiche les zones principales necessaires au parcours utilisateur
+- **THEN** l'interface affiche les zones principales nécessaires au parcours utilisateur
 
-#### Scenario: Resolution de route au demarrage
-- **WHEN** aucun contexte d'entree specifique n'est fourni
-- **THEN** l'application charge le parcours ou composant metier par defaut
+#### Scenario: Résolution de route au démarrage
+- **WHEN** aucun contexte d'entrée spécifique n'est fourni
+- **THEN** l'application charge le parcours ou composant métier par défaut
 
-#### Scenario: Indicateurs commandes par statut sur la periode en cours
-- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
-- **THEN** la zone de contenu metier affiche le nombre de commandes de la periode en cours pour chaque statut (`Brouillon`, `En attente de paiement`, `Paiement partiel`, `Paiement en cours`, `Confirmee`, `Annulee`) et n'affiche pas d'indicateurs `Demandes en attente` ni `Alertes stock`
+#### Scenario: Indicateurs commandes par statut sur la période en cours
+- **WHEN** un utilisateur consulte l'écran `Shell de référence`
+- **THEN** la zone de contenu métier affiche le nombre de commandes de la période en cours pour chaque statut (`Brouillon`, `En attente de paiement`, `Paiement partiel`, `Paiement en cours`, `Confirmée`, `Annulée`) et n'affiche pas d'indicateurs `Demandes en attente` ni `Alertes stock`
 
-#### Scenario: Affichage de la periode en cours et de son etat
-- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
-- **THEN** la maquette affiche la periode marquee `en cours` et son etat (`Ouverte` ou `Fermee`) pour contextualiser les indicateurs de commande
+#### Scenario: Affichage de la période en cours et de son état
+- **WHEN** un utilisateur consulte l'écran `Shell de référence`
+- **THEN** la maquette affiche la période marquée `en cours` et son état (`Ouverte` ou `Fermée`) pour contextualiser les indicateurs de commande
 
-#### Scenario: Metriques de pilotage sur la periode en cours
-- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
-- **THEN** la zone centrale affiche des metriques pertinentes de la periode en cours (au minimum `CA`, `Nb commandes`, `Panier moyen`) en complement de la repartition des statuts
+#### Scenario: Métriques de pilotage sur la période en cours
+- **WHEN** un utilisateur consulte l'écran `Shell de référence`
+- **THEN** la zone centrale affiche des métriques pertinentes de la période en cours (au minimum `CA`, `Nb commandes`, `Panier moyen`) en complément de la répartition des statuts
 
-#### Scenario: Ordre de grandeur du panier moyen coherent avec le parcours famille
-- **WHEN** la maquette `Shell de reference` affiche les metriques de la periode en cours
-- **THEN** la valeur de `Panier moyen` est representee avec un ordre de grandeur realiste pour le contexte famille (autour de 50 EUR, et non de plusieurs centaines ou milliers d'euros)
+#### Scenario: Ordre de grandeur du panier moyen cohérent avec le parcours famille
+- **WHEN** la maquette `Shell de référence` affiche les métriques de la période en cours
+- **THEN** la valeur de `Panier moyen` est représentée avec un ordre de grandeur réaliste pour le contexte famille (autour de 50 EUR, et non de plusieurs centaines ou milliers d'euros)
 
-#### Scenario: Recapitulatif des periodes passees
-- **WHEN** un utilisateur consulte l'ecran `Shell de reference`
-- **THEN** la maquette affiche un recapitulatif des periodes passees (au minimum `CA` et `Nb commandes` par periode) pour comparer la periode en cours avec l'historique
+#### Scenario: Récapitulatif des périodes passées
+- **WHEN** un utilisateur consulte l'écran `Shell de référence`
+- **THEN** la maquette affiche un récapitulatif des périodes passées (au minimum `CA` et `Nb commandes` par période) pour comparer la période en cours avec l'historique
 
-#### Scenario: Referentiel visuel de shell en phase de reecriture
-- **WHEN** l'equipe prepare la reecriture de l'interface
-- **THEN** elle dispose d'une maquette statique du shell, consultable dans l'espace dedie des maquettes, comme reference de validation
+#### Scenario: Référentiel visuel de shell en phase de réécriture
+- **WHEN** l'équipe prépare la réécriture de l'interface
+- **THEN** elle dispose d'une maquette statique du shell, consultable dans l'espace dédié des maquettes, comme référence de validation
 
-#### Scenario: Navigation shell adaptee au role famille pour les commandes
+#### Scenario: Navigation shell adaptée au rôle famille pour les commandes
 - **WHEN** un utilisateur famille navigue dans le shell maquette
-- **THEN** il accede a la liste de ses propres commandes et aux ecrans de creation et detail de commande
+- **THEN** il accède à la liste de ses propres commandes et aux écrans de création et détail de commande
 
-#### Scenario: Navigation shell adaptee au role gestionnaire pour le referentiel
+#### Scenario: Navigation shell adaptée au rôle gestionnaire pour le référentiel
 - **WHEN** un utilisateur gestionnaire navigue dans le shell maquette
-- **THEN** il accede aux ecrans periodes, articles, tarifs, stock et consolidation
+- **THEN** il accède aux écrans périodes, articles, tarifs, stock et consolidation
 
-#### Scenario: Navigation shell adaptee au role gestionnaire pour le pilotage periodes/tarifs
-- **WHEN** un utilisateur gestionnaire suit le parcours periodes et tarifs
-- **THEN** il peut acceder aux ecrans de detail de periode, au sous-ecran tarifs d'un article, a l'edition de prix et a la reprise de tarifs vers la periode en cours
+#### Scenario: Navigation shell adaptée au rôle gestionnaire pour le pilotage périodes/tarifs
+- **WHEN** un utilisateur gestionnaire suit le parcours périodes et tarifs
+- **THEN** il peut accéder aux écrans de détail de période, au sous-écran tarifs d'un article, à l'édition de prix et à la reprise de tarifs vers la période en cours
 
-#### Scenario: Navigation shell adaptee aux regles de disponibilite article
-- **WHEN** un utilisateur gestionnaire configure la disponibilite d'un article
-- **THEN** les parcours de creation de commande et de gestion de stock refletent les filtres de disponibilite commandes/stock
+#### Scenario: Navigation shell adaptée aux règles de disponibilité article
+- **WHEN** un utilisateur gestionnaire configure la disponibilité d'un article
+- **THEN** les parcours de création de commande et de gestion de stock reflètent les filtres de disponibilité commandes/stock
 
-#### Scenario: Navigation d'entree famille avec creation de compte
-- **WHEN** un utilisateur famille consulte les parcours d'entree
-- **THEN** il accede a un ecran dedie de creation de compte en plus de connexion, activation et recuperation d'acces
+#### Scenario: Navigation d'entrée famille avec création de compte
+- **WHEN** un utilisateur famille consulte les parcours d'entrée
+- **THEN** il accède à un écran dédié de création de compte en plus de connexion, activation et récupération d'accès
 
 #### Scenario: Navigation shell gestionnaire pour l'encaissement commande
 - **WHEN** un gestionnaire doit enregistrer des paiements de commande
-- **THEN** il suit un parcours dedie declenche depuis l'action `Encaisser (cheque/espece)` d'une commande `Confirmee` (depuis la liste des commandes ou le detail de commande), ouvrant directement la saisie d'un ou plusieurs paiements
+- **THEN** il suit un parcours dédié déclenché depuis l'action `Encaisser (chèque/espèce)` d'une commande `Confirmée` (depuis la liste des commandes ou le détail de commande), ouvrant directement la saisie d'un ou plusieurs paiements
 
 #### Scenario: Navigation shell famille pour la commande de fournitures scolaires
-- **WHEN** une famille prepare une commande
-- **THEN** le shell maquette donne acces a un formulaire de commande en plusieurs etapes: validation contact, saisie enfants, selection des fournitures, validation de commande et choix du mode de paiement
+- **WHEN** une famille prépare une commande
+- **THEN** le shell maquette donne accès à un formulaire de commande en plusieurs étapes: validation contact, saisie enfants, sélection des fournitures, validation de commande et choix du mode de paiement
 
-#### Scenario: Navigation shell gestionnaire pour la cotisation de periode
-- **WHEN** un gestionnaire pilote une periode
-- **THEN** il accede a la configuration de la cotisation de la periode (1er enfant, 2e enfant, 3e et suivants)
+#### Scenario: Navigation shell gestionnaire pour la cotisation de période
+- **WHEN** un gestionnaire pilote une période
+- **THEN** il accède à la configuration de la cotisation de la période (1er enfant, 2e enfant, 3e et suivants)
 
 ### Requirement: La navigation composant MUST être basée sur une pile
 La navigation MUST conserver un historique de parcours permettant l’aller, le retour et la restauration de contexte.

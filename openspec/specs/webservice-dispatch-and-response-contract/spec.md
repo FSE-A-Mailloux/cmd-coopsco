@@ -27,7 +27,7 @@ Les opérations critiques MUST être traitées de façon atomique: succès compl
 
 #### Scenario: Succès du gestionnaire
 - **WHEN** une action d’écriture se termine sans erreur
-- **THEN** les changements sont validés de manière atomique
+- **THEN** les changements sont valides de manière atomique
 
 #### Scenario: Échec du gestionnaire
 - **WHEN** une action d’écriture échoue pendant le traitement

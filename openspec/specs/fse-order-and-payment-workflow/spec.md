@@ -40,70 +40,70 @@ Le workflow commande MUST prendre en charge les règlements, les transitions d�
 - **WHEN** un règlement invalide est soumis
 - **THEN** le système refuse l’opération avec une erreur fonctionnelle explicite
 
-### Requirement: Le remboursement manuel d'une commande annulee MUST etre trace et coherent
-Le systeme MUST permettre a un gestionnaire habilite d'enregistrer un ou plusieurs remboursements manuels uniquement pour une commande annulee disposant d'un avoir rattache a cette meme commande. Chaque remboursement MUST etre conserve comme un mouvement distinct des paiements d'origine et MUST enregistrer la commande, l'avoir, le montant, la devise de la commande, le moyen de remboursement, la date effective, une reference non vide et le gestionnaire responsable.
+### Requirement: Le remboursement manuel d'une commande annulée MUST être tracé et cohérent
+Le système MUST permettre à un gestionnaire habilité d'enregistrer un ou plusieurs remboursements manuels uniquement pour une commande annulée disposant d'un avoir rattaché à cette même commande. Chaque remboursement MUST être conservé comme un mouvement distinct des paiements d'origine et MUST enregistrer la commande, l'avoir, le montant, la devise de la commande, le moyen de remboursement, la date effective, une référence non vide et le gestionnaire responsable.
 
-Le montant remboursable de la commande MUST etre egal au total des paiements effectivement encaisses et conserves dans l'historique ; un paiement refuse, annule ou encore en cours MUST NOT etre inclus. Le solde disponible MUST etre calcule comme le montant remboursable moins la somme des remboursements deja enregistres.
+Le montant remboursable de la commande MUST être égal au total des paiements effectivement encaissés et conservés dans l'historique ; un paiement refusé, annulé ou encore en cours MUST NOT être inclus. Le solde disponible MUST être calculé comme le montant remboursable moins la somme des remboursements déjà enregistrés.
 
-Un remboursement MUST avoir un montant strictement positif et exprime avec la precision monetaire de la commande. Les liens vers la commande, l'avoir et le gestionnaire MUST respecter l'integrite referentielle ; l'avoir MUST appartenir a la commande remboursee. Le systeme MUST refuser un remboursement si l'une de ces references est absente ou invalide. La reference operationnelle MUST etre non vide apres suppression des espaces de debut et de fin.
+Un remboursement MUST avoir un montant strictement positif et exprimé avec la précision monétaire de la commande. Les liens vers la commande, l'avoir et le gestionnaire MUST respecter l'intégrité référentielle ; l'avoir MUST appartenir à la commande remboursée. Le système MUST refuser un remboursement si l'une de ces références est absente ou invalide. La référence opérationnelle MUST être non vide après suppression des espaces de début et de fin.
 
-Les remboursements enregistres MUST etre immuables : le systeme MUST conserver leur montant, moyen, date, reference et gestionnaire tels qu'enregistres, sans modifier ni supprimer le mouvement ou les paiements historiques. Toute procedure corrective ulterieure MUST produire une nouvelle trace plutot que reecrire silencieusement l'historique.
+Les remboursements enregistrés MUST être immuables : le système MUST conserver leur montant, moyen, date, référence et gestionnaire tels qu'enregistrés, sans modifier ni supprimer le mouvement ou les paiements historiques. Toute procédure corrective ultérieure MUST produire une nouvelle trace plutôt que réécrire silencieusement l'historique.
 
-L'enregistrement et le calcul du montant restant MUST etre atomiques. Dans la transaction, le systeme MUST recalculer le total des paiements historiques et des remboursements deja enregistres, puis verifier que le nouveau remboursement ne depasse pas le solde disponible. La verification et l'ecriture MUST etre protegees contre deux enregistrements concurrents qui depasseraient ensemble ce solde. En cas d'echec d'une validation ou d'une ecriture, le systeme MUST annuler l'operation sans laisser de remboursement partiel persiste.
+L'enregistrement et le calcul du montant restant MUST être atomiques. Dans la transaction, le système MUST recalculer le total des paiements historiques et des remboursements déjà enregistrés, puis vérifier que le nouveau remboursement ne dépasse pas le solde disponible. La vérification et l'écriture MUST être protégées contre deux enregistrements concurrents qui dépasseraient ensemble ce solde. En cas d'échec d'une validation ou d'une écriture, le système MUST annuler l'opération sans laisser de remboursement partiel persisté.
 
-Le systeme MUST verifier l'habilitation cote serveur a chaque enregistrement. Le gestionnaire responsable MUST provenir de l'identite authentifiee et autorisee, et non d'une valeur librement choisie ou fournie par le formulaire. Une tentative non autorisee MUST etre refusee et MUST laisser les paiements et remboursements inchanges. La consultation des montants et de l'historique des remboursements MUST etre reservee aux gestionnaires habilites ; une famille MUST NOT pouvoir consulter les donnees internes de remboursement ni declencher un remboursement.
+Le système MUST vérifier l'habilitation côté serveur à chaque enregistrement. Le gestionnaire responsable MUST provenir de l'identité authentifiée et autorisée, et non d'une valeur librement choisie ou fournie par le formulaire. Une tentative non autorisée MUST être refusée et MUST laisser les paiements et remboursements inchangés. La consultation des montants et de l'historique des remboursements MUST être réservée aux gestionnaires habilités ; une famille MUST NOT pouvoir consulter les données internes de remboursement ni déclencher un remboursement.
 
 #### Scenario: Enregistrement d'un remboursement manuel
-- **WHEN** un gestionnaire habilite enregistre un remboursement valide pour une commande annulee avec avoir
-- **THEN** le systeme conserve le remboursement avec ses informations de tracabilite et met a jour le montant restant a rembourser
+- **WHEN** un gestionnaire habilité enregistre un remboursement valide pour une commande annulée avec avoir
+- **THEN** le système conserve le remboursement avec ses informations de traçabilité et met à jour le montant restant à rembourser
 
-#### Scenario: Persistance avec liens coherents
-- **WHEN** un remboursement est enregistre avec une commande, un avoir ou un gestionnaire absent, inexistant, ou avec un avoir rattache a une autre commande
-- **THEN** le systeme refuse l'enregistrement et ne conserve aucun mouvement de remboursement
+#### Scenario: Persistance avec liens cohérents
+- **WHEN** un remboursement est enregistré avec une commande, un avoir ou un gestionnaire absent, inexistant, ou avec un avoir rattaché à une autre commande
+- **THEN** le système refuse l'enregistrement et ne conserve aucun mouvement de remboursement
 
-#### Scenario: Montant positif et precision monetaire
-- **WHEN** un gestionnaire soumet un montant nul, negatif ou comportant une precision superieure a celle de la devise de la commande
-- **THEN** le systeme refuse l'enregistrement et indique que le montant doit etre strictement positif et respecte la precision monetaire autorisee
+#### Scenario: Montant positif et précision monétaire
+- **WHEN** un gestionnaire soumet un montant nul, négatif ou comportant une précision supérieure à celle de la devise de la commande
+- **THEN** le système refuse l'enregistrement et indique que le montant doit être strictement positif et respecter la précision monétaire autorisée
 
 #### Scenario: Calcul du montant remboursable
-- **WHEN** le systeme calcule le solde disponible d'une commande
-- **THEN** il additionne uniquement les paiements effectivement encaisses, exclut les paiements refuses, annules ou en cours, puis soustrait les remboursements deja enregistres
+- **WHEN** le système calcule le solde disponible d'une commande
+- **THEN** il additionne uniquement les paiements effectivement encaissés, exclut les paiements refusés, annulés ou en cours, puis soustrait les remboursements déjà enregistrés
 
 #### Scenario: Remboursement partiel
-- **WHEN** le montant cumule des remboursements est inferieur au montant total regle sur la commande
-- **THEN** le systeme indique que la commande est partiellement remboursee et affiche le montant restant a rembourser
+- **WHEN** le montant cumulé des remboursements est inférieur au montant total réglé sur la commande
+- **THEN** le système indique que la commande est partiellement remboursée et affiche le montant restant à rembourser
 
 #### Scenario: Remboursement total
-- **WHEN** le montant cumule des remboursements atteint le montant total regle sur la commande
-- **THEN** le systeme indique que la commande est entierement remboursee
+- **WHEN** le montant cumulé des remboursements atteint le montant total réglé sur la commande
+- **THEN** le système indique que la commande est entièrement remboursée
 
-#### Scenario: Depassement du montant remboursable
-- **WHEN** un gestionnaire soumet un remboursement dont le montant cumule depasse le montant total regle sur la commande
-- **THEN** le systeme refuse l'enregistrement et signale explicitement le montant encore remboursable
+#### Scenario: Dépassement du montant remboursable
+- **WHEN** un gestionnaire soumet un remboursement dont le montant cumulé dépasse le montant total réglé sur la commande
+- **THEN** le système refuse l'enregistrement et signale explicitement le montant encore remboursable
 
 #### Scenario: Deux remboursements concurrents
-- **WHEN** deux gestionnaires soumettent simultanement des remboursements dont la somme depasserait le solde disponible
-- **THEN** le systeme n'enregistre que les remboursements qui respectent le plafond et refuse explicitement celui ou ceux qui le depassent en indiquant le solde restant actualise
+- **WHEN** deux gestionnaires soumettent simultanément des remboursements dont la somme dépasserait le solde disponible
+- **THEN** le système n'enregistre que les remboursements qui respectent le plafond et refuse explicitement celui ou ceux qui le dépassent en indiquant le solde restant actualisé
 
-#### Scenario: Remboursement sur commande non eligible
-- **WHEN** un gestionnaire demande un remboursement pour une commande non annulee ou ne disposant pas d'un avoir
-- **THEN** le systeme refuse l'operation avec une erreur fonctionnelle explicite
+#### Scenario: Remboursement sur commande non éligible
+- **WHEN** un gestionnaire demande un remboursement pour une commande non annulée ou ne disposant pas d'un avoir
+- **THEN** le système refuse l'opération avec une erreur fonctionnelle explicite
 
-#### Scenario: Gestionnaire non habilite
-- **WHEN** un utilisateur non habilite tente d'enregistrer un remboursement ou fournit l'identifiant d'un autre gestionnaire comme responsable
-- **THEN** le systeme refuse l'operation, ne cree aucun remboursement et n'accepte pas une identite de gestionnaire qui differe de l'identite authentifiee autorisee
+#### Scenario: Gestionnaire non habilité
+- **WHEN** un utilisateur non habilité tente d'enregistrer un remboursement ou fournit l'identifiant d'un autre gestionnaire comme responsable
+- **THEN** le système refuse l'opération, ne crée aucun remboursement et n'accepte pas une identité de gestionnaire qui diffère de l'identité authentifiée autorisée
 
-#### Scenario: Famille consultant une commande remboursee
-- **WHEN** un membre d'une famille consulte sa commande annulee
-- **THEN** le systeme ne lui expose ni l'historique interne des remboursements, ni l'identite du gestionnaire, ni une action permettant d'enregistrer un remboursement
+#### Scenario: Famille consultant une commande remboursée
+- **WHEN** un membre d'une famille consulte sa commande annulée
+- **THEN** le système ne lui expose ni l'historique interne des remboursements, ni l'identité du gestionnaire, ni une action permettant d'enregistrer un remboursement
 
 #### Scenario: Conservation des mouvements historiques
-- **WHEN** un remboursement valide est enregistre
-- **THEN** le systeme ajoute un mouvement distinct et ne modifie ni ne supprime aucun paiement historique ni remboursement anterieur
+- **WHEN** un remboursement valide est enregistré
+- **THEN** le système ajoute un mouvement distinct et ne modifie ni ne supprime aucun paiement historique ni remboursement antérieur
 
 #### Scenario: Moyen de remboursement
 - **WHEN** un gestionnaire enregistre un remboursement
-- **THEN** le systeme lui permet de selectionner un moyen de remboursement manuel applicable a la carte bancaire, au cheque ou aux especes
+- **THEN** le système lui permet de sélectionner un moyen de remboursement manuel applicable à la carte bancaire, au chèque ou aux espèces
 
 ### Requirement: Les documents FSE MUST être générés à partir des données de commande
 Le système MUST générer les documents de commande et de facturation à partir des données métier validées et les rendre disponibles au téléchargement.
@@ -122,4 +122,3 @@ Le paiement en ligne MUST intégrer un prestataire externe, retourner un statut 
 #### Scenario: Demande de checkout existante
 - **WHEN** un paiement déjà initié est reconsulté
 - **THEN** le système retourne l’état courant du paiement ou le statut explicite correspondant
-

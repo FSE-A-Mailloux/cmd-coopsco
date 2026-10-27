@@ -9,8 +9,8 @@
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Administration - Utilisateurs</h1><p class="subtitle">Gestion des comptes et statuts d'acces</p></div>
-      <span class="static-pill">Previsualisation statique</span>
+      <div class="title-stack"><h1>Administration - Utilisateurs</h1><p class="subtitle">Gestion des comptes et statuts d'accès</p></div>
+      <span class="static-pill">Prévisualisation statique</span>
     </header>
 
     <section class="card">
@@ -19,8 +19,8 @@
         <span class="tag">Contexte: Admin</span>
       </div>
       <div class="field">
-        <label for="user-search">Recherche utilisateurs (nom, email, role, statut)</label>
-        <input id="user-search" class="input" type="search" placeholder="Ex: Lea, gestionnaire, actif">
+        <label for="user-search">Recherche utilisateurs (nom, email, rôle, statut)</label>
+        <input id="user-search" class="input" type="search" placeholder="Ex. : Léa, gestionnaire, actif">
       </div>
       <div class="listing-table-wrap">
         <table aria-label="Listing utilisateurs">
@@ -28,23 +28,23 @@
             <tr>
               <th>Nom</th>
               <th>Email</th>
-              <th>Role</th>
+              <th>Rôle</th>
               <th>Statut</th>
               <th>Changement de mot de passe</th>
-              <th>Changer le role</th>
+              <th>Changer le rôle</th>
               <th>Historique</th>
             </tr>
           </thead>
           <tbody>
             <tr data-user-id="U-1001">
-              <td>Lea Martin</td>
+              <td>Léa Martin</td>
               <td>lea.martin@coopsco.fr</td>
               <td class="current-role">Gestionnaire</td>
               <td>Actif</td>
               <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
-                  <select class="select role-select" aria-label="Role cible Lea Martin">
+                  <select class="select role-select" aria-label="Rôle cible Léa Martin">
                     <option>Famille</option>
                     <option selected>Gestionnaire</option>
                     <option>Admin</option>
@@ -62,7 +62,7 @@
               <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
-                  <select class="select role-select" aria-label="Role cible Romain Petit">
+                  <select class="select role-select" aria-label="Rôle cible Romain Petit">
                     <option>Famille</option>
                     <option>Gestionnaire</option>
                     <option selected>Admin</option>
@@ -73,14 +73,14 @@
               <td><button type="button" class="button view-history-btn">Voir historique</button></td>
             </tr>
             <tr data-user-id="U-1003">
-              <td>Ines Caron</td>
+              <td>Inès Caron</td>
               <td>ines.caron@coopsco.fr</td>
               <td class="current-role">Famille</td>
               <td>Suspendu</td>
               <td><button type="button" class="button ghost force-password-change-btn">Imposer à la prochaine connexion</button></td>
               <td>
                 <div class="actions">
-                  <select class="select role-select" aria-label="Role cible Ines Caron">
+                  <select class="select role-select" aria-label="Rôle cible Inès Caron">
                     <option selected>Famille</option>
                     <option>Gestionnaire</option>
                     <option>Admin</option>
@@ -93,13 +93,13 @@
           </tbody>
         </table>
       </div>
-      <p id="role-change-feedback" class="muted">Action reservee au role Admin. Les changements de role sont traces.</p>
-      <p class="muted">Action reservee au role Admin. Elle n'effectue pas une reinitialisation : le titulaire choisira son nouveau mot de passe a sa prochaine connexion.</p>
+      <p id="role-change-feedback" class="muted">Action réservée au rôle Admin. Les changements de rôle sont tracés.</p>
+      <p class="muted">Action réservée au rôle Admin. Elle n'effectue pas une réinitialisation : le titulaire choisira son nouveau mot de passe à sa prochaine connexion.</p>
       <p id="password-change-feedback" class="muted" role="status" aria-live="polite" hidden></p>
 
       <dialog id="password-change-dialog" aria-labelledby="password-change-title">
         <h2 id="password-change-title">Imposer un changement de mot de passe</h2>
-        <p>Le titulaire devra choisir lui-meme un nouveau mot de passe a sa prochaine connexion. Aucun mot de passe n'est defini ou affiche ici.</p>
+        <p>Le titulaire devra choisir lui-même un nouveau mot de passe à sa prochaine connexion. Aucun mot de passe n'est défini ou affiché ici.</p>
         <p>Compte cible : <strong id="password-change-user-name"></strong> (<span id="password-change-user-email"></span>)</p>
         <div class="actions">
           <button type="button" class="button primary" id="confirm-password-change">Confirmer (aperçu)</button>
@@ -111,24 +111,24 @@
 
     <section class="card">
       <div class="row">
-        <h2 class="card-title">Historique des changements de role</h2>
+        <h2 class="card-title">Historique des changements de rôle</h2>
         <span class="tag">Source: endpoint admin</span>
       </div>
-      <p class="muted">Utilisateur selectionne: <strong id="history-user-label">U-1001</strong></p>
+      <p class="muted">Utilisateur sélectionné: <strong id="history-user-label">U-1001</strong></p>
       <div class="listing-table-wrap">
-        <table aria-label="Historique role utilisateur">
+        <table aria-label="Historique rôle utilisateur">
           <thead>
             <tr>
               <th>Date</th>
               <th>Auteur admin</th>
-              <th>Ancien role</th>
-              <th>Nouveau role</th>
+              <th>Ancien rôle</th>
+              <th>Nouveau rôle</th>
             </tr>
           </thead>
           <tbody id="role-history-body"></tbody>
         </table>
       </div>
-      <p id="history-feedback" class="muted">Historique charge depuis l'endpoint quand disponible.</p>
+      <p id="history-feedback" class="muted">Historique chargé depuis l'endpoint quand disponible.</p>
     </section>
   </div>
 
@@ -186,7 +186,7 @@
         const message =
           payload && payload.error && payload.error.message
             ? payload.error.message
-            : "Echec de l'operation";
+            : "Échec de l'opération";
         throw new Error(message);
       }
       return payload;
@@ -224,14 +224,14 @@
         });
         const payload = await parseJsonResponse(response);
         renderHistory(payload.history || []);
-        historyFeedback.textContent = "Historique charge depuis l'endpoint admin.";
+        historyFeedback.textContent = "Historique chargé depuis l'endpoint admin.";
       } catch (error) {
         const fallback = (fallbackHistory[userId] || []).slice().sort((a, b) => {
           return new Date(b.changedAt).getTime() - new Date(a.changedAt).getTime();
         });
         renderHistory(fallback);
         historyFeedback.textContent =
-          "Endpoint indisponible dans cette previsualisation. Affichage d'un jeu de donnees local.";
+          "Endpoint indisponible dans cette prévisualisation. Affichage d'un jeu de données local.";
       }
     }
 
@@ -242,7 +242,7 @@
       const nextRole = select ? select.value : "";
 
       if (!ALLOWED_ROLES.has(nextRole)) {
-        feedback.textContent = "Role invalide. Choisir uniquement Famille, Gestionnaire ou Admin.";
+        feedback.textContent = "Rôle invalide. Choisir uniquement Famille, Gestionnaire ou Admin.";
         return;
       }
 
@@ -262,10 +262,10 @@
         const payload = await parseJsonResponse(response);
         roleCell.textContent = payload.newRole;
         feedback.textContent =
-          "Role mis a jour pour " + userId + " : " + payload.previousRole + " -> " + payload.newRole + ".";
+          "Rôle mis à jour pour " + userId + " : " + payload.previousRole + " -> " + payload.newRole + ".";
         await loadHistory(userId);
       } catch (error) {
-        feedback.textContent = "Changement refuse: " + error.message;
+        feedback.textContent = "Changement refusé: " + error.message;
       }
     }
 
@@ -312,7 +312,7 @@
       }
       passwordChangeFeedback.textContent =
         "Exemple d'erreur : la demande pour " + passwordChangeTarget.name +
-        " a ete refusee. Aucune modification n'a ete effectuee.";
+        " a été refusée. Aucune modification n'a été effectuée.";
       passwordChangeFeedback.hidden = false;
     });
 

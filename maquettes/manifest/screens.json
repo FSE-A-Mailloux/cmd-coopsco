@@ -3,35 +3,35 @@
     "id": "shell-reference",
     "roles": ["gestionnaire"],
     "category": "Shell applicatif",
-    "title": "Shell de reference",
+    "title": "Shell de référence",
     "source": "../screens/shell/shell-reference.html"
   },
   {
     "id": "entree-connexion",
     "roles": ["famille"],
-    "category": "Parcours d'entree",
+    "category": "Parcours d'entrée",
     "title": "Connexion",
     "source": "../screens/entree/entree-connexion.html"
   },
   {
     "id": "entree-activation",
     "roles": ["famille"],
-    "category": "Parcours d'entree",
+    "category": "Parcours d'entrée",
     "title": "Activation de compte",
     "source": "../screens/entree/entree-activation.html"
   },
   {
     "id": "entree-creation-compte",
     "roles": ["famille"],
-    "category": "Parcours d'entree",
-    "title": "Creation de compte",
+    "category": "Parcours d'entrée",
+    "title": "Création de compte",
     "source": "../screens/entree/entree-creation-compte.html"
   },
   {
     "id": "entree-recuperation-acces",
     "roles": ["famille"],
-    "category": "Parcours d'entree",
-    "title": "Recuperation d'acces",
+    "category": "Parcours d'entrée",
+    "title": "Récupération d'accès",
     "source": "../screens/entree/entree-recuperation-acces.html"
   },
   {
@@ -59,14 +59,14 @@
     "id": "commandes-formulaire",
     "roles": ["famille", "gestionnaire"],
     "category": "Parcours commandes",
-    "title": "Creation commande famille (multi-etapes)",
+    "title": "Création commande famille (multi-étapes)",
     "source": "../screens/commandes/commandes-formulaire.html"
   },
   {
     "id": "commandes-detail",
     "roles": ["famille", "gestionnaire"],
     "category": "Parcours commandes",
-    "title": "Detail commande",
+    "title": "Détail commande",
     "source": "../screens/commandes/commandes-detail.html"
   },
   {
@@ -94,28 +94,28 @@
     "id": "gestionnaire-periodes",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",
-    "title": "Periodes - Listing et actions",
+    "title": "Périodes - Listing et actions",
     "source": "../screens/administration/admin-periodes.html"
   },
   {
     "id": "gestionnaire-periodes-detail",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",
-    "title": "Periodes - Detail",
+    "title": "Périodes - Détail",
     "source": "../screens/administration/admin-periodes-detail.html"
   },
   {
     "id": "gestionnaire-periodes-creation",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",
-    "title": "Periodes - Creation",
+    "title": "Périodes - Création",
     "source": "../screens/administration/admin-periodes-creation.html"
   },
   {
     "id": "gestionnaire-periodes-modification",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",
-    "title": "Periodes - Modification",
+    "title": "Périodes - Modification",
     "source": "../screens/administration/admin-periodes-modification.html"
   },
   {
@@ -129,21 +129,21 @@
     "id": "gestionnaire-articles-creation",
     "roles": ["gestionnaire"],
     "category": "Domaine gestionnaire",
-    "title": "Articles - Creation",
+    "title": "Articles - Création",
     "source": "../screens/administration/admin-articles-creation.html"
   },
   {
     "id": "gestionnaire-articles-tarifs",
     "roles": ["gestionnaire"],
-    "category": "Articles - Sous-ecrans tarifs",
-    "title": "Article - Tarifs par periode",
+    "category": "Articles - Sous-écrans tarifs",
+    "title": "Article - Tarifs par période",
     "source": "../screens/administration/admin-tarifs.html"
   },
   {
     "id": "gestionnaire-articles-tarifs-edition-prix",
     "roles": ["gestionnaire"],
-    "category": "Articles - Sous-ecrans tarifs",
-    "title": "Article - Modification prix par periode",
+    "category": "Articles - Sous-écrans tarifs",
+    "title": "Article - Modification prix par période",
     "source": "../screens/administration/admin-tarifs-edition-prix.html"
   },
   {

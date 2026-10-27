@@ -5,13 +5,13 @@ Définir les règles métier cibles pour les périodes de campagne, le cycle de 
 ## Requirements
 
 ### Requirement: La gestion des périodes MUST supporter les contrôles du cycle de campagne
-Le système MUST distinguer, pour chaque période, un `statut de periode` (`En cours` ou `Non en cours`) et un `etat d'ouverture` (`Ouverte` ou `Fermee`).  
+Le système MUST distinguer, pour chaque période, un `statut de période` (`En cours` ou `Non en cours`) et un `état d'ouverture` (`Ouverte` ou `Fermée`).\
 Le statut `Non en cours` MUST couvrir les périodes passées et les périodes en préparation, et ces périodes MUST NOT être ouvertes aux commandes.  
 Le système MUST garantir l’unicité de la période au statut `En cours` et MUST autoriser l’ouverture des commandes uniquement sur cette période.
 
-#### Scenario: Définition d'une periode en cours
-- **WHEN** une periode est definie `En cours`
-- **THEN** le systeme retire ce statut des autres periodes
+#### Scenario: Définition d'une période en cours
+- **WHEN** une période est définie `En cours`
+- **THEN** le système retire ce statut des autres périodes
 
 #### Scenario: Ouverture/fermeture de période en cours
 - **WHEN** le statut d’ouverture de la période en cours est modifié

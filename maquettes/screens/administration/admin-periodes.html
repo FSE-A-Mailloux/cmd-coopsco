@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestionnaire - Periodes</title>
+  <title>Gestionnaire - Périodes</title>
   <link rel="stylesheet" href="../../assets/base.css">
 </head>
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Periodes commerciales</h1><p class="subtitle">Domaine gestionnaire - pilotage des periodes et des actions d'etat</p></div>
-      <span class="static-pill">Previsualisation statique</span>
+      <div class="title-stack"><h1>Périodes commerciales</h1><p class="subtitle">Domaine gestionnaire - pilotage des périodes et des actions d'état</p></div>
+      <span class="static-pill">Prévisualisation statique</span>
     </header>
     <section class="card">
       <div class="actions">
-        <button class="button">Reprendre les tarifs de la periode precedente</button>
-        <a class="button primary" href="./admin-periodes-creation.html">Creer une periode</a>
+        <button class="button">Reprendre les tarifs de la période précédente</button>
+        <a class="button primary" href="./admin-periodes-creation.html">Créer une période</a>
       </div>
       <div class="listing-table-wrap">
         <table>
-          <thead><tr><th>Periode</th><th>Debut</th><th>Fin</th><th>Statut periode</th><th>Etat d'ouverture</th><th>Cotisation (1er/2e/3e+)</th><th>Actions</th></tr></thead>
+          <thead><tr><th>Période</th><th>Début</th><th>Fin</th><th>Statut période</th><th>État d'ouverture</th><th>Cotisation (1er/2e/3e+)</th><th>Actions</th></tr></thead>
           <tbody>
             <tr>
               <td>Rentrée 2026</td>
@@ -28,31 +28,31 @@
               <td>En cours</td>
               <td>Ouverte</td>
               <td>12 EUR / 8 EUR / 5 EUR</td>
-              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Detail</a><button class="button">Fermer</button><button class="button" disabled>Definir en cours</button></div></td>
+              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Détail</a><button class="button">Fermer</button><button class="button" disabled>Définir en cours</button></div></td>
             </tr>
             <tr>
-              <td>Noel 2026</td>
+              <td>Noël 2026</td>
               <td>01/10/2026</td>
               <td>15/12/2026</td>
-              <td>Non en cours (periode passee)</td>
-              <td>Fermee</td>
+              <td>Non en cours (période passée)</td>
+              <td>Fermée</td>
               <td>11 EUR / 8 EUR / 5 EUR</td>
-              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Detail</a><span class="tag">Ouvrir indisponible (hors periode en cours)</span><a class="button primary" href="./admin-periodes-modification.html">Definir en cours</a></div></td>
+              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Détail</a><span class="tag">Ouvrir indisponible (hors période en cours)</span><a class="button primary" href="./admin-periodes-modification.html">Définir en cours</a></div></td>
             </tr>
             <tr>
               <td>Rentrée 2027</td>
               <td>01/06/2027</td>
               <td>30/09/2027</td>
-              <td>Non en cours (periode en preparation)</td>
-              <td>Fermee</td>
-              <td>Non configuree</td>
-              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Detail</a><span class="tag">Ouvrir indisponible (hors periode en cours)</span><a class="button primary" href="./admin-periodes-modification.html">Definir en cours</a></div></td>
+              <td>Non en cours (période en préparation)</td>
+              <td>Fermée</td>
+              <td>Non configurée</td>
+              <td><div class="actions"><a class="button" href="./admin-periodes-detail.html">Détail</a><span class="tag">Ouvrir indisponible (hors période en cours)</span><a class="button primary" href="./admin-periodes-modification.html">Définir en cours</a></div></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="muted">Regles de periode: le statut est `En cours` ou `Non en cours` (passee/en preparation). Une seule periode peut etre `En cours` et seules les periodes `En cours` peuvent etre `Ouverte`.</p>
-      <p class="muted">La cotisation est configuree par periode avec degressivite: 1er enfant, 2e enfant, 3e et suivants.</p>
+      <p class="muted">Règles de période: le statut est `En cours` ou `Non en cours` (passée/en préparation). Une seule période peut être `En cours` et seules les périodes `En cours` peuvent être `Ouverte`.</p>
+      <p class="muted">La cotisation est configurée par période avec dégressivité: 1er enfant, 2e enfant, 3e et suivants.</p>
     </section>
   </div>
 </body>

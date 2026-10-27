@@ -9,19 +9,19 @@
 <body class="mockup-screen">
   <div class="mockup-container">
     <header class="mockup-header">
-      <div class="title-stack"><h1>Remboursement - Saisie</h1><p class="subtitle">Enregistrement manuel d'un remboursement pour une commande annulee avec avoir</p></div>
-      <span class="static-pill">Previsualisation statique</span>
+      <div class="title-stack"><h1>Remboursement - Saisie</h1><p class="subtitle">Enregistrement manuel d'un remboursement pour une commande annulée avec avoir</p></div>
+      <span class="static-pill">Prévisualisation statique</span>
     </header>
     <section class="layout-3">
       <div class="kpi"><span class="muted">Commande</span><strong>CMD-2401</strong></div>
-      <div class="kpi"><span class="muted">Montant total regle</span><strong>69,30 EUR</strong></div>
-      <div class="kpi"><span class="muted">Reste a rembourser</span><strong>49,30 EUR</strong></div>
+      <div class="kpi"><span class="muted">Montant total réglé</span><strong>69,30 EUR</strong></div>
+      <div class="kpi"><span class="muted">Reste à rembourser</span><strong>49,30 EUR</strong></div>
     </section>
     <section class="card">
       <h2 class="card-title">Contexte de la commande</h2>
-      <p>Statut : <strong>Annulee</strong></p>
+      <p>Statut : <strong>Annulée</strong></p>
       <p>Avoir : <strong>AV-2026-2401</strong></p>
-      <p class="muted">Ce formulaire enregistre un remboursement manuel. Il ne declenche pas le remboursement aupres d'une banque ou d'un prestataire de paiement.</p>
+      <p class="muted">Ce formulaire enregistre un remboursement manuel. Il ne déclenche pas le remboursement auprès d'une banque ou d'un prestataire de paiement.</p>
     </section>
     <section class="card">
       <h2 class="card-title">Nouveau remboursement</h2>
@@ -29,14 +29,14 @@
         <div class="field">
           <label for="refund-amount">Montant (EUR)</label>
           <input class="input" id="refund-amount" name="amount" type="number" min="0.01" max="49.30" step="0.01" value="49.30" required>
-          <span class="muted">Le montant ne peut pas depasser le solde remboursable de 49,30 EUR.</span>
+          <span class="muted">Le montant ne peut pas dépasser le solde remboursable de 49,30 EUR.</span>
         </div>
         <div class="field">
           <label for="refund-method">Moyen de remboursement</label>
           <select class="select" id="refund-method" name="method" required>
             <option value="carte">Carte bancaire</option>
-            <option value="cheque" selected>Cheque</option>
-            <option value="especes">Especes</option>
+            <option value="cheque" selected>Chèque</option>
+            <option value="espèces">Espèces</option>
           </select>
         </div>
         <div class="field">
@@ -44,16 +44,16 @@
           <input class="input" id="refund-date" name="date" type="date" value="2026-09-14" required>
         </div>
         <div class="field">
-          <label for="refund-reference">Reference du remboursement</label>
+          <label for="refund-reference">Référence du remboursement</label>
           <input class="input" id="refund-reference" name="reference" type="text" value="REM-CH-2609-015" required>
         </div>
       </div>
-      <p class="muted">Gestionnaire responsable : Marie Lefebvre (attribue automatiquement au gestionnaire connecte).</p>
+      <p class="muted">Gestionnaire responsable : Marie Lefebvre (attribué automatiquement au gestionnaire connecté).</p>
       <div class="actions">
-        <a class="button" href="./commandes-detail.html">Retour au detail de la commande</a>
+        <a class="button" href="./commandes-detail.html">Retour au détail de la commande</a>
         <button class="button primary" type="button">Enregistrer le remboursement</button>
       </div>
-      <p class="muted">Maquette statique : aucun remboursement n'est execute ni persiste depuis cet ecran de reference.</p>
+      <p class="muted">Maquette statique : aucun remboursement n'est exécuté ni persisté depuis cet écran de référence.</p>
     </section>
   </div>
 </body>
