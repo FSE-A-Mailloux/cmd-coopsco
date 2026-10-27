@@ -46,7 +46,7 @@
         <p class="muted">Le champ de recherche unique interroge le numéro de commande, l'email, le nom et le prénom du parent et de l'enfant; la période est présélectionnée sur la période en cours; les statuts sont filtrables en sélection multiple.</p>
       </section>
       <p class="muted">Référentiel statuts: Brouillon, En attente de paiement, Paiement partiel, Paiement en cours, Confirmée, Annulée.</p>
-      <p class="muted">Une commande peut être annulée tant qu'aucun paiement n'a été enregistré.</p>
+      <p class="muted">Un gestionnaire habilité peut annuler une commande en paiement partiel ou confirmée : un avoir sera émis et, si nécessaire, la facture sera créée avant l'avoir. Cette annulation n'effectue pas de remboursement.</p>
       <div class="listing-table-wrap">
         <table>
           <thead><tr><th>Numéro</th><th>Email parent</th><th>Parent</th><th>Enfant</th><th>Date</th><th>Statut</th><th>Montant</th><th>Actions</th></tr></thead>
@@ -54,9 +54,9 @@
             <tr><td>CMD-2401</td><td>marie.dupont@exemple.fr</td><td>Marie Dupont</td><td>Lina Dupont</td><td>03/09/2026</td><td>Brouillon</td><td>52 EUR</td><td><button class="button">Annuler commande</button></td></tr>
             <tr><td>CMD-2402</td><td>thomas.bernard@exemple.fr</td><td>Thomas Bernard</td><td>Leo Bernard</td><td>04/09/2026</td><td>Brouillon</td><td>47 EUR</td><td><button class="button">Annuler commande</button></td></tr>
             <tr><td>CMD-2403</td><td>fatou.ndiaye@exemple.fr</td><td>Fatou Ndiaye</td><td>Yanis Ndiaye</td><td>04/09/2026</td><td>En attente de paiement</td><td>59 EUR</td><td><button class="button">Annuler commande</button></td></tr>
-            <tr><td>CMD-2404</td><td>julie.martin@exemple.fr</td><td>Julie Martin</td><td>Emma Martin</td><td>05/09/2026</td><td>Paiement partiel</td><td>64 EUR</td><td><span class="tag">Non annulable (paiement enregistré)</span></td></tr>
-            <tr><td>CMD-2405</td><td>samir.benali@exemple.fr</td><td>Samir Benali</td><td>Nour Benali</td><td>05/09/2026</td><td>Paiement en cours</td><td>43 EUR</td><td><span class="tag">Non annulable (paiement enregistré)</span></td></tr>
-            <tr><td>CMD-2406</td><td>camille.roche@exemple.fr</td><td>Camille Roche</td><td>Tom Roche</td><td>06/09/2026</td><td>Confirmée</td><td>55 EUR</td><td><div class="actions"><a class="button primary" href="./commandes-paiements-saisie.html">Encaisser (chèque/espèce)</a><span class="tag">Non annulable</span></div></td></tr>
+            <tr><td>CMD-2404</td><td>julie.martin@exemple.fr</td><td>Julie Martin</td><td>Emma Martin</td><td>05/09/2026</td><td>Paiement partiel</td><td>64 EUR</td><td><button class="button">Annuler (un avoir sera émis)</button></td></tr>
+            <tr><td>CMD-2405</td><td>samir.benali@exemple.fr</td><td>Samir Benali</td><td>Nour Benali</td><td>05/09/2026</td><td>Paiement en cours</td><td>43 EUR</td><td><span class="tag">Annulation indisponible pendant le traitement du paiement</span></td></tr>
+            <tr><td>CMD-2406</td><td>camille.roche@exemple.fr</td><td>Camille Roche</td><td>Tom Roche</td><td>06/09/2026</td><td>Confirmée</td><td>55 EUR</td><td><div class="actions"><a class="button primary" href="./commandes-paiements-saisie.html">Encaisser (chèque/espèce)</a><button class="button">Annuler (un avoir sera émis)</button></div></td></tr>
             <tr><td>CMD-2407</td><td>ines.moreau@exemple.fr</td><td>Ines Moreau</td><td>Mila Moreau</td><td>06/09/2026</td><td>Annulée</td><td>38 EUR</td><td><span class="tag">Commande annulée</span></td></tr>
           </tbody>
         </table>

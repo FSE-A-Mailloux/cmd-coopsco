@@ -69,7 +69,8 @@ Exemple:
 - L'écran **Consolidation** affiche `CA estimé`, `Marge estimée` et `Coût du stock prévu (besoin FSE)` pour la période en cours, avec indication explicite en cas d'**estimation partielle** (prix fournisseur HT manquants).
 - L'écran **Consolidation** n'affiche pas de **taux de service**.
 - Les commandes utilisent le référentiel de statuts: **Brouillon**, **En attente de paiement**, **Paiement partiel**, **Paiement en cours** (CB en traitement), **Confirmée**, **Annulée**.
-- Une commande peut être **annulée tant qu'aucun paiement n'a été enregistré**; l'annulation n'est plus possible après paiement.
+- Un **gestionnaire habilité** peut annuler une commande en **paiement partiel** ou **confirmée**; un avoir est émis et, si nécessaire, la facture est produite avant l'avoir. Cette annulation n'effectue pas de remboursement.
+- Dans **Mes commandes**, une famille peut annuler une commande **sans paiement enregistré**; l'annulation après paiement reste réservée au gestionnaire habilité.
 - La maquette **Liste des commandes (gestionnaire)** propose un **champ de recherche multicritères unique** (numéro de commande, email, nom/prénom parent, nom/prénom enfant), un filtre **Période** avec la **période en cours** par défaut, et un filtre **Statuts** en sélection multiple.
 - Le **Shell de référence** n'affiche pas de zone d'écrans dynamiques: il présente un tableau de bord de la **période en cours** (état, **CA**, **nb commandes**, **panier moyen** autour de **50 EUR**, statuts) et un récapitulatif des **périodes passées**.
 - Le formulaire de commande famille est **multi-étapes**: (1) validation email/téléphone, (2) saisie du nombre d'enfants puis des informations **nom / prénom / niveau** pour chaque enfant (sans niveau principal), (3) saisie des quantités sur la liste complète des fournitures, (4) validation de la commande, (5) choix du mode de paiement.

@@ -31,10 +31,14 @@ Les écrans de commandes MUST utiliser uniquement les statuts suivants: `Brouill
 - **WHEN** une commande est en statut `Brouillon` ou `En attente de paiement` sans paiement enregistré
 - **THEN** l'interface affiche une action d'annulation disponible
 
+#### Scenario: Annulation après paiement disponible au gestionnaire habilité
+- **WHEN** un gestionnaire habilité consulte une commande en statut `Paiement partiel` ou `Confirmée`
+- **THEN** l'interface affiche une action d'annulation qui indique qu'un avoir sera émis
+
 #### Scenario: Annulation refusée après paiement
-- **WHEN** une commande est en statut `Paiement partiel` ou `Confirmée`
-- **THEN** l'interface ne maintient pas le refus historique et affiche une action d'annulation qui indique qu'un avoir sera émis
+- **WHEN** un membre d'une famille consulte une commande en statut `Paiement partiel` ou `Confirmée`
+- **THEN** l'interface n'affiche pas d'action d'annulation
 
 #### Scenario: Confirmation de l'annulation après paiement
-- **WHEN** un utilisateur confirme l'annulation d'une commande avec paiement enregistré
+- **WHEN** un gestionnaire habilité confirme l'annulation d'une commande avec paiement enregistré
 - **THEN** l'interface affiche la confirmation de l'annulation et rend l'avoir téléchargeable

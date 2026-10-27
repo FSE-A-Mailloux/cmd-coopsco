@@ -4,11 +4,11 @@
 Le système MUST autoriser l'annulation d'une commande avec un ou plusieurs paiements enregistrés. Il MUST rattacher un avoir à la facture de la commande et conserver le lien traçable entre la commande, la facture et l'avoir.
 
 #### Scenario: Annulation d'une commande réglée déjà facturée
-- **WHEN** un utilisateur habilité confirme l'annulation d'une commande réglée disposant déjà d'une facture
+- **WHEN** un gestionnaire habilité confirme l'annulation d'une commande réglée disposant déjà d'une facture
 - **THEN** le système annule la commande et produit un avoir rattaché à cette facture
 
 #### Scenario: Annulation d'une commande réglée non facturée
-- **WHEN** un utilisateur habilité confirme l'annulation d'une commande réglée qui ne dispose pas encore de facture
+- **WHEN** un gestionnaire habilité confirme l'annulation d'une commande réglée qui ne dispose pas encore de facture
 - **THEN** le système produit d'abord la facture de la commande puis l'avoir rattaché à cette facture avant d'annuler la commande
 
 #### Scenario: Échec de production de la facture ou de l'avoir

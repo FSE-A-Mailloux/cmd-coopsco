@@ -353,9 +353,17 @@ Les écrans de commandes MUST utiliser uniquement les statuts suivants: `Brouill
 - **WHEN** une commande est en statut `Brouillon` ou `En attente de paiement` sans paiement enregistré
 - **THEN** l'interface affiche une action d'annulation disponible
 
+#### Scenario: Annulation après paiement disponible au gestionnaire habilité
+- **WHEN** un gestionnaire habilité consulte une commande en statut `Paiement partiel` ou `Confirmée`
+- **THEN** l'interface affiche une action d'annulation qui indique qu'un avoir sera émis
+
 #### Scenario: Annulation refusée après paiement
-- **WHEN** au moins un paiement est enregistré pour une commande
-- **THEN** l'interface indique que l'annulation de la commande n'est plus possible
+- **WHEN** un membre d'une famille consulte une commande en statut `Paiement partiel` ou `Confirmée`
+- **THEN** l'interface n'affiche pas d'action d'annulation
+
+#### Scenario: Confirmation de l'annulation après paiement
+- **WHEN** un gestionnaire habilité confirme l'annulation d'une commande avec paiement enregistré
+- **THEN** l'interface affiche la confirmation de l'annulation et rend l'avoir téléchargeable
 
 ### Requirement: Les gestionnaires MUST disposer d'un parcours de remboursement manuel
 Le détail d'une commande annulée avec avoir MUST présenter aux gestionnaires habilités le montant remboursé, le montant restant à rembourser et, si le solde est positif, une action de remboursement manuel. Le formulaire de remboursement MUST afficher le contexte de la commande et collecter le montant, le moyen, la date effective et la référence opérationnelle. Il MUST présenter le montant restant comme plafond et empêcher la soumission d'un montant nul, négatif ou supérieur au plafond connu. La validation serveur reste la source d'autorité en cas de solde modifié entre l'affichage du formulaire et sa soumission.
