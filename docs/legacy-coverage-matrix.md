@@ -57,7 +57,7 @@ Le contrôle automatisé est **structurel**, jamais sémantique. Il vérifie que
 | UC-AUTH-4 | Récupération de mot de passe oublié | REPRIS | FR-033 | user-account-lifecycle-management | entree-recuperation-acces | |
 | UC-AUTH-5 | Changement de son propre mot de passe | REPRIS | FR-034 | user-account-lifecycle-management | — | Descente incomplète : aucun écran de profil utilisateur n'existe dans les maquettes. |
 | UC-AUTH-6 | Changement de mot de passe via lien e-mail | REPRIS | FR-033 | user-account-lifecycle-management | entree-recuperation-acces | |
-| UC-AUTH-7 | Renvoi du code de validation | REPRIS | FR-015 | — | — | Repris (arbitrage 6). `FR-015` créé. Descente incomplète : spécification et maquette à produire, change `renvoyer-code-de-validation`. |
+| UC-AUTH-7 | Renvoi du code de validation | REPRIS | FR-015 | authentication-and-session-token-lifecycle, frontend-reference-screen-flows | entree-activation | Spécifications et maquette statique produites par `renvoyer-code-de-validation`; implémentation applicative hors périmètre de cette change. |
 | UC-AUTH-8 | Désinscription aux communications de diffusion | REPRIS | FR-037, FR-074 | templated-mail-and-document-generation | compte-suppression | Le traitement legacy `desabo` désactive uniquement les communications de diffusion (`comGroupe_uti = 0`) et laisse le compte actif. La suppression définitive à l'initiative du titulaire est un parcours cible distinct, spécifié dans `user-account-lifecycle-management` avec récapitulatif, nouvelle validation du mot de passe, confirmation explicite et anonymisation des commandes conservées. Change `cadrer-desactivation-de-compte`. |
 
 ### Administration & sécurité

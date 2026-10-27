@@ -18,10 +18,17 @@
         <div class="field"><label>Nouveau mot de passe</label><input class="input" type="password" value="********"></div>
         <div class="field"><label>Confirmation</label><input class="input" type="password" value="********"></div>
         <button class="button primary">Activer le compte</button>
+        <div class="actions">
+          <button class="button" type="button">Renvoyer le code de validation</button>
+        </div>
+        <p class="muted">Maquette statique : aucune demande n'est transmise et aucun courriel n'est envoyé depuis cet écran.</p>
       </article>
       <article class="card">
         <h2 class="card-title">Informations utiles</h2>
         <p class="muted">Le code est envoyé par email lors de la création du compte.</p>
+        <h3>Exemples de retours</h3>
+        <p role="status"><strong>Confirmation :</strong> Le nouveau code a été envoyé à l'adresse courriel associée à votre compte.</p>
+        <p role="alert"><strong>Échec :</strong> L'envoi du nouveau code n'a pas pu être effectué. Votre code actuel reste utilisable.</p>
       </article>
     </section>
   </div>
